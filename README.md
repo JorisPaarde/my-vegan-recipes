@@ -1,6 +1,6 @@
-User stories:
+# User stories:
 
-First time user:
+### First time user:
 
 As a first time user i want to:
 
@@ -13,7 +13,7 @@ Search: - recipies by ingredient
 filter by category (dropdown)
 like a recipe (only one like per user per recipe, needs registration)
 
-Recurring user:
+### Recurring user:
 
 See how many likes my recipies have in total.
 See how many likes my individual recipies have.
@@ -31,18 +31,62 @@ Remove recipies from other users from my personal recipe book
 filter my personal recipe book by category (dropdown)
 
 
-images:
+# Deployment
+
+- Create your account on MongoDB here: https://account.mongodb.com/account/register
+- Create your account on Heroku here: https://signup.heroku.com/login
+
+```
+pip3 install flask
+pip3 install flask-pymongo
+pip3 install dnspython
+```
+- Create your requirements file: 
+```
+pip3 freeze --local > requirements.txt
+```
+- Or if u downloaded it already:
+```
+pip install -r requirements.txt
+```
+- Create your env.py file:
+```
+touch env.py
+```
+- Make sure u add this env.py file to your gitignore file!
+- Add the folowing code to your env.py file:
+```python
+import os
+
+os.environ.setdefault("IP", "0.0.0.0")
+os.environ.setdefault("PORT", "5000")
+os.environ.setdefault("SECRET_KEY", "<YOUR-SECRET-KEY-HERE>")
+os.environ.setdefault("MONGO_URI", "mongodb+srv://root:<MONODBPASSWORD>@cluster0.ajvr3.mongodb.net/<DATABASENAME>?retryWrites=true&w=majority")
+os.environ.setdefault("MONGO_DBNAME", "<DATABASENAME>")
+```
+- Replace YOUR-SECRET-KEY-HERE, MONODBPASSWORD, DATABASENAME according to your personal situation.
+- Create your procfile:
+``` 
+echo web: python app.py > Procfile
+```
+- Delete the blank line 
+
+
+- Create a new app on heroku
+
+
+### images:
 
 https://unsplash.com/photos/4MEL9XS-3JQ?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink
 https://unsplash.com/photos/IxBCafdQItg?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink
 
 
-recipes:
+### recipes:
 
 https://www.jamieoliver.com/recipes/category/special-diets/vegan/
 https://www.goodhousekeeping.com/food-recipes/a38332/grilled-asparagus-and-shiitake-tacos-recipe/
 
-code: 
+### code: 
 
 https://help.pixpa.com/kb/add-a-floating-back-to-top-button/
 
