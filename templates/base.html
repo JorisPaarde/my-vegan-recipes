@@ -3,6 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="description" content="Vegan recipies and recipe book">
+  <meta name="keywords" content="vegan, recipe ,cookbook , food">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
@@ -13,10 +15,10 @@
 </head>
 <nav>
   <div class="nav-wrapper green darken-3">
-    <a href="#!" class="brand-logo">My Vegan Recipes</a>
+    <a href="{{ url_for('all_recipes')}}" class="brand-logo">My Vegan Recipes</a>
     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
-      <li><a href="#">All recipes</a></li>
+      <li><a href="{{ url_for('all_recipes')}}">All recipes</a></li>
       <li><a href="#">My recipe book</a></li>
       <li><a href="#">Add recipe</a></li>
       <li><a href="#">Log in</a></li>
@@ -27,7 +29,7 @@
 </nav>
 
 <ul class="sidenav" id="mobile-demo">
-  <li><a href="#">All recipes</a></li>
+  <li><a href="{{ url_for('all_recipes')}}">All recipes</a></li>
   <li><a href="#">My recipe book</a></li>
   <li><a href="#">Add recipe</a></li>
   <li><a href="#">Log in</a></li>
@@ -52,7 +54,7 @@
         <div class="col l4 offset-l2 s12">
           <h5 class="white-text">Links</h5>
           <ul>
-            <li><a class="grey-text text-lighten-3" href="#!">All recipes</a></li>
+            <li><a class="grey-text text-lighten-3" href="{{ url_for('all_recipes')}}">All recipes</a></li>
             <li><a class="grey-text text-lighten-3" href="#!">My recipe book</a></li>
             <li><a class="grey-text text-lighten-3" href="#!">Log in</a></li>
             <li><a class="grey-text text-lighten-3" href="#!">Log out</a></li>
