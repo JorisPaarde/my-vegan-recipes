@@ -1,4 +1,28 @@
-.card .card-image img{
+.card .card-image img {
     height: 18rem;
     object-fit: cover;
+}
+
+.brand-logo {
+    margin-left: 1rem;
+}
+
+.text-shadow{
+    text-shadow:  5px 5px 10px #000000;
+}
+
+.recipes-background {
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.4), rgba(255,255,255,0)),url("../images/victoria-shes-4MEL9XS-3JQ-unsplash.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media only screen and (max-width: 992px) {
+    nav .brand-logo {
+        font-size: 1.8rem;
+        width: fit-content;
+    }
 }
