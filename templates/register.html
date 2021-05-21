@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col l12">
+            <h2 class="grey-text text-lighten-1 center">Register</h2>
+            <p class="grey-text text-darken-1 center">Register now to get access to your own Personal recipe book!<br>And other features like:
+                <br>Adding recipes and Liking recipes!<br>Start collecting as much likes as you can on recipes added by you!</p>
+        </div>
+    </div>
+    <div class="row">
+        <form method="POST" action="{{ url_for('register') }}" class="col card-panel s12 m12 l10 offset-l1">
+            <!-- Username -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <input name="user_name" id="user_name" type="text" minlength="4" maxlength="15"
+                        pattern="^[a-zA-Z0-9]{5,15}$" class="validate">
+                    <label for="user_name">User name</label>
+                </div>
+            </div>
+            <!-- image url -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <input name="password" id="password" type="password" minlength="4" maxlength="15"
+                        pattern="^[a-zA-Z0-9]{5,15}$" class="validate">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 center-align">
+                    <hr><br>
+                    <button class="btn waves-effect waves-light" type="submit">Register
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

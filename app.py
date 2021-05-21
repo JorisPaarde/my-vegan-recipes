@@ -24,6 +24,32 @@ def all_recipes():
     recipes = list(mongo.db.recipes.find())
     return render_template("all_recipes.html", recipes=recipes)
 
+# code adjusted from task manager project by code institute
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        # check if username already exists in db
+        existing_user = mongo.db.users.find_one(
+            {"user_name": request.form.get("user_name").lower()})
+
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for("register"))
+
+        register = {
+            "user_name": request.form.get("user_name").lower(),
+            "password": generate_password_hash(request.form.get("password")),
+            "likes_amount": 0,
+            "liked_recipes": []
+        }
+        mongo.db.users.insert_one(register)
+
+        # put the new user into 'session' cookie
+        session["user"] = request.form.get("user_name").lower()
+        flash("Registration succesfull!")
+        return redirect(url_for("all_recipes", username=session["user"]))
+    return render_template("register.html")
+
 
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
@@ -62,7 +88,7 @@ def add_recipe():
         }
 
         mongo.db.recipes.insert_one(recipe)
-        flash("Task succesfully added")
+        flash("Recipe succesfully added to your recipe book.")
         return redirect(url_for("all_recipes"))
 
     return render_template("add_recipe.html")

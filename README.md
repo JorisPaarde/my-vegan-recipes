@@ -32,6 +32,7 @@ As a first time user i want to:
 
 # Features
 
+- Like button
 - Truncation on recipe cards
 
 # Deployment
