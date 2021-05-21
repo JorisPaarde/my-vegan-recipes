@@ -40,6 +40,19 @@
 
 <body>
 
+  <section>
+    <!-- flash messages-->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="row flashes">
+            <h4 class="light-blue lighten-4 center-align">{{ message }}</h4>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </section>
+
   <main>
     {% block content %}
     {% endblock %}
@@ -51,7 +64,8 @@
         <!-- footer title and text -->
         <div class="col l6 s12">
           <h5 class="white-text">My Vegan Recipes</h5>
-          <p class="grey-text text-lighten-4">Your go to recipe page for all things vegan.<br>Where u manage your personal recipe book and discover the best vegan recipes.</p>
+          <p class="grey-text text-lighten-4">Your go to recipe page for all things vegan.<br>Where u manage your
+            personal recipe book and discover the best vegan recipes.</p>
         </div>
         <!-- footer links -->
         <div class="col l4 offset-l2 s12">
