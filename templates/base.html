@@ -20,22 +20,28 @@
     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
       <li><a href="{{ url_for('all_recipes')}}">All recipes</a></li>
-      <li><a href="#">My recipe book</a></li>
-      <li><a href="{{ url_for('add_recipe')}}">Add recipe</a></li>
-      <li><a href="#">Log in</a></li>
-      <li><a href="#">Log out</a></li>
-      <li><a href="{{ url_for('register') }}">Register</a></li>
+      {% if session.user %}
+        <li><a href="#">My recipe book</a></li>
+        <li><a href="{{ url_for('add_recipe')}}">Add recipe</a></li>
+        <li><a href="{{ url_for('logout')}}">Log out</a></li>
+      {% else %}
+        <li><a href="#">Log in</a></li>
+        <li><a href="{{ url_for('register') }}">Register</a></li>
+      {% endif %}
     </ul>
   </div>
 </nav>
 <!-- hamburger navigation menu -->
 <ul class="sidenav" id="mobile-demo">
   <li><a href="{{ url_for('all_recipes')}}">All recipes</a></li>
-  <li><a href="#">My recipe book</a></li>
-  <li><a href="{{ url_for('add_recipe')}}">Add recipe</a></li>
-  <li><a href="#">Log in</a></li>
-  <li><a href="#">Log out</a></li>
-  <li><a href="{{ url_for('register') }}">Register</a></li>
+  {% if session.user %}
+    <li><a href="#">My recipe book</a></li>
+    <li><a href="{{ url_for('add_recipe')}}">Add recipe</a></li>
+    <li><a href="{{ url_for('logout')}}">Log out</a></li>
+  {% else %}
+    <li><a href="#">Log in</a></li>
+    <li><a href="{{ url_for('register') }}">Register</a></li>
+  {% endif %}
 </ul>
 
 <body>
@@ -46,7 +52,7 @@
       {% if messages %}
         {% for message in messages %}
           <div class="row flashes">
-            <h4 class="grey-text text-lighten-4 center-align">{{ message }}</h4>
+            <h4 class="grey-text text-lighten-1 center-align">{{ message }}</h4>
           </div>
         {% endfor %}
       {% endif %}
@@ -72,10 +78,13 @@
           <h5 class="white-text">Links</h5>
           <ul>
             <li><a class="grey-text text-lighten-3" href="{{ url_for('all_recipes')}}">All recipes</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">My recipe book</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Log in</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Log out</a></li>
-            <li><a class="grey-text text-lighten-3" href="{{ url_for('register') }}">Register</a></li>
+            {% if session.user %}
+              <li><a class="grey-text text-lighten-3" href="#!">My recipe book</a></li>
+              <li><a class="grey-text text-lighten-3" href="{{ url_for('logout')}}">Log out</a></li>
+            {% else %}
+              <li><a class="grey-text text-lighten-3" href="#!">Log in</a></li>
+              <li><a class="grey-text text-lighten-3" href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>

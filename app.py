@@ -24,6 +24,7 @@ def all_recipes():
     recipes = list(mongo.db.recipes.find())
     return render_template("all_recipes.html", recipes=recipes)
 
+
 # code adjusted from task manager project by code institute
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -46,9 +47,20 @@ def register():
 
         # put the new user into 'session' cookie
         session["user"] = request.form.get("user_name").lower()
-        flash("Registration succesfull!")
+        message = "welcome, {} your registration was succesfull!".format(
+            session["user"])
+        flash(message)
         return redirect(url_for("all_recipes", username=session["user"]))
     return render_template("register.html")
+
+
+# code adjusted from task manager project by code institute
+@app.route("/logout")
+def logout():
+    # remove user from session cookie
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("all_recipes"))
 
 
 @app.route("/add_recipe", methods=["GET", "POST"])
