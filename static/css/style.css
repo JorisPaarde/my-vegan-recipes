@@ -3,17 +3,17 @@
     margin-left: 1rem;
 }
 
-.text-shadow{
-    text-shadow:  5px 5px 10px #000000;
+.text-shadow {
+    text-shadow: 5px 5px 10px #000000;
 }
 
-.italic{
+.italic {
     font-style: italic;
 }
 
 /* Recipe cards  */
 
-.card{
+.card {
     height: 450px;
 }
 
@@ -25,30 +25,30 @@
 .line-clamp {
     display: -webkit-box;
     -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;  
+    -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-.card .card-content{
+.card .card-content {
     padding-top: 1rem;
 }
 
-.card .card-content .card-title{
+.card .card-content .card-title {
     font-weight: 400;
 }
 
-.like-button{
+.like-button {
     float: left;
     margin: 8px 0px 0px 8px;
 }
 
-.likes-amount{
+.likes-amount {
     position: relative;
     top: 20px;
     right: -5px;
 }
 
-.created-by{
+.created-by {
     margin: 2px 10px;
     float: right;
 }
@@ -57,12 +57,33 @@
 
 .recipes-background {
     min-height: 100vh;
-    background-image: linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.4), rgba(255,255,255,0)),url("../images/victoria-shes-4MEL9XS-3JQ-unsplash.jpg");
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0)), url("../images/victoria-shes-4MEL9XS-3JQ-unsplash.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+/* Add recipe page  */
+.input-field label{
+    font-size: 1rem;
+}
+
+#recipe_description, #preparation_step {
+    height: 5rem;
+    resize: none;
+    overflow: hidden;
+}
+
+#recipe_description:focus, #preparation_step:focus {
+    outline: none;
+    border: 2px solid #26A69A;
+}
+
+.textarea-label{
+    margin-left: 0.4rem;
+}
+
 
 /* Media queries  */
 
