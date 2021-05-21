@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}" type="text/css">
   <title>My Vegan Recipies</title>
 </head>
+<!-- vavigation menu -->
 <nav>
   <div class="nav-wrapper green darken-3">
     <a href="{{ url_for('all_recipes')}}" class="brand-logo">My Vegan Recipes</a>
@@ -20,18 +21,18 @@
     <ul class="right hide-on-med-and-down">
       <li><a href="{{ url_for('all_recipes')}}">All recipes</a></li>
       <li><a href="#">My recipe book</a></li>
-      <li><a href="#">Add recipe</a></li>
+      <li><a href="{{ url_for('add_recipe')}}">Add recipe</a></li>
       <li><a href="#">Log in</a></li>
       <li><a href="#">Log out</a></li>
       <li><a href="#">Register</a></li>
     </ul>
   </div>
 </nav>
-
+<!-- hamburger navigation menu -->
 <ul class="sidenav" id="mobile-demo">
   <li><a href="{{ url_for('all_recipes')}}">All recipes</a></li>
   <li><a href="#">My recipe book</a></li>
-  <li><a href="#">Add recipe</a></li>
+  <li><a href="{{ url_for('add_recipe')}}">Add recipe</a></li>
   <li><a href="#">Log in</a></li>
   <li><a href="#">Log out</a></li>
   <li><a href="#">Register</a></li>
@@ -47,10 +48,12 @@
   <footer class="page-footer green darken-3">
     <div class="container">
       <div class="row green darken-3">
+        <!-- footer title and text -->
         <div class="col l6 s12">
           <h5 class="white-text">My Vegan Recipes</h5>
           <p class="grey-text text-lighten-4">Your go to recipe page for all things vegan.<br>Where u manage your personal recipe book and discover the best vegan recipes.</p>
         </div>
+        <!-- footer links -->
         <div class="col l4 offset-l2 s12">
           <h5 class="white-text">Links</h5>
           <ul>
@@ -63,9 +66,11 @@
         </div>
       </div>
     </div>
+    <!-- footer copyright -->
     <div class="footer-copyright">
       <div class="container">
         © 2014 Copyright Myvegan inc.
+        <!-- social links -->
         <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
       </div>
     </div>
