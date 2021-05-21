@@ -25,7 +25,7 @@
         <li><a href="{{ url_for('add_recipe')}}">Add recipe</a></li>
         <li><a href="{{ url_for('logout')}}">Log out</a></li>
       {% else %}
-        <li><a href="#">Log in</a></li>
+        <li><a href="{{ url_for('login')}}">Log in</a></li>
         <li><a href="{{ url_for('register') }}">Register</a></li>
       {% endif %}
     </ul>
@@ -39,7 +39,7 @@
     <li><a href="{{ url_for('add_recipe')}}">Add recipe</a></li>
     <li><a href="{{ url_for('logout')}}">Log out</a></li>
   {% else %}
-    <li><a href="#">Log in</a></li>
+    <li><a href="{{ url_for('login')}}">Log in</a></li>
     <li><a href="{{ url_for('register') }}">Register</a></li>
   {% endif %}
 </ul>
@@ -82,7 +82,7 @@
               <li><a class="grey-text text-lighten-3" href="#!">My recipe book</a></li>
               <li><a class="grey-text text-lighten-3" href="{{ url_for('logout')}}">Log out</a></li>
             {% else %}
-              <li><a class="grey-text text-lighten-3" href="#!">Log in</a></li>
+              <li><a class="grey-text text-lighten-3" href="{{ url_for('login')}}">Log in</a></li>
               <li><a class="grey-text text-lighten-3" href="{{ url_for('register') }}">Register</a></li>
             {% endif %}
           </ul>

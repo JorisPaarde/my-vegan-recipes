@@ -55,6 +55,35 @@ def register():
 
 
 # code adjusted from task manager project by code institute
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        # check if username is in database
+        existing_user = mongo.db.users.find_one(
+            {"user_name": request.form.get("user_name").lower()})
+
+        if existing_user:
+            # ensure hashed password matches user input
+            if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("user_name").lower()
+                flash("Welcome, {}".format(request.form.get("user_name")))
+                return redirect(url_for(
+                   "all_recipes")) # , username=session["user"])
+            else:
+                # invalid password match
+                flash("Username and/or password incorrect.")
+                return redirect(url_for("login"))
+
+        else:
+            # no such user in database
+            flash("Username and/or password incorrect.")
+            return redirect(url_for("login"))
+
+    return render_template("login.html")
+
+
+# code adjusted from task manager project by code institute
 @app.route("/logout")
 def logout():
     # remove user from session cookie
