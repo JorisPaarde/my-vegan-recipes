@@ -69,7 +69,7 @@ def login():
                 session["user"] = request.form.get("user_name").lower()
                 flash("Welcome, {}".format(request.form.get("user_name")))
                 return redirect(url_for(
-                   "all_recipes")) # , username=session["user"])
+                   "all_recipes"))  # , username=session["user"])
             else:
                 # invalid password match
                 flash("Username and/or password incorrect.")
@@ -103,17 +103,23 @@ def add_recipe():
             return redirect(url_for("register"))
         # get recipe data from form
         else:
+            # populate array of ingredients
+            ingredient_indexes = [0, 1]
+            ingredients = []
 
-            ingredients = [{
-                "unit_name": request.form.get("ingredient_name"),
-                "amount": request.form.get("amount"),
-                "ingredient_name": request.form.get("unit_name")
-            },
-                {
-                "unit_name": request.form.get("ingredient_name"),
-                "amount": request.form.get("amount"),
-                "ingredient_name": request.form.get("unit_name")
-            }]
+            for index in ingredient_indexes:
+
+                ingredient_name = "ingredient_name_{}".format(index)
+                amount = "amount_{}".format(index)
+                unit = "unit_name_{}".format(index)
+
+                ingredient = {
+                    "unit_name": request.form.get(ingredient_name),
+                    "amount": request.form.get(amount),
+                    "ingredient_name": request.form.get(unit)
+                }
+
+                ingredients.append(ingredient)
 
             preparation_steps = [request.form.get("preparation_step"),
                                  "this is step 2"]
@@ -135,7 +141,7 @@ def add_recipe():
             flash("Recipe succesfully added to your recipe book.")
             return redirect(url_for("all_recipes"))
 
-    units = mongo.db.units.find()
+    units = list(mongo.db.units.find())
     return render_template("add_recipe.html", units=units)
 
 
