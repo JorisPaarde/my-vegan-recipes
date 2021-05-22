@@ -97,43 +97,50 @@ def logout():
 def add_recipe():
     if request.method == "POST":
 
-        ingredient_1 = {
-            "unit_name": "yet to add",
-            "amount": request.form.get("amount"),
-            "ingredient_name": request.form.get("amount")
-        }
+        if not session.get("user"):
 
-        ingredient_2 = {
-            "unit_name": "yet to add also",
-            "amount": request.form.get("amount"),
-            "ingredient_name": request.form.get("amount")
-        }
+            flash("Please register to add recipes")
+            return redirect(url_for("register"))
 
-        ingredients = [ingredient_1, ingredient_2]
+        else:
+            ingredient_1 = {
+                "unit_name": "yet to add",
+                "amount": request.form.get("amount"),
+                "ingredient_name": request.form.get("amount")
+            }
 
-        step_1 = request.form.get("preparation_step")
-        step_2 = "this is step 2"
+            ingredient_2 = {
+                "unit_name": "yet to add also",
+                "amount": request.form.get("amount"),
+                "ingredient_name": request.form.get("amount")
+            }
 
-        preparation_steps = [step_1, step_2]
+            ingredients = [ingredient_1, ingredient_2]
 
-        liked_by = ["joris", "ben", "henk"]
+            step_1 = request.form.get("preparation_step")
+            step_2 = "this is step 2"
 
-        recipe = {
-            "user_name": session["user"],
-            "recipe_title": request.form.get("recipe_title"),
-            "recipe_description": request.form.get("recipe_description"),
-            "image_url": request.form.get("image_url"),
-            "category_name": "yet to add",
-            "ingredients": ingredients,
-            "preparation_steps": preparation_steps,
-            "liked_by": liked_by
-        }
+            preparation_steps = [step_1, step_2]
 
-        mongo.db.recipes.insert_one(recipe)
-        flash("Recipe succesfully added to your recipe book.")
-        return redirect(url_for("all_recipes"))
+            liked_by = ["joris", "ben", "henk"]
 
-    return render_template("add_recipe.html")
+            recipe = {
+                "user_name": session["user"],
+                "recipe_title": request.form.get("recipe_title"),
+                "recipe_description": request.form.get("recipe_description"),
+                "image_url": request.form.get("image_url"),
+                "category_name": "yet to add",
+                "ingredients": ingredients,
+                "preparation_steps": preparation_steps,
+                "liked_by": liked_by
+            }
+
+            mongo.db.recipes.insert_one(recipe)
+            flash("Recipe succesfully added to your recipe book.")
+            return redirect(url_for("all_recipes"))
+
+    units = mongo.db.units.find()
+    return render_template("add_recipe.html", units=units)
 
 
 if __name__ == "__main__":
