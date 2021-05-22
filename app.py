@@ -25,7 +25,7 @@ def all_recipes():
     return render_template("all_recipes.html", recipes=recipes)
 
 
-# code adjusted from task manager project by code institute
+# register page code adjusted from task manager project by code institute
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -54,7 +54,7 @@ def register():
     return render_template("register.html")
 
 
-# code adjusted from task manager project by code institute
+# login page code adjusted from task manager project by code institute
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -92,6 +92,7 @@ def logout():
     return redirect(url_for("all_recipes"))
 
 
+# Add recipe page
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
@@ -108,7 +109,7 @@ def add_recipe():
             "ingredient_name": request.form.get("amount")
         }
 
-        ingredients = [ingredient_1,ingredient_2]
+        ingredients = [ingredient_1, ingredient_2]
 
         step_1 = request.form.get("preparation_step")
         step_2 = "this is step 2"
@@ -118,7 +119,7 @@ def add_recipe():
         liked_by = ["joris", "ben", "henk"]
 
         recipe = {
-            "user_name": "yet to add",
+            "user_name": session["user"],
             "recipe_title": request.form.get("recipe_title"),
             "recipe_description": request.form.get("recipe_description"),
             "image_url": request.form.get("image_url"),
