@@ -96,31 +96,27 @@ def logout():
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
-
+        # check if user is logged in
         if not session.get("user"):
 
             flash("Please register to add recipes")
             return redirect(url_for("register"))
-
+        # get recipe data from form
         else:
-            ingredient_1 = {
-                "unit_name": "yet to add",
+
+            ingredients = [{
+                "unit_name": request.form.get("ingredient_name"),
                 "amount": request.form.get("amount"),
-                "ingredient_name": request.form.get("amount")
-            }
-
-            ingredient_2 = {
-                "unit_name": "yet to add also",
+                "ingredient_name": request.form.get("unit_name")
+            },
+                {
+                "unit_name": request.form.get("ingredient_name"),
                 "amount": request.form.get("amount"),
-                "ingredient_name": request.form.get("amount")
-            }
+                "ingredient_name": request.form.get("unit_name")
+            }]
 
-            ingredients = [ingredient_1, ingredient_2]
-
-            step_1 = request.form.get("preparation_step")
-            step_2 = "this is step 2"
-
-            preparation_steps = [step_1, step_2]
+            preparation_steps = [request.form.get("preparation_step"),
+                                 "this is step 2"]
 
             liked_by = ["joris", "ben", "henk"]
 
@@ -134,7 +130,7 @@ def add_recipe():
                 "preparation_steps": preparation_steps,
                 "liked_by": liked_by
             }
-
+            # add recipe to database
             mongo.db.recipes.insert_one(recipe)
             flash("Recipe succesfully added to your recipe book.")
             return redirect(url_for("all_recipes"))
