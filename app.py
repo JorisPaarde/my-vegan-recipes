@@ -103,23 +103,23 @@ def add_recipe():
             return redirect(url_for("register"))
         # get recipe data from form
         else:
-            # populate array of ingredients
-            ingredient_indexes = [0, 1]
+            # populate arrays for ingredients
+            ingredient_names = request.form.getlist("ingredient_name")
+            amounts = request.form.getlist("amount")
+            unit_names = request.form.getlist("unit_name")
+            ingredient = [None] * len(ingredient_names)
             ingredients = []
+            # add all ingredients to the ingredients array
 
-            for index in ingredient_indexes:
+            for i in range(len(ingredient_names)):
 
-                ingredient_name = "ingredient_name_{}".format(index)
-                amount = "amount_{}".format(index)
-                unit = "unit_name_{}".format(index)
-
-                ingredient = {
-                    "unit_name": request.form.get(ingredient_name),
-                    "amount": request.form.get(amount),
-                    "ingredient_name": request.form.get(unit)
+                ingredient[i] = {
+                    "ingredient_name": ingredient_names[i],
+                    "amount": amounts[i],
+                    "unit_name": unit_names[i]
                 }
 
-                ingredients.append(ingredient)
+                ingredients.append(ingredient[i])
 
             preparation_steps = [request.form.get("preparation_step"),
                                  "this is step 2"]
