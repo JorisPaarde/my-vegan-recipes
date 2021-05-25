@@ -10,11 +10,10 @@
   }
 
 
-// Add a line to recipe input
-  $('#add-ingredient').click(function addIngredient(){
-    console.log('clicked')
+// Add a line to recipe ingredient input
+  $('#add-ingredient').click(function(){
 
-  recipeInputHtml = `
+  let recipeInputHtml = `
   <div class="row ingredient">
                       <!-- ingredient -->
                       <div class="input-field col s12 m8">
@@ -40,6 +39,24 @@
                   </div>
   `
 // add after the last added ingredient
-  $( ".ingredient" ).last().after(recipeInputHtml)
-  })
+  $( '.ingredient' ).last().after(recipeInputHtml)
+});
 
+
+// Add a line to recipe preparation input
+$('#add-prep-step').click(function(){
+
+let recipeInputHtml = `
+  <div class="row prep-step">
+                    <div class="input-field col s12">
+                        <textarea name="preparation_step" type="text" minlength="10"
+                            maxlength="200" class="validate"></textarea>
+                        <label class="textarea-label" for="preparation_step">Preparation step</label>
+                    </div>
+                </div>
+  `
+// add after the last added step
+$( '.prep-step' ).last().after(recipeInputHtml)
+});
+
+ 

@@ -103,6 +103,7 @@ def add_recipe():
             return redirect(url_for("register"))
         # get recipe data from form
         else:
+            # get all the ingredients
             # populate arrays for ingredients
             ingredient_names = request.form.getlist("ingredient_name")
             amounts = request.form.getlist("amount")
@@ -121,10 +122,8 @@ def add_recipe():
 
                 ingredients.append(ingredient[i])
 
-            preparation_steps = [request.form.get("preparation_step"),
-                                 "this is step 2"]
-
-            liked_by = ["joris", "ben", "henk"]
+            # get all the preparation steps
+            preparation_steps = request.form.getlist("preparation_step")
 
             recipe = {
                 "user_name": session["user"],
@@ -134,8 +133,9 @@ def add_recipe():
                 "category_name": "yet to add",
                 "ingredients": ingredients,
                 "preparation_steps": preparation_steps,
-                "liked_by": liked_by
+                "liked_by": [session["user"]]
             }
+
             # add recipe to database
             mongo.db.recipes.insert_one(recipe)
             flash("Recipe succesfully added to your recipe book.")
