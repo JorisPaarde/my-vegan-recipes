@@ -35,16 +35,16 @@
             <div class="row">
                 <!-- ingredient 1 -->
                 <div class="input-field col s12 m8">
-                    <input name="ingredient_name_0" id="ingredient_name_0" type="text" minlength="3" maxlength="100"
+                    <input name="ingredient_name" id="ingredient_name" type="text" minlength="3" maxlength="100"
                         class="validate" required>
-                    <label for="ingredient_name_0">Ingredient nr 1</label>
+                    <label for="ingredient_name">Ingredient nr 1</label>
                 </div>
                 <div class="input-field col s6 m2">
-                    <input name="amount_0" id="amount_0" type="text" maxlength="5" class="validate" required>
-                    <label for="amount_0">Amount</label>
+                    <input name="amount" id="amount" type="text" maxlength="5" class="validate" required>
+                    <label for="amount">Amount</label>
                 </div>
                 <div class="input-field col s6 m2">
-                    <select id="unit_name_0" name="unit_name_0" class="validate" required>
+                    <select id="unit_name" name="unit_name" class="validate" required>
                         {% for unit in units %}
                         <option value="{{ unit.unit_name }}">{{ unit.unit_name }}</option>
                         {% endfor %}
@@ -55,17 +55,17 @@
                 <div class="row">
                     <!-- ingredient 2 -->
                     <div class="input-field col s12 m8">
-                        <input name="ingredient_name_1" id="ingredient_name_1" type="text" minlength="3" maxlength="100"
+                        <input name="ingredient_name" id="ingredient_name" type="text" minlength="3" maxlength="100"
                             class="validate" required>
-                        <label for="ingredient_name_1">Ingredient nr 2</label>
+                        <label for="ingredient_name">Ingredient nr 2</label>
                     </div>
 
                     <div class="input-field col s6 m2">
-                        <input name="amount_1" id="amount_1" type="text" maxlength="5" class="validate" required>
-                        <label for="amount_1">Amount</label>
+                        <input name="amount" id="amount" type="text" maxlength="5" class="validate" required>
+                        <label for="amount">Amount</label>
                     </div>
                     <div class="input-field col s6 m2">
-                        <select id="unit_name_1" name="unit_name_1" class="validate" required>
+                        <select id="unit_name" name="unit_name" class="validate" required>
                             {% for unit in units %}
                             <option value="{{ unit.unit_name }}">{{ unit.unit_name }}</option>
                             {% endfor %}
