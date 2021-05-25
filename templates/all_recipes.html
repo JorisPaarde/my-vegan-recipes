@@ -33,8 +33,11 @@
                 <div class="card-image">
                     <img src="{{ recipe.image_url }}">
                 </div>
-                <a class="like-button btn-floating waves-effect waves-light green darken-3"><i
-                        class="material-icons">favorite_border</i></a>
+                <form action="{{ url_for('all_recipes') }}" method="post">
+                    <button name="like" class="like-button btn-floating waves-effect waves-light green darken-3" type="submit" value="{{ recipe._id }}">
+                        <i class="material-icons right">favorite_border</i>
+                    </button>
+                </form>
                 <span class="likes-amount">{{ recipe.liked_by|length }}</span>
                 <span class="created-by  grey-text text-lighten-1 italic">Created by: {{ recipe.user_name }}</span>
                 <div class="card-content center-align">

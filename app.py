@@ -19,9 +19,15 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/all_recipes")
+@app.route("/all_recipes", methods=["GET", "POST"])
 def all_recipes():
     recipes = list(mongo.db.recipes.find())
+
+    if request.method == "POST":
+        id = request.form.get("like")
+        flash("{} liked a recipe with id :{}".format(session["user"], id))
+        return redirect(url_for("login"))
+
     return render_template("all_recipes.html", recipes=recipes)
 
 
