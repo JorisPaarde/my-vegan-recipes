@@ -125,6 +125,9 @@ def add_recipe():
             # get all the preparation steps
             preparation_steps = request.form.getlist("preparation_step")
 
+            # get all the likes
+            liked_by = [session["user"]]
+
             recipe = {
                 "user_name": session["user"],
                 "recipe_title": request.form.get("recipe_title"),
@@ -133,9 +136,8 @@ def add_recipe():
                 "category_name": "yet to add",
                 "ingredients": ingredients,
                 "preparation_steps": preparation_steps,
-                "liked_by": [session["user"]]
+                "liked_by": liked_by
             }
-
             # add recipe to database
             mongo.db.recipes.insert_one(recipe)
             flash("Recipe succesfully added to your recipe book.")
