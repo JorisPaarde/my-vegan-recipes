@@ -18,22 +18,24 @@
   <div class="row ingredient">
                       <!-- ingredient -->
                       <div class="input-field col s12 m8">
-                          <input name="ingredient_name" id="ingredient_name" type="text" minlength="3" maxlength="100"
+                          <input name="ingredient_name" type="text" minlength="3" maxlength="100"
                               class="validate" required>
                           <label for="ingredient_name">Ingredient</label>
                       </div>
 
                       <div class="input-field col s6 m2">
-                          <input name="amount" id="amount" type="text" maxlength="5" class="validate" required>
+                          <input name="amount" type="text" maxlength="5" class="validate" required>
                           <label for="amount">Amount</label>
                       </div>
-                      <div class="input-field col s6 m2">
-                          <select id="unit_name" name="unit_name" class="validate" required>
-                              {% for unit in units %}
-                              <option value="{{ unit.unit_name }}">{{ unit.unit_name }}</option>
-                              {% endfor %}
-                          </select>
+                      <div class="unit_select col s6 m2">
                           <label>Unit</label>
+                          <select class="browser-default" name="unit_name" required>
+                            <option value="g">g</option>
+                            <option value="kg">kg</option>
+                            <option value="l">l</option>
+                            <option value="ml">ml</option>
+                            <option value="pcs">pcs</option>
+                          </select>
                       </div>
                   </div>
   `

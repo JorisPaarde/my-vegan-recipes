@@ -92,8 +92,15 @@ https://www.goodhousekeeping.com/food-recipes/a38332/grilled-asparagus-and-shiit
 
 ### code: 
 
+added html select field has no id since there will be lots added.
+
 https://help.pixpa.com/kb/add-a-floating-back-to-top-button/
 
 pagination?:
 
 https://betterprogramming.pub/simple-flask-pagination-example-4190b12c2e2e
+
+
+Bugs:
+
+when adding an ingredient line with javascript, the dropdown menu did not work.
