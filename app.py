@@ -22,10 +22,29 @@ mongo = PyMongo(app)
 @app.route("/all_recipes", methods=["GET", "POST"])
 def all_recipes():
     recipes = list(mongo.db.recipes.find())
-
+    # check like button press
     if request.method == "POST":
-        id = request.form.get("like")
-        flash("{} liked a recipe with id :{}".format(session["user"], id))
+        recipe_id = request.form.get("like")
+        user = session["user"]
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+        liked_by = recipe['liked_by']
+
+        # remove this user if he/she already likes this recipe
+        if user in liked_by:
+            flash("{} removed from your recipe book".format(
+                  recipe['recipe_title']))
+            mongo.db.recipes.update(
+                {"_id": ObjectId(recipe_id)},
+                {"$pull": {"liked_by": user}}
+            )
+        else:
+            # Add this user to the list of users that like his recipe
+            flash("{} added to your recipe book".format(recipe['recipe_title']))
+            mongo.db.recipes.update(
+                {"_id": ObjectId(recipe_id)},
+                {"$push": {"liked_by": user}}
+            )
+        # send user to his/her personal recipe book
         return redirect(url_for("login"))
 
     return render_template("all_recipes.html", recipes=recipes)
