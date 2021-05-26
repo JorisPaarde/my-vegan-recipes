@@ -24,28 +24,39 @@ def all_recipes():
     recipes = list(mongo.db.recipes.find())
     # check like button press
     if request.method == "POST":
-        recipe_id = request.form.get("like")
-        user = session["user"]
-        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-        liked_by = recipe['liked_by']
 
-        # remove this user if he/she already likes this recipe
-        if user in liked_by:
-            flash("{} removed from your recipe book".format(
-                  recipe['recipe_title']))
-            mongo.db.recipes.update_one(
-                {"_id": ObjectId(recipe_id)},
-                {"$pull": {"liked_by": user}}
-            )
+        # check if a user is logged in
+        if not session.get("user"):
+
+            # let user know he neds to register to perform this action
+            flash("Please register to like recipes")
+            return redirect(url_for("register"))
+
         else:
-            # Add this user to the list of users that like his recipe
-            flash("{} added to your recipe book".format(recipe['recipe_title']))
-            mongo.db.recipes.update_one(
-                {"_id": ObjectId(recipe_id)},
-                {"$push": {"liked_by": user}}
-            )
-        # send user to his/her personal recipe book
-        return redirect(url_for("login"))
+            # get nescessary data
+            recipe_id = request.form.get("like")
+            user = session["user"]
+            recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+            liked_by = recipe['liked_by']
+
+            # remove this user if he/she already likes this recipe
+            if user in liked_by:
+                flash("{} removed from your recipe book".format(
+                      recipe['recipe_title']))
+                mongo.db.recipes.update_one(
+                    {"_id": ObjectId(recipe_id)},
+                    {"$pull": {"liked_by": user}}
+                )
+            else:
+                # Add this user to the list of users that like his recipe
+                flash("{} added to your recipe book".format(
+                      recipe['recipe_title']))
+                mongo.db.recipes.update_one(
+                    {"_id": ObjectId(recipe_id)},
+                    {"$push": {"liked_by": user}}
+                )
+            # send user to his/her personal recipe book
+            return redirect(url_for("login"))
 
     return render_template("all_recipes.html", recipes=recipes)
 
@@ -169,7 +180,7 @@ def add_recipe():
             return redirect(url_for("all_recipes"))
 
     units = list(mongo.db.units.find())
-    return render_template("add_recipe.html", units=units)
+    return render_template("add_recipe.html")
 
 
 if __name__ == "__main__":
