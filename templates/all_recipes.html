@@ -33,9 +33,9 @@
                 <div class="card-image">
                     <img src="{{ recipe.image_url }}">
                 </div>
-                <form action="{{ url_for('all_recipes', recipe_id=recipe._id) }}" method="post">
+                <form action="{{ url_for('all_recipes') }}" method="post">
                     <button name="like" class="like-button btn-floating waves-effect waves-light green darken-3" type="submit" value="{{ recipe._id }}">
-                        <i class="material-icons right">favorite_border</i>
+                        <i class="material-icons right">{% if session["user"] in recipe.liked_by %}favorite{% else %}favorite_border{% endif %}</i>
                     </button>
                 </form>
                 <span class="likes-amount">{{ recipe.liked_by|length }}</span>
