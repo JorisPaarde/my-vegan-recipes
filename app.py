@@ -33,14 +33,14 @@ def all_recipes():
         if user in liked_by:
             flash("{} removed from your recipe book".format(
                   recipe['recipe_title']))
-            mongo.db.recipes.update(
+            mongo.db.recipes.update_one(
                 {"_id": ObjectId(recipe_id)},
                 {"$pull": {"liked_by": user}}
             )
         else:
             # Add this user to the list of users that like his recipe
             flash("{} added to your recipe book".format(recipe['recipe_title']))
-            mongo.db.recipes.update(
+            mongo.db.recipes.update_one(
                 {"_id": ObjectId(recipe_id)},
                 {"$push": {"liked_by": user}}
             )
