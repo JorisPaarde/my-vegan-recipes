@@ -21,6 +21,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/all_recipes", methods=["GET", "POST"])
 def all_recipes():
+    # get all recipes
     recipes = list(mongo.db.recipes.find())
     # check like button press
     if request.method == "POST":
@@ -28,7 +29,7 @@ def all_recipes():
         # check if a user is logged in
         if not session.get("user"):
 
-            # let user know he neds to register to perform this action
+            # let user know he needs to register to perform this action
             flash("Please register to like recipes")
             return redirect(url_for("register"))
 
@@ -56,9 +57,24 @@ def all_recipes():
                     {"$push": {"liked_by": user}}
                 )
             # send user to his/her personal recipe book
-            return redirect(url_for("login"))
+            return redirect(url_for("recipe_book"))
 
     return render_template("all_recipes.html", recipes=recipes)
+
+
+@app.route("/recipe_book", methods=["GET", "POST"])
+def recipe_book():
+    # check if a user is logged in
+    if not session.get("user"):
+
+        # let user know he needs to register to perform this action
+        flash("Please register to get your own recipe book")
+        return redirect(url_for("register"))
+
+    else:
+        # get all recipes
+        recipes = list(mongo.db.recipes.find())
+        return render_template("recipe_book.html", recipes=recipes)
 
 
 # register page code adjusted from task manager project by code institute
@@ -86,7 +102,8 @@ def register():
         message = "welcome, {} your registration was succesfull!".format(
             session["user"])
         flash(message)
-        return redirect(url_for("all_recipes", username=session["user"]))
+        # send user to his/her personal recipe book
+        return redirect(url_for("recipe_book", username=session["user"]))
     return render_template("register.html")
 
 
@@ -177,9 +194,9 @@ def add_recipe():
             # add recipe to database
             mongo.db.recipes.insert_one(recipe)
             flash("Recipe succesfully added to your recipe book.")
-            return redirect(url_for("all_recipes"))
+            # send user to his/her personal recipe book
+            return redirect(url_for("recipe_book"))
 
-    units = list(mongo.db.units.find())
     return render_template("add_recipe.html")
 
 

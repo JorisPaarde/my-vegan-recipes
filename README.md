@@ -12,11 +12,13 @@ As a first time user i want to:
           - by name
 - filter by category (dropdown)
 - like a recipe (only one like per user per recipe, needs registration)
+- See which recipes i liked
 
 ### Recurring user:
 
 - See how many likes my recipies have in total.
 - See how many likes my individual recipies have.
+- See which recipes i liked
 - Log into my personal recipe book.
 - Add my own recipies
         - title
@@ -34,6 +36,11 @@ As a first time user i want to:
 
 - Like button
 - Truncation on recipe cards
+
+## future features
+
+- Use Ajax for the like button
+- Recipe reviews
 
 # Deployment
 
@@ -101,6 +108,7 @@ pagination?:
 https://betterprogramming.pub/simple-flask-pagination-example-4190b12c2e2e
 
 
-Bugs:
+# Bugs:
 
-when adding an ingredient line with javascript, the dropdown menu did not work.
+when adding an ingredient line with javascript, the dropdown menu did not work. hardcoded in stead of db generated.
+When liking a recipe without being logged in site crashed. check if logged user added.

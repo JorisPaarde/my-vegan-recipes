@@ -21,7 +21,7 @@
     <ul class="right hide-on-med-and-down">
       <li><a href="{{ url_for('all_recipes')}}">All recipes</a></li>
       {% if session.user %}
-        <li><a href="#">My recipe book</a></li>
+        <li><a href="{{ url_for('recipe_book')}}">My recipe book</a></li>
         <li><a href="{{ url_for('add_recipe')}}">Add recipe</a></li>
         <li><a href="{{ url_for('logout')}}">Log out</a></li>
       {% else %}
@@ -35,7 +35,7 @@
 <ul class="sidenav" id="mobile-demo">
   <li><a href="{{ url_for('all_recipes')}}">All recipes</a></li>
   {% if session.user %}
-    <li><a href="#">My recipe book</a></li>
+    <li><a href="{{ url_for('recipe_book')}}">My recipe book</a></li>
     <li><a href="{{ url_for('add_recipe')}}">Add recipe</a></li>
     <li><a href="{{ url_for('logout')}}">Log out</a></li>
   {% else %}
@@ -79,7 +79,7 @@
           <ul>
             <li><a class="grey-text text-lighten-3" href="{{ url_for('all_recipes')}}">All recipes</a></li>
             {% if session.user %}
-              <li><a class="grey-text text-lighten-3" href="#!">My recipe book</a></li>
+              <li><a class="grey-text text-lighten-3" href="{{ url_for('recipe_book')}}">My recipe book</a></li>
               <li><a class="grey-text text-lighten-3" href="{{ url_for('logout')}}">Log out</a></li>
             {% else %}
               <li><a class="grey-text text-lighten-3" href="{{ url_for('login')}}">Log in</a></li>

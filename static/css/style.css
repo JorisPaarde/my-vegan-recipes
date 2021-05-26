@@ -64,6 +64,16 @@
     background-size: cover;
 }
 
+/* Recipe-book page */
+.recipe-book-background{
+    min-height: 80vh;
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0)), url("../images/mike-gattorna-IxBCafdQItg-unsplash-cropped.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 /* Add recipe page  */
 .input-field label{
     font-size: 1rem;
