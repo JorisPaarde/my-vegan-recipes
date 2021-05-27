@@ -162,6 +162,7 @@ def logout():
 # Add recipe page
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
+    # when submitting the form:
     if request.method == "POST":
         # check if user is logged in
         if not session.get("user"):
@@ -200,7 +201,7 @@ def add_recipe():
                 "recipe_title": request.form.get("recipe_title"),
                 "recipe_description": request.form.get("recipe_description"),
                 "image_url": request.form.get("image_url"),
-                "category_name": "yet to add",
+                "category_name": request.form.get("category_name"),
                 "ingredients": ingredients,
                 "preparation_steps": preparation_steps,
                 "liked_by": liked_by
@@ -211,7 +212,8 @@ def add_recipe():
             # send user to his/her personal recipe book
             return redirect(url_for("recipe_book"))
 
-    return render_template("add_recipe.html")
+    categories = mongo.db.categories.find()
+    return render_template("add_recipe.html", categories=categories)
 
 
 if __name__ == "__main__":
