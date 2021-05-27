@@ -24,6 +24,7 @@
     <div class="row">
         {% for recipe in recipes %}
         <!-- display all recipes liked by this user -->
+        <a href="{{ url_for('recipe', recipe_id=recipe._id) }}">
             {% if session["user"] in recipe.liked_by %}
             <div class="col s12 m6 l4">
                 <div class="card hoverable">
@@ -44,6 +45,7 @@
                 </div>
             </div>
             {% endif %}
+        </a>
         {% endfor %}
     </div>
 </div>

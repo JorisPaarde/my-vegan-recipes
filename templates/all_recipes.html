@@ -28,25 +28,27 @@
     <!-- recipes -->
     <div class="row">
         {% for recipe in recipes %}
-        <div class="col s12 m6 l4">
-            <div class="card hoverable">
-                <div class="card-image">
-                    <img src="{{ recipe.image_url }}">
-                </div>
-                <form action="{{ url_for('all_recipes') }}" method="post">
-                    <button name="like" class="like-button btn-floating waves-effect waves-light green darken-3" type="submit" value="{{ recipe._id }}">
-                        <!-- indicate if this user liked this recipe -->
-                        <i class="material-icons right">{% if session["user"] in recipe.liked_by %}favorite{% else %}favorite_border{% endif %}</i>
-                    </button>
-                </form>
-                <span class="likes-amount">{{ recipe.liked_by|length }}</span>
-                <span class="created-by  grey-text text-lighten-1 italic">Created by: {{ recipe.user_name }}</span>
-                <div class="card-content center-align">
-                    <span class="card-title">{{ recipe.recipe_title }}</span>
-                    <p class="line-clamp">{{ recipe.recipe_description }}</p>
+        <a href="{{ url_for('recipe', recipe_id=recipe._id) }}">
+            <div class="col s12 m6 l4">
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <img src="{{ recipe.image_url }}">
+                    </div>
+                    <form action="{{ url_for('all_recipes') }}" method="post">
+                        <button name="like" class="like-button btn-floating waves-effect waves-light green darken-3" type="submit" value="{{ recipe._id }}">
+                            <!-- indicate if this user liked this recipe -->
+                            <i class="material-icons right">{% if session["user"] in recipe.liked_by %}favorite{% else %}favorite_border{% endif %}</i>
+                        </button>
+                    </form>
+                    <span class="likes-amount">{{ recipe.liked_by|length }}</span>
+                    <span class="created-by  grey-text text-lighten-1 italic">Created by: {{ recipe.user_name }}</span>
+                    <div class="card-content center-align">
+                        <span class="line-clamp card-title">{{ recipe.recipe_title }}</span>
+                        <p class="line-clamp">{{ recipe.recipe_description }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
         {% endfor %}
     </div>
 </div>
