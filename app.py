@@ -74,7 +74,7 @@ def recipe_book():
     # check if a user is logged in
     if not session.get("user"):
 
-        # let user know he needs to register to perform this action
+        # let user know he needs to register to acess this page
         flash("Please register to get your own recipe book")
         return redirect(url_for("register"))
 
@@ -214,6 +214,21 @@ def add_recipe():
 
     categories = mongo.db.categories.find()
     return render_template("add_recipe.html", categories=categories)
+
+
+@app.route("/recipe/<recipe_id>")
+def recipe(recipe_id):
+    # get all data
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    ingredients = recipe['ingredients']
+    preparation_steps = recipe['preparation_steps']
+    print(preparation_steps)
+
+    return render_template("recipe.html",
+                           recipe=recipe,
+                           ingredients=ingredients,
+                           preparation_steps=preparation_steps
+                           )
 
 
 if __name__ == "__main__":
