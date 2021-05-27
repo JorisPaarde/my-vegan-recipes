@@ -1,4 +1,4 @@
-/* Fonts  */
+/*-------------------------------------------- Fonts --------------------------------*/
 .brand-logo {
     margin-left: 1rem;
 }
@@ -11,7 +11,7 @@
     font-style: italic;
 }
 
-/* Recipe cards  */
+/*---------------------------------------- Recipe cards ------------------------------*/
 
 .card {
     height: 450px;
@@ -22,9 +22,10 @@
     object-fit: cover;
 }
 
+/* limit text length */
 .line-clamp {
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -35,6 +36,10 @@
 
 .card .card-content .card-title {
     font-weight: 400;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .like-button {
@@ -53,7 +58,7 @@
     float: right;
 }
 
-/* Recipe page  */
+/*-------------------------------------- Recipe page ----------------------------------------------*/
 
 .recipes-background {
     min-height: 70vh;
@@ -64,7 +69,7 @@
     background-size: cover;
 }
 
-/* Recipe-book page */
+/*------------------------------------- Recipe-book page ------------------------------------------*/
 
 .recipe-book-background{
     min-height: 70vh;
@@ -75,7 +80,7 @@
     background-size: cover;
 }
 
-/* Add recipe page  */
+/*---------------------------------------- Add recipe page ----------------------------------------*/
 .input-field label{
     font-size: 1rem;
 }
@@ -95,7 +100,7 @@
     margin-left: 0.4rem;
 }
 
-/* Media queries  */
+/*------------------------------------------ Media queries ---------------------------------------*/
 
 @media only screen and (max-width: 992px) {
     nav .brand-logo {
