@@ -24,28 +24,47 @@
     <div class="row">
         {% for recipe in recipes %}
         <!-- display all recipes liked by this user -->
-        <a href="{{ url_for('recipe', recipe_id=recipe._id) }}">
-            {% if session["user"] in recipe.liked_by %}
-            <div class="col s12 m6 l4">
-                <div class="card hoverable">
+        {% if session["user"] in recipe.liked_by %}
+        <div class="col s12 m6 l4">
+
+            <div class="card hoverable">
+                <a href="{{ url_for('recipe', recipe_id=recipe._id) }}">
                     <div class="card-image">
                         <img src="{{ recipe.image_url }}">
                     </div>
                     <form action="{{ url_for('all_recipes') }}" method="post">
-                        <button name="like" class="like-button btn-floating waves-effect waves-light green darken-3" type="submit" value="{{ recipe._id }}">
+                        <button name="like" class="like-button btn-floating waves-effect waves-light green darken-3"
+                            type="submit" value="{{ recipe._id }}">
                             <i class="material-icons right">favorite</i>
                         </button>
                     </form>
-                    <span class="likes-amount">{{ recipe.liked_by|length }}</span>
+                    <span class="likes-amount grey-text text-darken-2">{{ recipe.liked_by|length }}</span>
                     <span class="created-by  grey-text text-lighten-1 italic">Created by: {{ recipe.user_name }}</span>
                     <div class="card-content center-align">
-                        <span class="card-title">{{ recipe.recipe_title }}</span>
-                        <p class="line-clamp">{{ recipe.recipe_description }}</p>
+                        <span class="card-title grey-text text-darken-2">{{ recipe.recipe_title }}</span>
+                        <p class="line-clamp grey-text text-darken-2">{{ recipe.recipe_description }}</p>
                     </div>
-                </div>
+                </a>
             </div>
-            {% endif %}
-        </a>
+            <div class="row">
+                {% if session["user"] == recipe.user_name %}
+                <form class="col l6" action="" method="post">
+                    <button name="delete" class="waves-effect waves-light btn" type="submit"><i
+                            class="material-icons left">delete</i>Delete</button>
+                </form>
+                <form class="col l6" action="" method="post">
+                    <button name="edit" class="waves-effect waves-light btn right" type="submit"><i
+                            class="material-icons left">edit</i>edit</button>
+                </form>
+                {% else %}
+                <form class="col l12 center-align" action="" method="post">
+                    <button name="edit" class="waves-effect waves-light btn" type="submit"><i
+                            class="material-icons left">remove</i>Remove</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
         {% endfor %}
     </div>
 </div>
