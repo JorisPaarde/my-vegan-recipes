@@ -11,6 +11,15 @@
     font-style: italic;
 }
 
+/* code by Lisa Feigen: https://github.com/lisa1Q84/somelikeithot-recipes/blob/master/static/css/style.css */
+
+.border{
+    border: dashed 2px #41403E;
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    padding-left: 1.5rem;
+}
+
+
 /*---------------------------------------- Recipe cards ------------------------------*/
 
 .card {
