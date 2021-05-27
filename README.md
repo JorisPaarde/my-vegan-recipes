@@ -7,7 +7,7 @@ As a first time user i want to:
 - Have a clear idea what the site is about.
 - Register as a new user
 - View recipies other people posted
-- See most liked recipies
+- See most liked recipies on top
 - Search: - recipies by ingredient
           - by name
 - filter by category (dropdown)
@@ -112,3 +112,4 @@ https://betterprogramming.pub/simple-flask-pagination-example-4190b12c2e2e
 
 when adding an ingredient line with javascript, the dropdown menu did not work. hardcoded in stead of db generated.
 When liking a recipe without being logged in site crashed. check if logged user added.
+When adding a really long title the text would flow outside the recipe card. fixed by adding webkit-line-clamp.
