@@ -40,11 +40,11 @@
                             <i class="material-icons right">{% if session["user"] in recipe.liked_by %}favorite{% else %}favorite_border{% endif %}</i>
                         </button>
                     </form>
-                    <span class="likes-amount">{{ recipe.liked_by|length }}</span>
-                    <span class="created-by  grey-text text-lighten-1 italic">Created by: {{ recipe.user_name }}</span>
+                    <span class="likes-amount grey-text text-darken-2">{{ recipe.liked_by|length }}</span>
+                    <span class="created-by grey-text text-lighten-1 italic">Created by: {{ recipe.user_name }}</span>
                     <div class="card-content center-align">
-                        <span class="line-clamp card-title">{{ recipe.recipe_title }}</span>
-                        <p class="line-clamp">{{ recipe.recipe_description }}</p>
+                        <span class="line-clamp card-title grey-text text-darken-2">{{ recipe.recipe_title }}</span>
+                        <p class="line-clamp grey-text text-darken-2">{{ recipe.recipe_description }}</p>
                     </div>
                 </div>
             </div>
