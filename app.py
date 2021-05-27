@@ -23,6 +23,13 @@ mongo = PyMongo(app)
 def all_recipes():
     # get all recipes
     recipes = list(mongo.db.recipes.find())
+    # sort the recipes by likes high to low
+
+    def sort_by_likes(recipe):
+        return len(recipe['liked_by'])
+
+    recipes.sort(reverse=True, key=sort_by_likes)
+
     # check like button press
     if request.method == "POST":
 
@@ -74,6 +81,13 @@ def recipe_book():
     else:
         # get all recipes
         recipes = list(mongo.db.recipes.find())
+
+        # sort the recipes by likes high to low
+        def sort_by_likes(recipe):
+            return len(recipe['liked_by'])
+
+        recipes.sort(reverse=True, key=sort_by_likes)
+
         return render_template("recipe_book.html", recipes=recipes)
 
 
