@@ -6,7 +6,7 @@
             <h2 class="grey-text text-lighten-1 center">Add a new recipe</h2>
         </div>
     </div>
-    <div class="row">
+    <div class="row add-recipe">
         <form method="POST" action="{{ url_for('add_recipe') }}" class="col card-panel m12 l10 offset-l1">
             <!-- recipe title -->
             <div class="row">
@@ -26,7 +26,7 @@
                         {% endfor %}
                     </select>
                     <label>Recipe category</label>
-                  </div>
+                </div>
             </div>
             <!-- image url -->
             <div class="row">
@@ -44,18 +44,17 @@
                 </div>
             </div>
             <!-- ingredients-->
-            <div class="row ingredient">
+            <div class="row recipe-item ingredient">
                 <!-- ingredient -->
-                <div class="input-field col s12 m8">
-                    <input name="ingredient_name" type="text" minlength="3" maxlength="100"
-                        class="validate" required>
+                <div class="input-field col s12 m8 l8">
+                    <input name="ingredient_name" type="text" minlength="3" maxlength="100" class="validate" required>
                     <label for="ingredient_name">Ingredient</label>
                 </div>
-                <div class="input-field col s6 m2">
+                <div class="input-field col s4 m1 l1">
                     <input name="amount" type="text" maxlength="5" class="validate" required>
                     <label for="amount">Amount</label>
                 </div>
-                <div class="col s6 m2">
+                <div class="col s6 m2 l2">
                     <label>Unit</label>
                     <select class="browser-default" name="unit_name" required>
                         <option value="g">g</option>
@@ -65,38 +64,44 @@
                         <option value="pcs">pcs</option>
                     </select>
                 </div>
-            </div>
-                <div class="row">
-                    <div class="col s12 center-align">
-                        <button id="add-ingredient" class="btn waves-effect waves-light" type="button">Add Ingredient
-                            <i class="material-icons right">add</i>
-                        </button>
-                    </div>
+                <div class="col s2 m1 l1">
                 </div>
-                <!-- preparation steps-->
-                <div class="row prep-step">
-                    <div class="input-field col s12">
-                        <textarea name="preparation_step" type="text" minlength="10"
-                            maxlength="400" class="validate"></textarea>
+            </div>
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button id="add-ingredient" class="btn waves-effect waves-light" type="button">Add Ingredient
+                        <i class="material-icons right">add</i>
+                    </button>
+                </div>
+            </div>
+            <!-- preparation steps-->
+            <div class="row prep-step recipe-item">
+                <div class="col s10 m11 l11">
+                    <div class="input-field preparation_step col s12">
+                        <textarea name="preparation_step" type="text" minlength="10" maxlength="400"
+                            class="validate"></textarea>
                         <label class="textarea-label" for="preparation_step">Preparation step</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col s12 center-align">
-                        <button class="btn waves-effect waves-light" id="add-prep-step" type="button">Add step
-                            <i class="material-icons right">add</i>
-                        </button>
-                    </div>
+                <div class="col s1 m1 l1">
                 </div>
-                <div class="row">
-                    <div class="col s12 center-align">
-                        <hr><br>
-                        <button class="btn waves-effect waves-light" type="submit">Add recipe
-                            <i class="material-icons right">send</i>
-                        </button>
-                        <p>After submitting, this recipe will automatically be added to <br>your recipe book.</p>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button class="btn waves-effect waves-light" id="add-prep-step" type="button">Add step
+                        <i class="material-icons right">add</i>
+                    </button>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col s12 center-align">
+                    <hr><br>
+                    <button class="btn waves-effect waves-light" type="submit">Add recipe
+                        <i class="material-icons right">send</i>
+                    </button>
+                    <p>After submitting, this recipe will automatically be added to <br>your recipe book.</p>
+                </div>
+            </div>
         </form>
     </div>
 </div>
