@@ -30,6 +30,11 @@ def all_recipes():
 
     recipes.sort(reverse=True, key=sort_by_likes)
 
+    return render_template("all_recipes.html", recipes=recipes)
+
+
+@app.route("/like_recipe", methods=["GET", "POST"])
+def like_recipe():
     # check like button press
     if request.method == "POST":
 
@@ -65,8 +70,6 @@ def all_recipes():
                 )
             # send user to his/her personal recipe book
             return redirect(url_for("recipe_book"))
-
-    return render_template("all_recipes.html", recipes=recipes)
 
 
 @app.route("/recipe_book", methods=["GET", "POST"])

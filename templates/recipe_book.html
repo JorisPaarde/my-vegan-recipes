@@ -32,7 +32,7 @@
                     <div class="card-image">
                         <img src="{{ recipe.image_url }}">
                     </div>
-                    <form action="{{ url_for('all_recipes') }}" method="post">
+                    <form action="{{ url_for('like_recipe') }}" method="post">
                         <button name="like" class="like-button btn-floating waves-effect waves-light green darken-3"
                             type="submit" value="{{ recipe._id }}">
                             <i class="material-icons right">favorite</i>
@@ -57,8 +57,8 @@
                             class="material-icons left">edit</i>edit</button>
                 </form>
                 {% else %}
-                <form class="col l12 center-align" action="" method="post">
-                    <button name="edit" class="waves-effect waves-light btn" type="submit"><i
+                <form action="{{ url_for('like_recipe') }}" method="post">
+                    <button name="like" value="{{ recipe._id }}" class="waves-effect waves-light btn" type="submit"><i
                             class="material-icons left">remove</i>Remove</button>
                 </form>
                 {% endif %}
