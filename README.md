@@ -8,11 +8,11 @@ As a first time user i want to:
 - Register as a new user
 - View recipies other people posted
 - See most liked recipies on top
+- See which recipes i liked
 - Search: - recipies by ingredient
           - by name
 - filter by category (dropdown)
 - like a recipe (only one like per user per recipe, needs registration)
-- See which recipes i liked
 
 ### Recurring user:
 
@@ -27,6 +27,9 @@ As a first time user i want to:
         - preparation steps (adding 1 step at a time)
         - image url
 - Edit my own recipies.
+        - edit inputs
+        - delete inputs
+        - add inputs
 - Delete my own recipies.
 - Add recipies from other users to my personal recipe book
 - Remove recipies from other users from my personal recipe book
@@ -34,8 +37,14 @@ As a first time user i want to:
 
 # Features
 
+- Register
+- Login
+- Logout
 - Like button
 - Truncation on recipe cards
+- Delete recipes
+- Edit recipes
+- Remove recipes
 
 ## future features
 
@@ -113,3 +122,4 @@ https://betterprogramming.pub/simple-flask-pagination-example-4190b12c2e2e
 when adding an ingredient line with javascript, the dropdown menu did not work. hardcoded in stead of db generated.
 When liking a recipe without being logged in site crashed. check if logged user added.
 When adding a really long title the text would flow outside the recipe card. fixed by adding webkit-line-clamp.
+Card text displayed as blue link text when the card was made clickable to link to the recipe. Added class to text.
