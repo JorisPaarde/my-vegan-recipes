@@ -101,13 +101,13 @@
     font-size: 1rem;
 }
 
-#recipe_description, #preparation_step {
+#recipe_description, .preparation_step textarea{
     height: 5rem;
     resize: none;
     overflow: hidden;
 }
 
-#recipe_description:focus, #preparation_step:focus {
+#recipe_description:focus, .preparation_step textarea:focus {
     outline: none;
     border: 2px solid #26A69A;
 }
@@ -123,4 +123,5 @@
         font-size: 1.8rem;
         width: fit-content;
     }
+    
 }
