@@ -33,8 +33,9 @@
                         <img src="{{ recipe.image_url }}">
                     </div>
                     <form action="{{ url_for('like_recipe') }}" method="post">
-                        <button name="like" class="like-button btn-floating waves-effect waves-light green darken-3"
-                            type="submit" value="{{ recipe._id }}">
+                        <button name="like"
+                            class="like-button btn-floating waves-effect waves-light light-green darken-2" type="submit"
+                            value="{{ recipe._id }}">
                             <i class="material-icons right">favorite</i>
                         </button>
                     </form>
@@ -49,16 +50,19 @@
             <div class="row">
                 {% if session["user"] == recipe.user_name %}
                 <form class="col l6" action="" method="post">
-                    <button name="delete" class="waves-effect waves-light btn" type="submit"><i
+                    <button name="delete" class="waves-effect waves-light btn light-green darken-2" type="submit"><i
                             class="material-icons left">delete</i>Delete</button>
                 </form>
-                <form class="col l6" action="" method="post">
-                    <button name="edit" class="waves-effect waves-light btn right" type="submit"><i
-                            class="material-icons left">edit</i>edit</button>
-                </form>
+                <div class="col l6">
+                    <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
+                        <button name="edit" class="waves-effect waves-light btn right light-green darken-2"
+                            type="button"><i class="material-icons left">edit</i>edit</button>
+                    </a>
+                </div>
                 {% else %}
-                <form action="{{ url_for('like_recipe') }}" method="post">
-                    <button name="like" value="{{ recipe._id }}" class="waves-effect waves-light btn" type="submit"><i
+                <form class="col l12" action="{{ url_for('like_recipe') }}" method="post">
+                    <button name="like" value="{{ recipe._id }}"
+                        class="waves-effect waves-light btn light-green darken-2" type="submit"><i
                             class="material-icons left">remove</i>Remove</button>
                 </form>
                 {% endif %}

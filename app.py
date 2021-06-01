@@ -18,6 +18,7 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+# -------------------------------------------  Main page with all recipes
 @app.route("/")
 @app.route("/all_recipes", methods=["GET", "POST"])
 def all_recipes():
@@ -33,6 +34,7 @@ def all_recipes():
     return render_template("all_recipes.html", recipes=recipes)
 
 
+# -------------------------------------------  Like/dislike functionality
 @app.route("/like_recipe", methods=["GET", "POST"])
 def like_recipe():
     # check like button press
@@ -72,6 +74,7 @@ def like_recipe():
             return redirect(url_for("recipe_book"))
 
 
+#  -------------------------------------------  Recipe book page
 @app.route("/recipe_book", methods=["GET", "POST"])
 def recipe_book():
     # check if a user is logged in
@@ -94,7 +97,72 @@ def recipe_book():
         return render_template("recipe_book.html", recipes=recipes)
 
 
-# register page code adjusted from task manager project by code institute
+# -------------------------------------------  Edit recipe page
+@app.route("/edit_recipe.html/<recipe_id>", methods=["GET", "POST"])
+def edit_recipe(recipe_id):
+    # get all data
+    categories = mongo.db.categories.find()
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    ingredients = recipe['ingredients']
+    preparation_steps = recipe['preparation_steps']
+
+    # when submitting the form:
+    if request.method == "POST":
+        # get recipe data from form
+        # get all the ingredients
+        # populate arrays for ingredients
+        ingredient_names = request.form.getlist("ingredient_name")
+        amounts = request.form.getlist("amount")
+        unit_names = request.form.getlist("unit_name")
+        ingredient = [None] * len(ingredient_names)
+        ingredients = []
+
+        # add all ingredients to the ingredients array
+
+        for i in range(len(ingredient_names)):
+
+            ingredient[i] = {
+                "ingredient_name": ingredient_names[i],
+                "amount": amounts[i],
+                "unit_name": unit_names[i]
+            }
+
+            ingredients.append(ingredient[i])
+
+        # get all the preparation steps
+        preparation_steps = request.form.getlist("preparation_step")
+        # get all the likes
+        liked_by = recipe['liked_by']
+
+        recipe_updated = {
+            "user_name": session["user"],
+            "recipe_title": request.form.get("recipe_title"),
+            "recipe_description": request.form.get("recipe_description"),
+            "image_url": request.form.get("image_url"),
+            "category_name": request.form.get("category_name"),
+            "ingredients": ingredients,
+            "preparation_steps": preparation_steps,
+            "liked_by": liked_by
+        }
+        # add recipe to database
+        mongo.db.recipes.replace_one(recipe, recipe_updated)
+        flash("Recipe succesfully updated in your recipe book.")
+
+        # send user to his/her personal recipe book
+        return redirect(url_for("recipe_book"))
+
+    return render_template("edit_recipe.html",
+                           categories=categories,
+                           recipe=recipe,
+                           ingredients=ingredients,
+                           preparation_steps=preparation_steps
+                           )
+
+# -------------------------------------------  Delete recipe
+
+
+# -------------------------------------------  register page
+# code adjusted from task manager project by code institute
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -124,7 +192,8 @@ def register():
     return render_template("register.html")
 
 
-# login page code adjusted from task manager project by code institute
+# -------------------------------------------  login page
+# code adjusted from task manager project by code institute
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -153,6 +222,7 @@ def login():
     return render_template("login.html")
 
 
+# -------------------------------------------  Log out functionality
 # code adjusted from task manager project by code institute
 @app.route("/logout")
 def logout():
@@ -162,7 +232,7 @@ def logout():
     return redirect(url_for("all_recipes"))
 
 
-# Add recipe page
+# -------------------------------------------  Add recipe page
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     # when submitting the form:
@@ -219,13 +289,13 @@ def add_recipe():
     return render_template("add_recipe.html", categories=categories)
 
 
+# -------------------------------------------  Recipe page
 @app.route("/recipe/<recipe_id>")
 def recipe(recipe_id):
     # get all data
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     ingredients = recipe['ingredients']
     preparation_steps = recipe['preparation_steps']
-    print(preparation_steps)
 
     return render_template("recipe.html",
                            recipe=recipe,
