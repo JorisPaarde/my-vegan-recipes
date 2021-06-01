@@ -101,7 +101,7 @@
                 </div>
             </div>
             {% endfor %}
-            <!-- add prearation step button -->
+            <!-- add preparation step button -->
             <div class="row">
                 <div class="col s12 center-align">
                     <button class="btn waves-effect waves-light" id="add-prep-step" type="button">Add step
@@ -116,9 +116,9 @@
                     <button class="btn waves-effect waves-light" type="submit">Save recipe
                         <i class="material-icons right">send</i>
                     </button>
-                    <button class="btn waves-effect waves-light" type="button">Cancel
-                        <i class="material-icons right">cancel</i>
-                    </button>
+                    <a href="{{ url_for('recipe_book')}}" class="btn waves-effect waves-light" >
+                        <i class="material-icons right">cancel</i>Cancel
+                    </a>
                     <p>After saving this recipe you will automatically<br>be redirected to your recipe book.</p>
                 </div>
             </div>
