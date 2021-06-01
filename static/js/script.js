@@ -3,6 +3,7 @@
     $('.sidenav').sidenav();
     $('select').formSelect();
     fadeOutFlash();
+    $('.modal').modal();
   });
 
   function fadeOutFlash(){

@@ -158,7 +158,13 @@ def edit_recipe(recipe_id):
                            preparation_steps=preparation_steps
                            )
 
+
 # -------------------------------------------  Delete recipe
+@app.route("/delete/<recipe_id>", methods=["GET", "POST"])
+def delete_recipe(recipe_id):
+    flash("Recipe succesfully deleted.")
+    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    return redirect(url_for("recipe_book", username=session["user"]))
 
 
 # -------------------------------------------  register page
