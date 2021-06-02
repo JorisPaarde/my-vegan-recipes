@@ -20,6 +20,22 @@
             </p>
         </div>
     </div>
+    <!-- search bar -->
+    <div class="row">
+        <div class="input-field col s12 m8 l7 offset-l1">
+            <i class="material-icons prefix">search</i>
+            <input name="recipe_search" id="recipe_search" type="text">
+            <label for="recipe_search">Search</label>
+        </div>
+        <div class="input-field col s6 offset-s3 m4 l3">
+            <select name="category_filter" id="category_filter">
+                <option value="" disabled selected>filter category</option>
+                {% for category in categories %}
+                <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
     <!-- recipes -->
     <div class="row">
         {% for recipe in recipes %}

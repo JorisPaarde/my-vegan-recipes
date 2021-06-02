@@ -24,14 +24,18 @@ mongo = PyMongo(app)
 def all_recipes():
     # get all recipes
     recipes = list(mongo.db.recipes.find())
-    # sort the recipes by likes high to low
 
+    # sort the recipes by likes high to low
     def sort_by_likes(recipe):
         return len(recipe['liked_by'])
 
     recipes.sort(reverse=True, key=sort_by_likes)
+    # get categories for dropdown menu
+    categories = mongo.db.categories.find()
 
-    return render_template("all_recipes.html", recipes=recipes)
+    return render_template("all_recipes.html",
+                           recipes=recipes,
+                           categories=categories)
 
 
 # -------------------------------------------  Like/dislike functionality
@@ -93,8 +97,12 @@ def recipe_book():
             return len(recipe['liked_by'])
 
         recipes.sort(reverse=True, key=sort_by_likes)
+        # get categories for dropdown menu
+        categories = mongo.db.categories.find()
 
-        return render_template("recipe_book.html", recipes=recipes)
+        return render_template("recipe_book.html",
+                               recipes=recipes,
+                               categories=categories)
 
 
 # -------------------------------------------  Edit recipe page

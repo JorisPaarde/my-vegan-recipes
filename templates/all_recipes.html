@@ -20,9 +20,25 @@
             </h3>
             <p>
                 The best place to get and store your favorite vegan recipies
-                To add recipes, like recipes and get access to your personal recipe book please <a href="{{ url_for('register') }}">register</a>.
+                To add recipes, like recipes and get access to your personal recipe book please <a
+                    href="{{ url_for('register') }}">register</a>.
                 If u just want to look around or search for a recipe, u can search our recipes by name or by ingredient.
             </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m8 l7 offset-l1">
+            <i class="material-icons prefix">search</i>
+            <input name="recipe_search" id="recipe_search" type="text">
+            <label for="recipe_search">Search</label>
+        </div>
+        <div class="input-field col s6 offset-s3 m4 l3">
+            <select name="category_filter" id="category_filter">
+                <option value="" disabled selected>filter category</option>
+                {% for category in categories %}
+                <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                {% endfor %}
+            </select>
         </div>
     </div>
     <!-- recipes -->
@@ -35,9 +51,12 @@
                         <img src="{{ recipe.image_url }}">
                     </div>
                     <form action="{{ url_for('like_recipe') }}" method="post">
-                        <button name="like" class="like-button btn-floating waves-effect waves-light light-green darken-2" type="submit" value="{{ recipe._id }}">
+                        <button name="like"
+                            class="like-button btn-floating waves-effect waves-light light-green darken-2" type="submit"
+                            value="{{ recipe._id }}">
                             <!-- indicate if this user liked this recipe -->
-                            <i class="material-icons right">{% if session["user"] in recipe.liked_by %}favorite{% else %}favorite_border{% endif %}</i>
+                            <i
+                                class="material-icons right">{% if session["user"] in recipe.liked_by %}favorite{% else %}favorite_border{% endif %}</i>
                         </button>
                     </form>
                     <span class="likes-amount grey-text text-darken-2">{{ recipe.liked_by|length }}</span>
