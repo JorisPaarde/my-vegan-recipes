@@ -50,6 +50,7 @@ As a first time user i want to:
 
 - Use Ajax for the like button
 - Recipe reviews
+- liked recipes per user for better performance.
 
 # Deployment
 
@@ -123,3 +124,4 @@ when adding an ingredient line with javascript, the dropdown menu did not work. 
 When liking a recipe without being logged in site crashed. check if logged user added.
 When adding a really long title the text would flow outside the recipe card. fixed by adding webkit-line-clamp.
 Card text displayed as blue link text when the card was made clickable to link to the recipe. Added class to text.
+Delete modal did not function. Gave corresponding id to the modal for each recipe.
