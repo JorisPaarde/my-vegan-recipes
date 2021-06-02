@@ -78,6 +78,32 @@ def like_recipe():
             return redirect(url_for("recipe_book"))
 
 
+# -------------------------------------------  Search
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    if request.method == "POST":
+        query = request.form.get("recipe_search")
+        category = request.form.get("category_filter")
+        # check if category selected
+        if category is None:
+
+            recipes = list(mongo.db.recipes.find(
+                           {"$text": {"$search": query}}))
+
+        else:
+
+            # if so use it as extra query
+            recipes = list(mongo.db.recipes.find({"$text": {"$search": query},
+                                                 "category_name": category}))
+
+        # get categories for dropdown menu
+        categories = mongo.db.categories.find()
+
+        return render_template("all_recipes.html",
+                               recipes=recipes,
+                               categories=categories)
+
+
 #  -------------------------------------------  Recipe book page
 @app.route("/recipe_book", methods=["GET", "POST"])
 def recipe_book():
