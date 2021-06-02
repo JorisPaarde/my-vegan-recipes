@@ -19,13 +19,13 @@
             <!-- recipe category -->
             <div class="row">
                 <div class="input-field col s12">
-                    <select name="category_name" required>
+                    <select name="category_name" id="category_name" required>
                         <option value="{{ recipe.category_name }}" disabled selected>{{ recipe.category_name }}</option>
                         {% for category in categories %}
                         <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                         {% endfor %}
                     </select>
-                    <label>Recipe category</label>
+                    <label for="category_name">Recipe category</label>
                 </div>
             </div>
             <!-- image url -->
