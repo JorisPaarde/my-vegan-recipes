@@ -134,5 +134,15 @@ td, th {
         font-size: 1.8rem;
         width: fit-content;
     }
-    
+}
+
+@media only screen and (max-width: 420px){
+    .recipes-background {
+        min-height: 70vh;
+        background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0)), url("../images/victoria-shes-4MEL9XS-3JQ-unsplash-mobile.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 }
