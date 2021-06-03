@@ -1,3 +1,7 @@
+html{
+    background-size: cover;
+}
+
 /*-------------------------------------------- Fonts --------------------------------*/
 .brand-logo {
     margin-left: 1rem;
@@ -136,17 +140,13 @@ td, th {
     }
 }
 
-<<<<<<< HEAD
-@media only screen and (max-width: 736px){
-=======
-@media only screen and (min-width: 992px){
->>>>>>> 7be9d9d0c4008a6b6b0ab285c12a6eaf58a573a1
+@media only screen and (max-width: 600px){
     .recipes-background {
         min-height: 70vh;
         background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0)), url("../images/victoria-shes-4MEL9XS-3JQ-unsplash.jpg");
         background-attachment: scroll;
         background-position: center;
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: 110vh;
     }
 }
