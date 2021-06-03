@@ -16,7 +16,8 @@
 .border{
     border: dashed 2px #41403E;
     border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-    padding-left: 1.5rem;
+    padding-left: 0.5rem;
+    padding-bottom: 1.5rem;
 }
 
 
@@ -67,8 +68,6 @@
     float: right;
 }
 
-/*-------------------------------------- Recipe page ----------------------------------------------*/
-
 .recipes-background {
     min-height: 70vh;
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0)), url("../images/victoria-shes-4MEL9XS-3JQ-unsplash.jpg");
@@ -77,6 +76,13 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+/*-------------------------------------- Recipe page ----------------------------------------------*/
+
+td, th {
+    text-align: left;
+    padding: 4px;
+  }
 
 .recipe-image{
     width: 100%;

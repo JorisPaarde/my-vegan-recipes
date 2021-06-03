@@ -6,7 +6,7 @@
             <div class="row valign-wrapper">
                 <!-- Recipe likes -->
                 <div class="col s3 m2 l2 right">
-                    <form action="{{ url_for('all_recipes') }}" method="post">
+                    <form action="{{ url_for('like_recipe') }}" method="post">
                         <button name="like" class="like-button btn-floating waves-effect waves-light green darken-3"
                             type="submit" value="{{ recipe._id }}">
                             <!-- indicate if this user liked this recipe -->
@@ -29,9 +29,23 @@
                 <!-- Recipe ingredients -->
                 <div class="col s12 pull-m6 m6 pull-l6 l6">
                     <div class="row border">
-                        <h4>Ingredients:</h4>
-                        <div class="col l8">
-                            <ul>
+                        <div class="col l12">
+                            <table>
+                                <tr>
+                                    <th><h5>Ingredients:</h5></th>
+                                    <th><h6>Amount</h6></th>
+                                    <th><h6>Unit</h6></th>
+                                </tr>
+                                {% for ingredient in ingredients %}
+                                <tr>
+                                    <td>{{ ingredient.ingredient_name }}</td>
+                                    <td>{{ ingredient.amount }}</td>
+                                    <td>{{ ingredient.unit_name }}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                            
+                            <!-- <ul>
                                 {% for ingredient in ingredients %}
                                 <li>{{ ingredient.ingredient_name }}</li>
                                 {% endfor %}
@@ -49,7 +63,7 @@
                                 {% for ingredient in ingredients %}
                                 <li>{{ ingredient.unit_name }}</li>
                                 {% endfor %}
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                 </div>
