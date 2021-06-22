@@ -72,7 +72,7 @@ html{
     float: right;
 }
 
-.recipes-background {
+.recipes-background, .recipe-book-background {
     min-height: 70vh;
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0)), url("../images/victoria-shes-4MEL9XS-3JQ-unsplash.jpg");
     background-attachment: fixed;
@@ -141,7 +141,7 @@ td, th {
 }
 
 @media only screen and (max-width: 768px){
-    .recipes-background {
+    .recipes-background, .recipe-book-background {
         min-height: 70vh;
         background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0)), url("../images/victoria-shes-4MEL9XS-3JQ-unsplash.jpg");
         background-attachment: scroll;
