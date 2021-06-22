@@ -134,63 +134,71 @@ def recipe_book():
 # -------------------------------------------  Edit recipe page
 @app.route("/edit_recipe.html/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
-    # get all data
-    categories = mongo.db.categories.find()
-    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    ingredients = recipe['ingredients']
-    preparation_steps = recipe['preparation_steps']
+    # check if a user is logged in
+    if not session.get("user"):
 
-    # when submitting the form:
-    if request.method == "POST":
-        # get recipe data from form
-        # get all the ingredients
-        # populate arrays for ingredients
-        ingredient_names = request.form.getlist("ingredient_name")
-        amounts = request.form.getlist("amount")
-        unit_names = request.form.getlist("unit_name")
-        ingredient = [None] * len(ingredient_names)
-        ingredients = []
+        # let user know he needs to register to acess this page
+        flash("Please register to edit recipes")
+        return redirect(url_for("register"))
 
-        # add all ingredients to the ingredients array
+    else:
+        # get all data
+        categories = mongo.db.categories.find()
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+        ingredients = recipe['ingredients']
+        preparation_steps = recipe['preparation_steps']
 
-        for i in range(len(ingredient_names)):
+        # when submitting the form:
+        if request.method == "POST":
+            # get recipe data from form
+            # get all the ingredients
+            # populate arrays for ingredients
+            ingredient_names = request.form.getlist("ingredient_name")
+            amounts = request.form.getlist("amount")
+            unit_names = request.form.getlist("unit_name")
+            ingredient = [None] * len(ingredient_names)
+            ingredients = []
 
-            ingredient[i] = {
-                "ingredient_name": ingredient_names[i],
-                "amount": amounts[i],
-                "unit_name": unit_names[i]
+            # add all ingredients to the ingredients array
+
+            for i in range(len(ingredient_names)):
+
+                ingredient[i] = {
+                    "ingredient_name": ingredient_names[i],
+                    "amount": amounts[i],
+                    "unit_name": unit_names[i]
+                }
+
+                ingredients.append(ingredient[i])
+
+            # get all the preparation steps
+            preparation_steps = request.form.getlist("preparation_step")
+            # get all the likes
+            liked_by = recipe['liked_by']
+
+            recipe_updated = {
+                "user_name": session["user"],
+                "recipe_title": request.form.get("recipe_title"),
+                "recipe_description": request.form.get("recipe_description"),
+                "image_url": request.form.get("image_url"),
+                "category_name": request.form.get("category_name"),
+                "ingredients": ingredients,
+                "preparation_steps": preparation_steps,
+                "liked_by": liked_by
             }
+            # add recipe to database
+            mongo.db.recipes.replace_one(recipe, recipe_updated)
+            flash("Recipe succesfully updated in your recipe book.")
 
-            ingredients.append(ingredient[i])
+            # send user to his/her personal recipe book
+            return redirect(url_for("recipe_book"))
 
-        # get all the preparation steps
-        preparation_steps = request.form.getlist("preparation_step")
-        # get all the likes
-        liked_by = recipe['liked_by']
-
-        recipe_updated = {
-            "user_name": session["user"],
-            "recipe_title": request.form.get("recipe_title"),
-            "recipe_description": request.form.get("recipe_description"),
-            "image_url": request.form.get("image_url"),
-            "category_name": request.form.get("category_name"),
-            "ingredients": ingredients,
-            "preparation_steps": preparation_steps,
-            "liked_by": liked_by
-        }
-        # add recipe to database
-        mongo.db.recipes.replace_one(recipe, recipe_updated)
-        flash("Recipe succesfully updated in your recipe book.")
-
-        # send user to his/her personal recipe book
-        return redirect(url_for("recipe_book"))
-
-    return render_template("edit_recipe.html",
-                           categories=categories,
-                           recipe=recipe,
-                           ingredients=ingredients,
-                           preparation_steps=preparation_steps
-                           )
+        return render_template("edit_recipe.html",
+                               categories=categories,
+                               recipe=recipe,
+                               ingredients=ingredients,
+                               preparation_steps=preparation_steps
+                               )
 
 
 # -------------------------------------------  Delete recipe
@@ -228,7 +236,7 @@ def register():
             session["user"])
         flash(message)
         # send user to his/her personal recipe book
-        return redirect(url_for("recipe_book", username=session["user"]))
+        return redirect(url_for("recipe_book"))
     return render_template("register.html")
 
 
@@ -248,7 +256,7 @@ def login():
                 session["user"] = request.form.get("user_name").lower()
                 flash("Welcome, {}".format(request.form.get("user_name")))
                 return redirect(url_for(
-                   "all_recipes"))  # , username=session["user"])
+                   "recipe_book"))
             else:
                 # invalid password match
                 flash("Username and/or password incorrect.")
@@ -275,15 +283,16 @@ def logout():
 # -------------------------------------------  Add recipe page
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
-    # when submitting the form:
-    if request.method == "POST":
-        # check if user is logged in
-        if not session.get("user"):
+    # check if user is logged in
+    if not session.get("user"):
 
-            flash("Please register to add recipes")
-            return redirect(url_for("register"))
-        # get recipe data from form
-        else:
+        flash("Please register to add recipes")
+        return redirect(url_for("register"))
+
+    else:
+        # when submitting the form:
+        if request.method == "POST":
+            # get recipe data from form
             # get all the ingredients
             # populate arrays for ingredients
             ingredient_names = request.form.getlist("ingredient_name")
