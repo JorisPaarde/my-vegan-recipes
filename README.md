@@ -85,7 +85,7 @@ os.environ.setdefault("SECRET_KEY", "<YOUR-SECRET-KEY-HERE>")
 os.environ.setdefault("MONGO_URI", "mongodb+srv://root:<MONODBPASSWORD>@cluster0.ajvr3.mongodb.net/<DATABASENAME>?retryWrites=true&w=majority")
 os.environ.setdefault("MONGO_DBNAME", "<DATABASENAME>")
 ```
-- Replace YOUR-SECRET-KEY-HERE, MONODBPASSWORD, DATABASENAME according to your personal situation.
+- Replace YOUR-SECRET-KEY-HERE, MONGODBPASSWORD, DATABASENAME according to your personal situation.
 - Create your procfile:
 ``` 
 echo web: python app.py > Procfile
@@ -125,3 +125,4 @@ When liking a recipe without being logged in site crashed. check if logged user 
 When adding a really long title the text would flow outside the recipe card. fixed by adding webkit-line-clamp.
 Card text displayed as blue link text when the card was made clickable to link to the recipe. Added class to text.
 Delete modal did not function. Gave corresponding id to the modal for each recipe.
+Background fixed caused exessive zoom on the background on apple devices. No errors on devtools.. Finally used:@supports (-webkit-touch-callout: none) as a hack to detect ios devices and set the background to scroll.

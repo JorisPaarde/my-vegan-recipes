@@ -140,6 +140,7 @@ td, th {
     }
 }
 
+/*-- ios detection --*/
 @supports (-webkit-touch-callout: none) {
     .recipes-background {
         background-attachment: scroll;
