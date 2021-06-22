@@ -99,6 +99,9 @@ def search():
         # get categories for dropdown menu
         categories = mongo.db.categories.find()
 
+        if len(recipes) < 1:
+            flash("No recipes found")
+
         return render_template("all_recipes.html",
                                recipes=recipes,
                                categories=categories)
