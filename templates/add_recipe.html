@@ -65,6 +65,9 @@
                     </select>
                 </div>
                 <div class="col s2 m1 l1">
+                    <button type="button" class="delete btn-floating btn-small waves-effect waves-light red">
+                        <i class="material-icons">delete</i>
+                    </button>
                 </div>
             </div>
             <div class="row">
@@ -84,6 +87,9 @@
                     </div>
                 </div>
                 <div class="col s1 m1 l1">
+                    <button type="button" class="delete btn-floating btn-small waves-effect waves-light red">
+                        <i class="material-icons">delete</i>
+                    </button>
                 </div>
             </div>
             <div class="row">
@@ -103,6 +109,27 @@
                 </div>
             </div>
         </form>
+    </div>
+</div>
+<!-- Delete confirmation modal -->
+<div id="item-delete-modal" class="modal">
+    <div class="modal-content center-align">
+        <h4>Are u sure?</h4>
+        <p>Please confirm that u want to delete this recipe line</p>
+    </div>
+    <div class="modal-footer">
+            <button id="yes-delete" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</button>
+            <button id="no-delete" class="modal-action modal-close waves-effect waves-green btn-flat">No</button>
+    </div>
+</div>
+<!-- Delete me not modal -->
+<div id="delete-me-not" class="modal">
+    <div class="modal-content center-align">
+        <h4>Please don't do this.</h4>
+        <p>Please confirm that u wont delete this recipe line</p>
+    </div>
+    <div class="modal-footer">
+            <button id="ok-no-delete" class="modal-action modal-close waves-effect waves-green btn-flat">Ok, fine i wont.</button>
     </div>
 </div>
 {% endblock %}

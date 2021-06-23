@@ -131,6 +131,14 @@ td, th {
     width: fit-content;
 }
 
+#item-delete-modal, #delete-me-not{
+    display: none;
+    position: fixed;
+    z-index: 99;
+    left: 0;
+    top: 50vh;
+}
+
 /*------------------------------------------ 404 page ---------------------------------------*/
 
 .lost{

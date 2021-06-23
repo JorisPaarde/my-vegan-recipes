@@ -1,15 +1,14 @@
 
-  $(document).ready(function(){
-    $('.sidenav').sidenav();
-    $('select').formSelect();
-    fadeOutFlash();
-    $('.modal').modal();
-  });
+$(document).ready(function(){
+  $('.sidenav').sidenav();
+  $('select').formSelect();
+  fadeOutFlash();
+  $('.modal').modal();
+});
 
-  function fadeOutFlash(){
-    $('.flashes').delay(4000).slideUp('slow');
-  }
-
+function fadeOutFlash(){
+  $('.flashes').delay(4000).slideUp('slow');
+}
 
 //-----------------------------------------------  Add a line to recipe ingredient input
   $('#add-ingredient').click(function(){
@@ -46,21 +45,6 @@
   $( '.ingredient' ).last().after(recipeInputHtml)
 });
 
-// remove ingredient line
-$('.add-recipe').click(function(event){
-  buttonClass = $(event.target).parent().attr("class")
-
-  if (buttonClass.includes("delete")){
-    item = $(event.target).closest(".recipe-item")
-    let ingredientsLeftAfterDelete = $(event.target).closest(".recipe-item").siblings(".ingredient").length
-    let prepStepsLeftAfterDelete = $(event.target).closest(".recipe-item").siblings(".prep-step").length
-    // only delete if one item is left after deleting
-    if ((ingredientsLeftAfterDelete > 0) && (prepStepsLeftAfterDelete > 0)){
-      item.remove()
-    }
-  }
-});
-
 //----------------------------------------------- Add a line to recipe preparation input
 $('#add-prep-step').click(function(){
 
@@ -82,4 +66,39 @@ let recipeInputHtml = `
   `
 // add after the last added step
 $( '.prep-step' ).last().after(recipeInputHtml)
+});
+
+//----------------------------------------------- remove ingredient line
+$('.add-recipe').click(function(event){
+  buttonClass = $(event.target).parent().attr("class")
+
+  if (buttonClass.includes("delete")){
+    item = $(event.target).closest(".recipe-item")
+    let ingredientsLeftAfterDelete = $(event.target).closest(".recipe-item").siblings(".ingredient").length
+    let prepStepsLeftAfterDelete = $(event.target).closest(".recipe-item").siblings(".prep-step").length
+    // only delete if one item is left after deleting
+    if ((ingredientsLeftAfterDelete > 0) && (prepStepsLeftAfterDelete > 0)){
+      // show deletion confirmation modal
+      $('#item-delete-modal').show()
+      // if yes is clicked on the modal
+      $('#yes-delete').click(function(){
+        item.remove()
+        $('#item-delete-modal').hide()
+      })
+      // if no is clicked on the modal
+      $('#no-delete').click(function(){
+        $('#item-delete-modal').hide()
+      })
+    }
+    let isPrepstep = $(event.target).closest(".recipe-item").hasClass("prep-step")
+    let isIngredient = $(event.target).closest(".recipe-item").hasClass("ingredient")
+    // if this is the last ingredient or the last preparation step
+    if (((ingredientsLeftAfterDelete == 0)&&(isIngredient)) || ((prepStepsLeftAfterDelete == 0)&&(isPrepstep))){
+      //show please don't delete modal
+      $('#delete-me-not').show()
+      $('#ok-no-delete').click(function(){
+        $('#delete-me-not').hide()
+      })
+    }
+  }
 });
