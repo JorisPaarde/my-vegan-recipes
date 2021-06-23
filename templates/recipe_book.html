@@ -23,6 +23,7 @@
     <!-- search bar -->
     <form action="{{ url_for('search') }}" method="POST">
         <div class="row">
+            <input type="hidden" id="search_site" name="search_site" value="recipe_book.html">
             <div class="input-field col s12 m8 l7 offset-l1">
                 <i class="material-icons prefix">search</i>
                 <input name="recipe_search" id="recipe_search" type="text">

@@ -82,8 +82,10 @@ def like_recipe():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     if request.method == "POST":
-        query = request.form.get("recipe_search")
+        query = f"*{request.form.get('recipe_search')}*"
+        print(query)
         category = request.form.get("category_filter")
+        current_site = request.form.get("search_site")
         # check if category selected
         if category is None:
 
@@ -102,7 +104,7 @@ def search():
         if len(recipes) < 1:
             flash("No recipes found")
 
-        return render_template("all_recipes.html",
+        return render_template(current_site,
                                recipes=recipes,
                                categories=categories)
 
