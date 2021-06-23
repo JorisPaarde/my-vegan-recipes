@@ -131,6 +131,17 @@ td, th {
     width: fit-content;
 }
 
+/*------------------------------------------ 404 page ---------------------------------------*/
+
+.lost{
+    height: 95vh;
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0)), url("../images/lost.jpg");
+    background-attachment: scroll;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 /*------------------------------------------ Media queries ---------------------------------------*/
 
 @media only screen and (max-width: 992px) {
