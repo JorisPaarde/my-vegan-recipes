@@ -52,7 +52,12 @@ $('.add-recipe').click(function(event){
 
   if (buttonClass.includes("delete")){
     item = $(event.target).closest(".recipe-item")
-    item.remove()
+    let ingredientsLeftAfterDelete = $(event.target).closest(".recipe-item").siblings(".ingredient").length
+    let prepStepsLeftAfterDelete = $(event.target).closest(".recipe-item").siblings(".prep-step").length
+    // only delete if one item is left after deleting
+    if ((ingredientsLeftAfterDelete > 0) && (prepStepsLeftAfterDelete > 0)){
+      item.remove()
+    }
   }
 });
 
@@ -78,5 +83,3 @@ let recipeInputHtml = `
 // add after the last added step
 $( '.prep-step' ).last().after(recipeInputHtml)
 });
-
-// remove prep line
