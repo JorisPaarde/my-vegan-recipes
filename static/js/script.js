@@ -71,11 +71,14 @@ $( '.prep-step' ).last().after(recipeInputHtml)
 //----------------------------------------------- remove ingredient line
 $('.add-recipe').click(function(event){
   buttonClass = $(event.target).parent().attr("class")
-
+ 
   if (buttonClass.includes("delete")){
     item = $(event.target).closest(".recipe-item")
+    
     let ingredientsLeftAfterDelete = $(event.target).closest(".recipe-item").siblings(".ingredient").length
     let prepStepsLeftAfterDelete = $(event.target).closest(".recipe-item").siblings(".prep-step").length
+    console.log(ingredientsLeftAfterDelete)
+    console.log(prepStepsLeftAfterDelete)
     // only delete if one item is left after deleting
     if ((ingredientsLeftAfterDelete > 0) && (prepStepsLeftAfterDelete > 0)){
       // show deletion confirmation modal
