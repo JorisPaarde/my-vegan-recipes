@@ -82,21 +82,39 @@ def like_recipe():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     if request.method == "POST":
-        query = f"*{request.form.get('recipe_search')}*"
+        query = f".*{request.form.get('recipe_search')}.*"
         print(query)
         category = request.form.get("category_filter")
         current_site = request.form.get("search_site")
         # check if category selected
         if category is None:
 
-            recipes = list(mongo.db.recipes.find(
-                           {"$text": {"$search": query}}))
+            recipes = list(mongo.db.recipes.find({
+                "$or":[
+                    # look for *query* in ingredient names
+                     {"ingredients": {"$elemMatch": {"ingredient_name": {"$regex": query, "$options" :'i' }}}},
+                    #  look for *query* in recipe titles
+                     {"recipe_title": {"$regex": query, "$options" :'i' }}
+                     ]
+                    }))
 
         else:
 
             # if so use it as extra query
-            recipes = list(mongo.db.recipes.find({"$text": {"$search": query},
-                                                 "category_name": category}))
+            recipes = list(mongo.db.recipes.find({
+                    "$and":
+                        [
+                            {"category_name": category},
+                            {"$or":
+                                [
+                                # look for *query* in ingredient names
+                                {"ingredients": {"$elemMatch": {"ingredient_name": {"$regex": query, "$options" :'i' }}}},
+                                #  look for *query* in recipe titles
+                                {"recipe_title": {"$regex": query, "$options" :'i' }}
+                                ]
+                            }
+                        ]
+                    }))
 
         # get categories for dropdown menu
         categories = mongo.db.categories.find()
