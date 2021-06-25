@@ -18,11 +18,14 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+RECIPES_PER_PAGE = 6
+
 
 # -------------------------------------------  Main page with all recipes
 @app.route("/")
 @app.route("/all_recipes", methods=["GET", "POST"])
 def all_recipes():
+
     # get all recipes
     recipes = list(mongo.db.recipes.find())
 
@@ -31,12 +34,32 @@ def all_recipes():
         return len(recipe['liked_by'])
 
     recipes.sort(reverse=True, key=sort_by_likes)
+
+    # code modified from:
+    # https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
+    def get_recipes(page, offset=0, per_page=10):
+        offset = (page-1) * RECIPES_PER_PAGE
+        return recipes[offset: offset + per_page]
+
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                           per_page_parameter='per_page')
+
+    per_page = 6
+
+    total = len(recipes)
+    pagination_recipes = get_recipes(
+        page=page, offset=offset, per_page=per_page)
+    pagination = Pagination(page=page, per_page=per_page, total=total)
+    # code modified from:
+    # https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
+
     # get categories for dropdown menu
     categories = mongo.db.categories.find()
 
     return render_template("all_recipes.html",
-                           recipes=recipes,
-                           categories=categories)
+                           recipes=pagination_recipes,
+                           pagination=pagination,
+                           categories=categories,)
 
 
 # -------------------------------------------  Like/dislike functionality

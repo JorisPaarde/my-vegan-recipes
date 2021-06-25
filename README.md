@@ -45,6 +45,7 @@ As a first time user i want to:
 - Delete recipes
 - Edit recipes
 - Remove recipes
+- Search with regex on ingredients and titles
 
 ## future features
 

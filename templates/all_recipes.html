@@ -67,8 +67,7 @@
                             class="like-button btn-floating waves-effect waves-light light-green darken-2" type="submit"
                             value="{{ recipe._id }}">
                             <!-- indicate if this user liked this recipe -->
-                            <i
-                                class="material-icons right">{% if session["user"] in recipe.liked_by %}favorite{% else %}favorite_border{% endif %}</i>
+                            <i class="material-icons right">{% if session["user"] in recipe.liked_by %}favorite{% else %}favorite_border{% endif %}</i>
                         </button>
                     </form>
                     <span class="likes-amount grey-text text-darken-2">{{ recipe.liked_by|length }}</span>
@@ -82,5 +81,10 @@
         </a>
         {% endfor %}
     </div>
+    {% if pagination is defined %}
+    <div class="row center-align">
+        {{ pagination.links }}
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
