@@ -5,6 +5,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_paginate import Pagination, get_page_args
 if os.path.exists("env.py"):
     import env
 
@@ -90,31 +91,38 @@ def search():
         if category is None:
 
             recipes = list(mongo.db.recipes.find({
-                "$or":[
-                    # look for *query* in ingredient names
-                     {"ingredients": {"$elemMatch": {"ingredient_name": {"$regex": query, "$options" :'i' }}}},
-                    #  look for *query* in recipe titles
-                     {"recipe_title": {"$regex": query, "$options" :'i' }}
-                     ]
-                    }))
+                            "$or": [
+                                # look for *query* in ingredient names
+                                {"ingredients":
+                                    {"$elemMatch":
+                                        {"ingredient_name":
+                                            {"$regex": query,
+                                             "$options": 'i'}}}},
+                                #  look for *query* in recipe titles
+                                {"recipe_title":
+                                    {"$regex": query, "$options": 'i'}}
+                                ]
+                            }))
 
         else:
 
             # if so use it as extra query
             recipes = list(mongo.db.recipes.find({
-                    "$and":
-                        [
-                            {"category_name": category},
-                            {"$or":
-                                [
-                                # look for *query* in ingredient names
-                                {"ingredients": {"$elemMatch": {"ingredient_name": {"$regex": query, "$options" :'i' }}}},
-                                #  look for *query* in recipe titles
-                                {"recipe_title": {"$regex": query, "$options" :'i' }}
-                                ]
-                            }
-                        ]
-                    }))
+                            "$and": [
+                                    {"category_name": category},
+                                    {"$or": [
+                                            # look for *query* in ingredients
+                                            {"ingredients":
+                                                {"$elemMatch":
+                                                    {"ingredient_name":
+                                                        {"$regex": query,
+                                                         "$options": 'i'}}}},
+                                            #  look for *query* in titles
+                                            {"recipe_title": {"$regex": query,
+                                             "$options": 'i'}}
+                                            ]}
+                                    ]
+                            }))
 
         # get categories for dropdown menu
         categories = mongo.db.categories.find()
