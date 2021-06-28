@@ -19,19 +19,18 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 RECIPES_PER_PAGE = 6
+TOTAL_LIKES = 0
 
-total_likes = 0
+print(os.environ.get("DEBUG"))
 
 # -------------------------------------------  Helper functions
-def calculate_total_likes(recipes, total_likes):
+def calculate_total_likes(recipes, TOTAL_LIKES):
 
     for recipe in recipes:
         if session['user'] in recipe['user_name']:
-            total_likes = total_likes + (len(recipe['liked_by'])-1)
-            print(recipe['user_name'])
-            print(recipe['recipe_title'])
-            print(total_likes)
-    return total_likes
+            TOTAL_LIKES = TOTAL_LIKES + (len(recipe['liked_by'])-1)
+    return TOTAL_LIKES
+
 
 # -------------------------------------------  Main page with all recipes
 @app.route("/")
@@ -168,7 +167,8 @@ def search():
         return render_template(current_site,
                                recipes=recipes,
                                categories=categories,
-                               total_likes=calculate_total_likes(recipes, total_likes))
+                               TOTAL_LIKES=calculate_total_likes(
+                                recipes, TOTAL_LIKES))
 
 
 #  -------------------------------------------  Recipe book page
@@ -196,8 +196,8 @@ def recipe_book():
         return render_template("recipe_book.html",
                                recipes=recipes,
                                categories=categories,
-                               total_likes=
-                               calculate_total_likes(recipes, total_likes))
+                               TOTAL_LIKES=calculate_total_likes(
+                                recipes, TOTAL_LIKES))
 
 
 # -------------------------------------------  Edit recipe page
@@ -436,4 +436,4 @@ def database_error(e):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=os.environ.get("DEBUG"))
