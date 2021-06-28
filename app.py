@@ -21,7 +21,6 @@ mongo = PyMongo(app)
 RECIPES_PER_PAGE = 6
 TOTAL_LIKES = 0
 
-print(os.environ.get("DEBUG"))
 
 # -------------------------------------------  Helper functions
 def calculate_total_likes(recipes, TOTAL_LIKES):
@@ -118,7 +117,7 @@ def like_recipe():
 def search():
     if request.method == "POST":
         query = f".*{request.form.get('recipe_search')}.*"
-        print(query)
+        search = request.form.get('recipe_search')
         category = request.form.get("category_filter")
         current_site = request.form.get("search_site")
         # check if category selected
@@ -168,7 +167,8 @@ def search():
                                recipes=recipes,
                                categories=categories,
                                TOTAL_LIKES=calculate_total_likes(
-                                recipes, TOTAL_LIKES))
+                                recipes, TOTAL_LIKES),
+                               search=search)
 
 
 #  -------------------------------------------  Recipe book page
