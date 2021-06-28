@@ -20,6 +20,18 @@ mongo = PyMongo(app)
 
 RECIPES_PER_PAGE = 6
 
+total_likes = 0
+
+# -------------------------------------------  Helper functions
+def calculate_total_likes(recipes, total_likes):
+
+    for recipe in recipes:
+        if session['user'] in recipe['user_name']:
+            total_likes = total_likes + (len(recipe['liked_by'])-1)
+            print(recipe['user_name'])
+            print(recipe['recipe_title'])
+            print(total_likes)
+    return total_likes
 
 # -------------------------------------------  Main page with all recipes
 @app.route("/")
@@ -155,7 +167,8 @@ def search():
 
         return render_template(current_site,
                                recipes=recipes,
-                               categories=categories)
+                               categories=categories,
+                               total_likes=calculate_total_likes(recipes, total_likes))
 
 
 #  -------------------------------------------  Recipe book page
@@ -182,7 +195,9 @@ def recipe_book():
 
         return render_template("recipe_book.html",
                                recipes=recipes,
-                               categories=categories)
+                               categories=categories,
+                               total_likes=
+                               calculate_total_likes(recipes, total_likes))
 
 
 # -------------------------------------------  Edit recipe page
