@@ -47,6 +47,7 @@ As a first time user i want to:
 - Remove recipes
 - Search with regex on ingredients and titles
 - pagination
+- custom javascript form validation
 
 ## future features
 
@@ -129,4 +130,4 @@ Card text displayed as blue link text when the card was made clickable to link t
 Delete modal did not function. Gave corresponding id to the modal for each recipe.
 Background fixed caused exessive zoom on the background on apple devices. No errors on devtools.. Finally used:@supports (-webkit-touch-callout: none). A hack to detect ios devices (they are the only ones supporting this.) and set the background to scroll.
 When deleting the last ingredient or preperation step, adding a new one was broken. Added a check to prevent deleting the last item.
-Pressing reset on the searh bar in the recipe book page sended the user to the all recipes page. Corrected url.
+Pressing reset on the search bar in the recipe book page sended the user to the all recipes page. Corrected url.

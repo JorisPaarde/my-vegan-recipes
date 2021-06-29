@@ -9,20 +9,19 @@
         </div>
     </div>
     <div class="row">
-        <form method="POST" action="{{ url_for('register') }}" class="col card-panel s12 m12 l10 offset-l1">
+        <form method="POST" action="{{ url_for('register') }}" onsubmit="return validateForm()" class="col card-panel s12 m12 l10 offset-l1">
             <!-- Username -->
             <div class="row">
                 <div class="input-field col s12">
-                    <input name="user_name" id="user_name" type="text" minlength="4" maxlength="15"
-                        pattern="^[a-zA-Z0-9]{5,15}$" class="validate">
+                    <input name="user_name" id="user_name" type="text" class="validate_me">
                     <label for="user_name">User name</label>
                 </div>
             </div>
             <!-- image url -->
             <div class="row">
                 <div class="input-field col s12">
-                    <input name="password" id="password" type="password" minlength="4" maxlength="15"
-                        pattern="^[a-zA-Z0-9]{5,15}$" class="validate">
+                    <input name="password" id="password" type="password"
+                        pattern="^[a-zA-Z0-9]{5,15}$" class="validate_me">
                     <label for="password">Password</label>
                 </div>
             </div>
