@@ -46,6 +46,7 @@ As a first time user i want to:
 - Edit recipes
 - Remove recipes
 - Search with regex on ingredients and titles
+- pagination
 
 ## future features
 
@@ -116,7 +117,7 @@ https://help.pixpa.com/kb/add-a-floating-back-to-top-button/
 
 pagination?:
 
-https://betterprogramming.pub/simple-flask-pagination-example-4190b12c2e2e
+https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
 
 
 # Bugs:
@@ -128,3 +129,4 @@ Card text displayed as blue link text when the card was made clickable to link t
 Delete modal did not function. Gave corresponding id to the modal for each recipe.
 Background fixed caused exessive zoom on the background on apple devices. No errors on devtools.. Finally used:@supports (-webkit-touch-callout: none). A hack to detect ios devices (they are the only ones supporting this.) and set the background to scroll.
 When deleting the last ingredient or preperation step, adding a new one was broken. Added a check to prevent deleting the last item.
+Pressing reset on the searh bar in the recipe book page sended the user to the all recipes page. Corrected url.
