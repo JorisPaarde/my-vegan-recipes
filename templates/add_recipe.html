@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="row add-recipe">
-        <form method="POST" action="{{ url_for('add_recipe') }}" class="col card-panel m12 l10 offset-l1">
+        <form method="POST" action="{{ url_for('add_recipe') }}" onsubmit="return validateForm()" class="col card-panel m12 l10 offset-l1">
             <!-- recipe title -->
             <div class="row">
                 <div class="input-field col s12">
@@ -25,7 +25,7 @@
                         <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                         {% endfor %}
                     </select>
-                    <label>Recipe category</label>
+                    <label for="category_name">Recipe category</label>
                 </div>
             </div>
             <!-- image url -->
@@ -54,7 +54,7 @@
                     <label for="amount">Amount</label>
                 </div>
                 <div class="col s6 m2 l2">
-                    <label>Unit</label>
+                    <label for="unit_name">Unit</label>
                     <select class="browser-default" name="unit_name" class="validate_me">
                         <option value="g">g</option>
                         <option value="kg">kg</option>

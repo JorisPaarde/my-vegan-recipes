@@ -11,8 +11,7 @@
             <!-- recipe title -->
             <div class="row">
                 <div class="input-field col s12">
-                    <input name="recipe_title" id="recipe_title" type="text" minlength="3" maxlength="50"
-                        class="validate_me" value="{{ recipe.recipe_title }}" required>
+                    <input name="recipe_title" id="recipe_title" type="text" class="validate_me" value="{{ recipe.recipe_title }}" required>
                     <label for="recipe_title">Recipe Title</label>
                 </div>
             </div>
@@ -85,8 +84,7 @@
             <div class="row prep-step recipe-item valign-wrapper">
                 <div class="col s10 m11 l11">
                     <div class="input-field preparation_step col s12">
-                        <textarea name="preparation_step" type="text" minlength="10" maxlength="400"
-                            class="validate_me">{{ preparation_step }}</textarea>
+                        <textarea name="preparation_step" type="text" class="validate_me">{{ preparation_step }}</textarea>
                         <label class="textarea-label" for="preparation_step">Preparation step</label>
                     </div>
                 </div>
