@@ -107,61 +107,106 @@ $('.add-recipe').click(function(event){
 //-----------------------------------------------  From validation
 
 function validateForm(){
+
+  // remove all previously shown validation text
+  $('.validation-text').remove()
+
   // find all elements to validate
   let formElements = $('.validate_me')
   // iterate over all form elements
   for (let i = 0; i < formElements.length; i++){
 
-    let thisField = formElements[i]
+    var thisField = formElements[i]
     let thisFieldName = thisField.attributes.name.value
-
-    console.log(thisField)
+    let input = thisField.value
+    var validLength
 
     // check this field's name
     switch(thisFieldName) {
       // if this is a title
       case 'recipe_title':
-        console.log('title')
+        validLength = checklength(input, 3, 100, thisFieldName)
+        displayValidationText(validLength.validationText, thisField)
         break;
       // if this is a url
       case 'image_url' :
-        console.log('url')
+        console.log('url' + ' ' + input)
          // https?://.+
         break;
       // if this is a recipe_description
       case 'recipe_description' :
-        console.log('description')
-        //  minlength="10" maxlength="200"
+        validLength = checklength(input, 10, 200, thisFieldName)
+        displayValidationText(validLength.validationText, thisField)
         break;
       // if this is an ingredient
       case 'ingredient_name' :
-        console.log('ingredient')
-        //  minlength="3" maxlength="100"
+        validLength = checklength(input, 3, 100, thisFieldName)
+        displayValidationText(validLength.validationText, thisField)
         break;
       // if this is an amount
       case 'amount':
-        console.log('amount')
-        //  maxlength="5"
+        validLength = checklength(input, 1, 5, thisFieldName)
+        displayValidationText(validLength.validationText, thisField)
         break;
       // if this is a preparation step
       case 'preparation_step':
-        console.log('preparation step')
+        validLength = checklength(input, 10, 400, thisFieldName)
+        displayValidationText(validLength.validationText, thisField)
         //  minlength="10" maxlength="400"
         break;
       // if this is a username
       case 'user_name':
-        console.log('username')
+        validLength = checklength(input, 3, 20, thisFieldName)
+        displayValidationText(validLength.validationText, thisField)
         // ^[a-zA-Z0-9]{4,15}$
         break;
       // if this is a password
       case 'password':
-        console.log('password')
+        validLength = checklength(input, 8, 64, thisFieldName)
+        displayValidationText(validLength.validationText, thisField)
+        // ^[a-zA-Z0-9]{5,15}$
         break;
       // if this is a unit name
       case 'unit_name':
-        console.log('unit name')
+        console.log('unit name' + ' ' + input)
         break;
       };
   };
   return false
+};
+
+//-----------------------------------------------  Validation helper functions
+
+function checklength(input, min, max, thisFieldName){
+  // remove spaces from input
+  input = input.replace(/\s/g, '');
+
+  thisFieldName = thisFieldName.replace(/_/g, ' ');
+  // check the input to the parameters
+  valid = (min <= input.length) && (input.length <= max);
+  validationText = ""
+  // set validation text
+  if (!valid){
+    validationText = `Please use between ${min} and ${max} characters for ${thisFieldName}`
+  }
+  console.log(validationText)
+  // return results
+  return {
+    valid : valid,
+    validationText : validationText
+  };
+};
+
+function displayValidationText(text, thisField){
+  // set html if a text needs to be displayed
+  let html;
+  if (text.length > 1){
+  html = `
+    <p class="validation-text red-text text-lighten-1 center-align">${text}</p>
+  `
+  };
+  // display this text after this validated item
+  if (html){
+    $(thisField).closest('.row').after(html)
+  };
 };
