@@ -21,7 +21,7 @@ function fadeOutFlash(){
                     <label for="ingredient_name">Ingredient</label>
                 </div>
                 <div class="input-field col s4 m1">
-                    <input name="amount" type="text" maxlength="4" class="validate_me">
+                    <input name="amount" type="text" maxlength="5" class="validate_me">
                     <label for="amount">Amount</label>
                 </div>
                 <div class="col s6 m2">
