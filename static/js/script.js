@@ -163,7 +163,9 @@ function validateForm() {
         // if this is an amount
       case 'amount':
         validLength = checklength(input, 1, 5, thisFieldName)
+        validNumber = checknumbers(input, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
+        displayValidationText(validNumber.validationText, thisField)
         //stop from from being submitted
         if (!valid) {
           return false
@@ -289,6 +291,26 @@ function checkpassword(input) {
     valid = true;
   }
 
+  // return results
+  return {
+    valid: valid,
+    validationText: validationText
+  };
+}
+
+//-----------------------------------------------  Number validation
+
+function checknumbers(input, thisFieldName) {
+  // check for numbers
+  regex = /[0-9]/g
+  valid = regex.test(input);
+  // modify name by replacing _ for a space
+  thisFieldName = thisFieldName.replace(/_/g, ' ');
+  // set validation text
+  validationText = ""
+  if (!valid) {
+    validationText = `Please use numbers for ${thisFieldName}`
+  }
   // return results
   return {
     valid: valid,
