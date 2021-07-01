@@ -17,11 +17,11 @@ function fadeOutFlash(){
   <div class="row recipe-item ingredient">
                 <!-- ingredient -->
                 <div class="input-field col s12 m8">
-                    <input name="ingredient_name" type="text" class="validate_me">
+                    <input name="ingredient_name" type="text" maxlength="100" class="validate_me">
                     <label for="ingredient_name">Ingredient</label>
                 </div>
                 <div class="input-field col s4 m1">
-                    <input name="amount" type="text" class="validate_me">
+                    <input name="amount" type="text" maxlength="4" class="validate_me">
                     <label for="amount">Amount</label>
                 </div>
                 <div class="col s6 m2">
@@ -52,7 +52,7 @@ let recipeInputHtml = `
 <div class="row prep-step recipe-item valign-wrapper">
   <div class="col s10 m11 l11">
       <div class="input-field preparation_step col s12">
-          <textarea name="preparation_step" type="text" class="validate_me"></textarea>
+          <textarea name="preparation_step" type="text" maxlength="400" class="validate_me"></textarea>
           <label class="textarea-label" for="preparation_step">Preparation step</label>
       </div>
   </div>

@@ -11,7 +11,7 @@
             <!-- recipe title -->
             <div class="row">
                 <div class="input-field col s12">
-                    <input name="recipe_title" id="recipe_title" type="text"
+                    <input name="recipe_title" id="recipe_title" maxlength="100" type="text"
                         class="validate_me">
                     <label for="recipe_title">Recipe Title</label>
                 </div>
@@ -38,7 +38,7 @@
             <!-- recipe description -->
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea name="recipe_description" id="recipe_description" type="text" class="validate_me"></textarea>
+                    <textarea name="recipe_description" id="recipe_description" type="text" maxlength="200" class="validate_me"></textarea>
                     <label class="textarea-label" for="recipe_description">Recipe Description</label>
                 </div>
             </div>
@@ -46,11 +46,11 @@
             <div class="row recipe-item ingredient">
                 <!-- ingredient -->
                 <div class="input-field col s12 m8 l8">
-                    <input name="ingredient_name" type="text" class="validate_me">
+                    <input name="ingredient_name" type="text" maxlength="100" class="validate_me">
                     <label for="ingredient_name">Ingredient</label>
                 </div>
                 <div class="input-field col s4 m1 l1">
-                    <input name="amount" type="text" class="validate_me">
+                    <input name="amount" type="text" maxlength="4" class="validate_me">
                     <label for="amount">Amount</label>
                 </div>
                 <div class="col s6 m2 l2">
@@ -80,7 +80,7 @@
             <div class="row prep-step recipe-item">
                 <div class="col s10 m11 l11">
                     <div class="input-field preparation_step col s12">
-                        <textarea name="preparation_step" type="text" class="validate_me"></textarea>
+                        <textarea name="preparation_step" type="text" class="validate_me" maxlength="400"></textarea>
                         <label class="textarea-label" for="preparation_step">Preparation step</label>
                     </div>
                 </div>

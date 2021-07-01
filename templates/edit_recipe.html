@@ -11,7 +11,7 @@
             <!-- recipe title -->
             <div class="row">
                 <div class="input-field col s12">
-                    <input name="recipe_title" id="recipe_title" type="text" class="validate_me" value="{{ recipe.recipe_title }}" required>
+                    <input name="recipe_title" id="recipe_title" type="text" class="validate_me" maxlength="100" value="{{ recipe.recipe_title }}" required>
                     <label for="recipe_title">Recipe Title</label>
                 </div>
             </div>
@@ -37,7 +37,7 @@
             <!-- recipe description -->
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea name="recipe_description" id="recipe_description" type="text" class="validate_me">{{ recipe.recipe_description }}</textarea>
+                    <textarea name="recipe_description" id="recipe_description" type="text" maxlength="200" class="validate_me">{{ recipe.recipe_description }}</textarea>
                     <label class="textarea-label" for="recipe_description">Recipe Description</label>
                 </div>
             </div>
@@ -46,11 +46,11 @@
             <div class="row recipe-item ingredient">
                 <!-- ingredient -->
                 <div class="input-field col s12 m8">
-                    <input name="ingredient_name" type="text" class="validate_me" value="{{ ingredient.ingredient_name }}">
+                    <input name="ingredient_name" type="text" maxlength="100" class="validate_me" value="{{ ingredient.ingredient_name }}">
                     <label for="ingredient_name">Ingredient</label>
                 </div>
                 <div class="input-field col s4 m1">
-                    <input name="amount" type="text" class="validate_me" value="{{ ingredient.amount }}">
+                    <input name="amount" type="text" class="validate_me" maxlength="4" value="{{ ingredient.amount }}">
                     <label for="amount">Amount</label>
                 </div>
                 <div class="col s6 m2">
@@ -84,7 +84,7 @@
             <div class="row prep-step recipe-item valign-wrapper">
                 <div class="col s10 m11 l11">
                     <div class="input-field preparation_step col s12">
-                        <textarea name="preparation_step" type="text" class="validate_me">{{ preparation_step }}</textarea>
+                        <textarea name="preparation_step" type="text" class="validate_me" maxlength="400">{{ preparation_step }}</textarea>
                         <label class="textarea-label" for="preparation_step">Preparation step</label>
                     </div>
                 </div>
