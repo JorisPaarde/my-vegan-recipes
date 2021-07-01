@@ -104,7 +104,7 @@ $('.add-recipe').click(function(event){
   }
 });
 
-//-----------------------------------------------  From validation
+//-----------------------------------------------  Form validation
 
 function validateForm(){
 
@@ -126,45 +126,82 @@ function validateForm(){
       // if this is a title
       case 'recipe_title':
         validLength = checklength(input, 3, 100, thisFieldName)
+        validCharacters = checkcharacters(input, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
+        displayValidationText(validCharacters.validationText, thisField)
+        //stop from from being submitted
+        if (!valid){
+          return false
+        }
         break;
       // if this is a url
       case 'image_url' :
         console.log('url' + ' ' + input)
-         // https?://.+
+         // https?://.+ must include https://
         break;
       // if this is a recipe_description
       case 'recipe_description' :
         validLength = checklength(input, 10, 200, thisFieldName)
+        validCharacters = checkcharacters(input, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
+        displayValidationText(validCharacters.validationText, thisField)
+         //stop from from being submitted
+         if (!valid){
+          return false
+        }
         break;
       // if this is an ingredient
       case 'ingredient_name' :
         validLength = checklength(input, 3, 100, thisFieldName)
+        validCharacters = checkcharacters(input, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
+        displayValidationText(validCharacters.validationText, thisField)
+         //stop from from being submitted
+         if (!valid){
+          return false
+        }
         break;
       // if this is an amount
       case 'amount':
         validLength = checklength(input, 1, 5, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
+         //stop from from being submitted
+         if (!valid){
+          return false
+        }
         break;
       // if this is a preparation step
       case 'preparation_step':
         validLength = checklength(input, 10, 400, thisFieldName)
+        validCharacters = checkcharacters(input, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
-        //  minlength="10" maxlength="400"
+        displayValidationText(validCharacters.validationText, thisField)
+         //stop from from being submitted
+         if (!valid){
+          return false
+        }
         break;
       // if this is a username
       case 'user_name':
         validLength = checklength(input, 3, 20, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
-        // ^[a-zA-Z0-9]{4,15}$
+         //stop from from being submitted
+         if (!valid){
+          return false
+        }
+        // ^[a-zA-Z0-9]{3,20}$
         break;
       // if this is a password
       case 'password':
         validLength = checklength(input, 8, 64, thisFieldName)
+        validPassword = checkpassword(input)
         displayValidationText(validLength.validationText, thisField)
-        // ^[a-zA-Z0-9]{5,15}$
+        displayValidationText(validPassword.validationText, thisField)
+         //stop from from being submitted
+         if (!valid){
+          return false
+        }
+        // ^(?=.*\d)(?=.*[a-zA-Z]).{8,64}$
         break;
       // if this is a unit name
       case 'unit_name':
@@ -172,24 +209,24 @@ function validateForm(){
         break;
       };
   };
-  return false
+  return true
 };
 
 //-----------------------------------------------  Validation helper functions
 
 function checklength(input, min, max, thisFieldName){
+  console.log('checklength')
   // remove spaces from input
   input = input.replace(/\s/g, '');
-
+  // modify name by replacing _ for a space
   thisFieldName = thisFieldName.replace(/_/g, ' ');
   // check the input to the parameters
   valid = (min <= input.length) && (input.length <= max);
-  validationText = ""
+  var validationText = ""
   // set validation text
   if (!valid){
     validationText = `Please use between ${min} and ${max} characters for ${thisFieldName}`
   }
-  console.log(validationText)
   // return results
   return {
     valid : valid,
@@ -210,3 +247,56 @@ function displayValidationText(text, thisField){
     $(thisField).closest('.row').after(html)
   };
 };
+
+function checkcharacters(input, thisFieldName){
+  console.log('checkcharacters')
+  // check for pairs of at least 2 letters
+  regex = /[a-z]|[A-Z]{2,3}/g
+  valid = regex.test(input);
+  // modify name by replacing _ for a space
+  thisFieldName = thisFieldName.replace(/_/g, ' ');
+  // set validation text
+  validationText = ""
+  if (!valid){
+    validationText = `Please use letters for ${thisFieldName}`
+  }
+  // return results
+  return {
+    valid : valid,
+    validationText : validationText
+  };
+}
+
+function checkpassword(input){
+  // check for capital letter, normal letter, special character, digit
+  regexs = [/[A-Z]/g , /[a-z]/g, /[^A-Za-z0-9]/g, /[0-9]/g];
+
+  var testsPassed = 0;
+  for (let i = 0; i < regexs.length; i++){
+    console.log(input)
+    valid = regexs[i].test(input);console.log
+    (`test ${regexs[i]} is ${valid}`)
+    if (valid){
+      testsPassed++;
+    };
+  };
+
+  valid = false;
+  
+  console.log(testsPassed)
+  console.log(valid)
+
+  // set validation text
+  validationText = ""
+  if (testsPassed < 4){
+    validationText = `Password should include 1 lowercase letter, capital letter, digit and special character.`
+  }else{
+    valid = true;
+  }
+
+  // return results
+  return {
+    valid : valid,
+    validationText : validationText
+  };
+}
