@@ -1,17 +1,16 @@
-
-$(document).ready(function(){
+$(document).ready(function () {
   $('.sidenav').sidenav();
   $('select').formSelect();
   fadeOutFlash();
   $('.modal').modal();
 });
 
-function fadeOutFlash(){
+function fadeOutFlash() {
   $('.flashes').delay(4000).slideUp('slow');
 }
 
 //-----------------------------------------------  Add a line to recipe ingredient input
-  $('#add-ingredient').click(function(){
+$('#add-ingredient').click(function () {
 
   let recipeInputHtml = `
   <div class="row recipe-item ingredient">
@@ -41,14 +40,14 @@ function fadeOutFlash(){
                 </div>
             </div>
   `
-// add after the last added ingredient
-  $( '.ingredient' ).last().after(recipeInputHtml);
+  // add after the last added ingredient
+  $('.ingredient').last().after(recipeInputHtml);
 });
 
 //----------------------------------------------- Add a line to recipe preparation input
-$('#add-prep-step').click(function(){
+$('#add-prep-step').click(function () {
 
-let recipeInputHtml = `
+  let recipeInputHtml = `
 <div class="row prep-step recipe-item valign-wrapper">
   <div class="col s10 m11 l11">
       <div class="input-field preparation_step col s12">
@@ -63,41 +62,41 @@ let recipeInputHtml = `
   </div>
 </div>
   `
-// add after the last added step
-$( '.prep-step' ).last().after(recipeInputHtml);
+  // add after the last added step
+  $('.prep-step').last().after(recipeInputHtml);
 });
 
 //----------------------------------------------- remove ingredient line
-$('.add-recipe').click(function(event){
+$('.add-recipe').click(function (event) {
   buttonClass = $(event.target).parent().attr("class");
- 
-  if (buttonClass.includes("delete")){
+
+  if (buttonClass.includes("delete")) {
     item = $(event.target).closest(".recipe-item");
-    
+
     let ingredientsLeftAfterDelete = $(event.target).closest(".recipe-item").siblings(".ingredient").length
     let prepStepsLeftAfterDelete = $(event.target).closest(".recipe-item").siblings(".prep-step").length
-    
+
     // only delete if one item is left after deleting
-    if ((ingredientsLeftAfterDelete > 0) && (prepStepsLeftAfterDelete > 0)){
+    if ((ingredientsLeftAfterDelete > 0) && (prepStepsLeftAfterDelete > 0)) {
       // show deletion confirmation modal
       $('#item-delete-modal').show();
       // if yes is clicked on the modal
-      $('#yes-delete').click(function(){
+      $('#yes-delete').click(function () {
         item.remove();
         $('#item-delete-modal').hide();
       });
       // if no is clicked on the modal
-      $('#no-delete').click(function(){
+      $('#no-delete').click(function () {
         $('#item-delete-modal').hide();
       });
     }
     let isPrepstep = $(event.target).closest(".recipe-item").hasClass("prep-step");
     let isIngredient = $(event.target).closest(".recipe-item").hasClass("ingredient");
     // if this is the last ingredient or the last preparation step
-    if (((ingredientsLeftAfterDelete == 0)&&(isIngredient)) || ((prepStepsLeftAfterDelete == 0)&&(isPrepstep))){
+    if (((ingredientsLeftAfterDelete == 0) && (isIngredient)) || ((prepStepsLeftAfterDelete == 0) && (isPrepstep))) {
       //show please don't delete modal
       $('#delete-me-not').show();
-      $('#ok-no-delete').click(function(){
+      $('#ok-no-delete').click(function () {
         $('#delete-me-not').hide();
       });
     }
@@ -106,7 +105,7 @@ $('.add-recipe').click(function(event){
 
 //-----------------------------------------------  Form validation
 
-function validateForm(){
+function validateForm() {
 
   // remove all previously shown validation text
   $('.validation-text').remove()
@@ -114,7 +113,7 @@ function validateForm(){
   // find all elements to validate
   let formElements = $('.validate_me')
   // iterate over all form elements
-  for (let i = 0; i < formElements.length; i++){
+  for (let i = 0; i < formElements.length; i++) {
 
     var thisField = formElements[i]
     let thisFieldName = thisField.attributes.name.value
@@ -122,7 +121,7 @@ function validateForm(){
     var validLength
 
     // check this field's name
-    switch(thisFieldName) {
+    switch (thisFieldName) {
       // if this is a title
       case 'recipe_title':
         validLength = checklength(input, 3, 100, thisFieldName)
@@ -130,91 +129,105 @@ function validateForm(){
         displayValidationText(validLength.validationText, thisField)
         displayValidationText(validCharacters.validationText, thisField)
         //stop from from being submitted
-        if (!valid){
+        if (!valid) {
           return false
         }
         break;
-      // if this is a url
-      case 'image_url' :
+        // if this is a url
+      case 'image_url':
         console.log('url' + ' ' + input)
-         // https?://.+ must include https://
+        // https?://.+ must include https://
         break;
-      // if this is a recipe_description
-      case 'recipe_description' :
+        // if this is a recipe_description
+      case 'recipe_description':
         validLength = checklength(input, 10, 200, thisFieldName)
         validCharacters = checkcharacters(input, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
         displayValidationText(validCharacters.validationText, thisField)
-         //stop from from being submitted
-         if (!valid){
+        //stop from from being submitted
+        if (!valid) {
           return false
         }
         break;
-      // if this is an ingredient
-      case 'ingredient_name' :
+        // if this is an ingredient
+      case 'ingredient_name':
         validLength = checklength(input, 3, 100, thisFieldName)
         validCharacters = checkcharacters(input, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
         displayValidationText(validCharacters.validationText, thisField)
-         //stop from from being submitted
-         if (!valid){
+        //stop from from being submitted
+        if (!valid) {
           return false
         }
         break;
-      // if this is an amount
+        // if this is an amount
       case 'amount':
         validLength = checklength(input, 1, 5, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
-         //stop from from being submitted
-         if (!valid){
+        //stop from from being submitted
+        if (!valid) {
           return false
         }
         break;
-      // if this is a preparation step
+        // if this is a preparation step
       case 'preparation_step':
         validLength = checklength(input, 10, 400, thisFieldName)
         validCharacters = checkcharacters(input, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
         displayValidationText(validCharacters.validationText, thisField)
-         //stop from from being submitted
-         if (!valid){
+        //stop from from being submitted
+        if (!valid) {
           return false
         }
         break;
-      // if this is a username
+        // if this is a username
       case 'user_name':
         validLength = checklength(input, 3, 20, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
-         //stop from from being submitted
-         if (!valid){
+        //stop from from being submitted
+        if (!valid) {
           return false
         }
         // ^[a-zA-Z0-9]{3,20}$
         break;
-      // if this is a password
+        // if this is a password
       case 'password':
         validLength = checklength(input, 8, 64, thisFieldName)
         validPassword = checkpassword(input)
         displayValidationText(validLength.validationText, thisField)
         displayValidationText(validPassword.validationText, thisField)
-         //stop from from being submitted
-         if (!valid){
+        //stop from from being submitted
+        if (!valid) {
           return false
         }
-        // ^(?=.*\d)(?=.*[a-zA-Z]).{8,64}$
         break;
-      // if this is a unit name
+        // if this is a unit name
       case 'unit_name':
         console.log('unit name' + ' ' + input)
         break;
-      };
+    };
   };
   return true
 };
 
 //-----------------------------------------------  Validation helper functions
+//-----------------------------------------------  Validation text display
+function displayValidationText(text, thisField) {
+  // set html if a text needs to be displayed
+  let html;
+  if (text.length > 1) {
+    html = `
+    <p class="validation-text red-text text-lighten-1 center-align">${text}</p>
+  `
+  };
+  // display this text after this validated item
+  if (html) {
+    $(thisField).closest('.row').after(html)
+  };
+};
 
-function checklength(input, min, max, thisFieldName){
+//-----------------------------------------------  Length validation
+function checklength(input, min, max, thisFieldName) {
   console.log('checklength')
   // remove spaces from input
   input = input.replace(/\s/g, '');
@@ -224,32 +237,18 @@ function checklength(input, min, max, thisFieldName){
   valid = (min <= input.length) && (input.length <= max);
   var validationText = ""
   // set validation text
-  if (!valid){
+  if (!valid) {
     validationText = `Please use between ${min} and ${max} characters for ${thisFieldName}`
   }
   // return results
   return {
-    valid : valid,
-    validationText : validationText
+    valid: valid,
+    validationText: validationText
   };
 };
 
-function displayValidationText(text, thisField){
-  // set html if a text needs to be displayed
-  let html;
-  if (text.length > 1){
-  html = `
-    <p class="validation-text red-text text-lighten-1 center-align">${text}</p>
-  `
-  };
-  // display this text after this validated item
-  if (html){
-    $(thisField).closest('.row').after(html)
-  };
-};
-
-function checkcharacters(input, thisFieldName){
-  console.log('checkcharacters')
+//-----------------------------------------------  Letter validation
+function checkcharacters(input, thisFieldName) {
   // check for pairs of at least 2 letters
   regex = /[a-z]|[A-Z]{2,3}/g
   valid = regex.test(input);
@@ -257,46 +256,42 @@ function checkcharacters(input, thisFieldName){
   thisFieldName = thisFieldName.replace(/_/g, ' ');
   // set validation text
   validationText = ""
-  if (!valid){
+  if (!valid) {
     validationText = `Please use letters for ${thisFieldName}`
   }
   // return results
   return {
-    valid : valid,
-    validationText : validationText
+    valid: valid,
+    validationText: validationText
   };
 }
 
-function checkpassword(input){
+//-----------------------------------------------  Password validation
+function checkpassword(input) {
   // check for capital letter, normal letter, special character, digit
-  regexs = [/[A-Z]/g , /[a-z]/g, /[^A-Za-z0-9]/g, /[0-9]/g];
+  regexs = [/[A-Z]/g, /[a-z]/g, /[^A-Za-z0-9\s]/g, /[0-9]/g];
 
   var testsPassed = 0;
-  for (let i = 0; i < regexs.length; i++){
-    console.log(input)
-    valid = regexs[i].test(input);console.log
-    (`test ${regexs[i]} is ${valid}`)
-    if (valid){
+  for (let i = 0; i < regexs.length; i++) {
+    valid = regexs[i].test(input);
+    if (valid) {
       testsPassed++;
     };
   };
-
+  //reset valid value to prevent that last check passes all checks
   valid = false;
-  
-  console.log(testsPassed)
-  console.log(valid)
 
   // set validation text
   validationText = ""
-  if (testsPassed < 4){
+  if (testsPassed < 4) {
     validationText = `Password should include 1 lowercase letter, capital letter, digit and special character.`
-  }else{
+  } else {
     valid = true;
   }
 
   // return results
   return {
-    valid : valid,
-    validationText : validationText
+    valid: valid,
+    validationText: validationText
   };
 }
