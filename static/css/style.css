@@ -157,6 +157,9 @@ td, th {
         font-size: 1.8rem;
         width: fit-content;
     }
+    select:focus, textarea:focus, input:focus {
+        font-size: 16px;
+    }
 }
 
 /*-- ios detection --*/
