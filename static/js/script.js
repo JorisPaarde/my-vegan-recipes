@@ -124,60 +124,64 @@ function validateForm() {
     switch (thisFieldName) {
       // if this is a title
       case 'recipe_title':
-        validLength = checklength(input, 3, 100, thisFieldName)
         validCharacters = checkcharacters(input, thisFieldName)
+        validLength = checklength(input, 3, 100, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
         displayValidationText(validCharacters.validationText, thisField)
-        //stop from from being submitted
+        //stop form from being submitted
         if (!valid) {
           return false
         }
         break;
         // if this is a url
       case 'image_url':
-        console.log('url' + ' ' + input)
-        // https?://.+ must include https://
+        validurl = checkurl(input, thisFieldName)
+        displayValidationText(validurl.validationText, thisField)
+        //stop form from being submitted
+        if (!valid) {
+          return false
+        }
         break;
         // if this is a recipe_description
       case 'recipe_description':
-        validLength = checklength(input, 10, 200, thisFieldName)
         validCharacters = checkcharacters(input, thisFieldName)
+        validLength = checklength(input, 10, 200, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
         displayValidationText(validCharacters.validationText, thisField)
-        //stop from from being submitted
+        //stop form from being submitted
         if (!valid) {
           return false
         }
         break;
         // if this is an ingredient
       case 'ingredient_name':
-        validLength = checklength(input, 3, 100, thisFieldName)
         validCharacters = checkcharacters(input, thisFieldName)
+        validLength = checklength(input, 3, 100, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
         displayValidationText(validCharacters.validationText, thisField)
-        //stop from from being submitted
+        //stop form from being submitted
         if (!valid) {
           return false
         }
         break;
         // if this is an amount
       case 'amount':
-        validLength = checklength(input, 1, 5, thisFieldName)
         validNumber = checknumbers(input, thisFieldName)
+        validLength = checklength(input, 1, 5, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
         displayValidationText(validNumber.validationText, thisField)
-        //stop from from being submitted
+        //stop form from being submitted
         if (!valid) {
           return false
         }
         break;
         // if this is a preparation step
       case 'preparation_step':
-        validLength = checklength(input, 10, 400, thisFieldName)
         validCharacters = checkcharacters(input, thisFieldName)
+        validLength = checklength(input, 10, 400, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
         displayValidationText(validCharacters.validationText, thisField)
-        //stop from from being submitted
+        //stop form from being submitted
         if (!valid) {
           return false
         }
@@ -186,7 +190,7 @@ function validateForm() {
       case 'user_name':
         validLength = checklength(input, 3, 20, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
-        //stop from from being submitted
+        //stop form from being submitted
         if (!valid) {
           return false
         }
@@ -194,11 +198,11 @@ function validateForm() {
         break;
         // if this is a password
       case 'password':
-        validLength = checklength(input, 8, 64, thisFieldName)
         validPassword = checkpassword(input)
+        validLength = checklength(input, 8, 64, thisFieldName)
         displayValidationText(validLength.validationText, thisField)
         displayValidationText(validPassword.validationText, thisField)
-        //stop from from being submitted
+        //stop form from being submitted
         if (!valid) {
           return false
         }
@@ -221,6 +225,15 @@ function displayValidationText(text, thisField) {
     html = `
     <p class="validation-text red-text text-lighten-1 center-align">${text}</p>
   `
+    // scroll to the error message
+    setTimeout(function () {
+      console.log('scrollen maar')
+      thisField.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    },0);
+
   };
   // display this text after this validated item
   if (html) {
@@ -251,6 +264,7 @@ function checklength(input, min, max, thisFieldName) {
 
 //-----------------------------------------------  Letter validation
 function checkcharacters(input, thisFieldName) {
+  console.log('checkletters')
   // check for pairs of at least 2 letters
   regex = /[a-z]|[A-Z]{2,3}/g
   valid = regex.test(input);
@@ -270,6 +284,7 @@ function checkcharacters(input, thisFieldName) {
 
 //-----------------------------------------------  Password validation
 function checkpassword(input) {
+  console.log('checkpassw')
   // check for capital letter, normal letter, special character, digit
   regexs = [/[A-Z]/g, /[a-z]/g, /[^A-Za-z0-9\s]/g, /[0-9]/g];
 
@@ -301,6 +316,7 @@ function checkpassword(input) {
 //-----------------------------------------------  Number validation
 
 function checknumbers(input, thisFieldName) {
+  console.log('checknumbers')
   // check for numbers
   regex = /[0-9]/g
   valid = regex.test(input);
@@ -310,6 +326,27 @@ function checknumbers(input, thisFieldName) {
   validationText = ""
   if (!valid) {
     validationText = `Please use numbers for ${thisFieldName}`
+  }
+  // return results
+  return {
+    valid: valid,
+    validationText: validationText
+  };
+}
+
+//-----------------------------------------------  Url validation
+
+function checkurl(input, thisFieldName) {
+  console.log('checkurl')
+  // check for https://
+  regex = /https?:\/{2,}/g
+  valid = regex.test(input);
+  // modify name by replacing _ for a space
+  thisFieldName = thisFieldName.replace(/_/g, ' ');
+  // set validation text
+  validationText = ""
+  if (!valid) {
+    validationText = `Please use https:// in your ${thisFieldName}`
   }
   // return results
   return {
