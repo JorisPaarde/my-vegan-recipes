@@ -118,97 +118,139 @@ function validateForm() {
     var thisField = formElements[i]
     let thisFieldName = thisField.attributes.name.value
     let input = thisField.value
-    var validLength
+    var checkedLength
+    var checkedCharacters
+    var checkedUrl
 
     // check this field's name
     switch (thisFieldName) {
-      // if this is a title
+
       case 'recipe_title':
-        validCharacters = checkcharacters(input, thisFieldName)
-        validLength = checklength(input, 3, 100, thisFieldName)
-        displayValidationText(validLength.validationText, thisField)
-        displayValidationText(validCharacters.validationText, thisField)
-        //stop form from being submitted
-        if (!valid) {
+        // if this is a title
+        checkedCharacters = checkcharacters(input, thisFieldName)
+        checkedLength = checklength(input, 3, 100, thisFieldName)
+
+        // input is valid if it passes all checks
+        validInput = checkedLength.valid && checkedCharacters.valid
+
+        //stop form from being submitted and display why
+        if (!validInput) {
+          displayValidationText(checkedLength.validationText, thisField)
+          displayValidationText(checkedCharacters.validationText, thisField)
           return false
         }
         break;
-        // if this is a url
+
       case 'image_url':
-        validurl = checkurl(input, thisFieldName)
-        displayValidationText(validurl.validationText, thisField)
-        //stop form from being submitted
-        if (!valid) {
+        // if this is a url
+        checkedUrl = checkurl(input, thisFieldName)
+
+        // input is valid if it passes all checks
+        validInput = checkedUrl.valid
+
+        //stop form from being submitted and display why
+        if (!validInput) {
+          displayValidationText(checkedUrl.validationText, thisField)
           return false
         }
         break;
-        // if this is a recipe_description
+
       case 'recipe_description':
-        validCharacters = checkcharacters(input, thisFieldName)
-        validLength = checklength(input, 10, 200, thisFieldName)
-        displayValidationText(validLength.validationText, thisField)
-        displayValidationText(validCharacters.validationText, thisField)
-        //stop form from being submitted
-        if (!valid) {
+        // if this is a recipe_description
+        checkedCharacters = checkcharacters(input, thisFieldName)
+        checkedLength = checklength(input, 10, 200, thisFieldName)
+
+        // input is valid if it passes all checks
+        validInput = checkedLength.valid && checkedCharacters.valid
+
+        //stop form from being submitted and display why
+        if (!validInput) {
+          displayValidationText(checkedLength.validationText, thisField)
+          displayValidationText(checkedCharacters.validationText, thisField)
           return false
         }
         break;
-        // if this is an ingredient
+
       case 'ingredient_name':
-        validCharacters = checkcharacters(input, thisFieldName)
-        validLength = checklength(input, 3, 100, thisFieldName)
-        displayValidationText(validLength.validationText, thisField)
-        displayValidationText(validCharacters.validationText, thisField)
-        //stop form from being submitted
-        if (!valid) {
+        // if this is an ingredient
+        checkedCharacters = checkcharacters(input, thisFieldName)
+        checkedLength = checklength(input, 3, 100, thisFieldName)
+
+        // input is valid if it passes all checks
+        validInput = checkedLength.valid && checkedCharacters.valid
+
+        //stop form from being submitted and display why
+        if (!validInput) {
+          displayValidationText(checkedLength.validationText, thisField)
+          displayValidationText(checkedCharacters.validationText, thisField)
           return false
         }
         break;
-        // if this is an amount
+
       case 'amount':
-        validNumber = checknumbers(input, thisFieldName)
-        validLength = checklength(input, 1, 5, thisFieldName)
-        displayValidationText(validLength.validationText, thisField)
-        displayValidationText(validNumber.validationText, thisField)
-        //stop form from being submitted
-        if (!valid) {
+        // if this is an amount
+        checkedNumber = checknumbers(input, thisFieldName)
+        checkedLength = checklength(input, 1, 5, thisFieldName)
+
+        // input is valid if it passes all checks
+        validInput = checkedNumber.valid && checkedCharacters.valid
+
+        //stop form from being submitted and display why
+        if (!validInput) {
+          displayValidationText(checkedLength.validationText, thisField)
+          displayValidationText(checkedNumber.validationText, thisField)
           return false
         }
         break;
-        // if this is a preparation step
+
       case 'preparation_step':
-        validCharacters = checkcharacters(input, thisFieldName)
-        validLength = checklength(input, 10, 400, thisFieldName)
-        displayValidationText(validLength.validationText, thisField)
-        displayValidationText(validCharacters.validationText, thisField)
-        //stop form from being submitted
-        if (!valid) {
+        // if this is a preparation step
+        checkedCharacters = checkcharacters(input, thisFieldName)
+        checkedLength = checklength(input, 10, 400, thisFieldName)
+
+        // input is valid if it passes all checks
+        validInput = checkedLength.valid && checkedCharacters.valid
+
+        //stop form from being submitted and display why
+        if (!validInput) {
+          displayValidationText(checkedLength.validationText, thisField)
+          displayValidationText(checkedCharacters.validationText, thisField)
           return false
         }
         break;
-        // if this is a username
+
       case 'user_name':
-        validLength = checklength(input, 3, 20, thisFieldName)
-        displayValidationText(validLength.validationText, thisField)
-        //stop form from being submitted
-        if (!valid) {
+        // if this is a username
+        checkedLength = checklength(input, 3, 20, thisFieldName)
+
+        // input is valid if it passes all checks
+        validInput = checkedLength.valid
+
+        //stop form from being submitted and display why
+        if (!validInput) {
+          displayValidationText(checkedLength.validationText, thisField)
           return false
         }
-        // ^[a-zA-Z0-9]{3,20}$
         break;
-        // if this is a password
+
       case 'password':
-        validPassword = checkpassword(input)
-        validLength = checklength(input, 8, 64, thisFieldName)
-        displayValidationText(validLength.validationText, thisField)
-        displayValidationText(validPassword.validationText, thisField)
-        //stop form from being submitted
-        if (!valid) {
+        // if this is a password
+        checkedPassword = checkpassword(input)
+        checkedLength = checklength(input, 8, 64, thisFieldName)
+
+        // input is valid if it passes all checks
+        validInput = checkedPassword.valid && checkedLength.valid
+
+        //stop form from being submitted and display why
+        if (!validInput) {
+          displayValidationText(checkedLength.validationText, thisField)
+          displayValidationText(checkedPassword.validationText, thisField)
           return false
         }
         break;
-        // if this is a unit name
+
       case 'unit_name':
+        // if this is a unit name
         console.log('unit name' + ' ' + input)
         break;
     };
@@ -232,7 +274,7 @@ function displayValidationText(text, thisField) {
         behavior: "smooth",
         block: "center"
       });
-    },0);
+    }, 0);
 
   };
   // display this text after this validated item
@@ -286,13 +328,18 @@ function checkcharacters(input, thisFieldName) {
 function checkpassword(input) {
   console.log('checkpassw')
   // check for capital letter, normal letter, special character, digit
-  regexs = [/[A-Z]/g, /[a-z]/g, /[^A-Za-z0-9\s]/g, /[0-9]/g];
+  regexs = [/[a-z]/g, /[A-Z]/g, /[^A-Za-z0-9\s]/g, /[0-9]/g];
+  
+  testItems = [' a lowercase letter', ' a capital letter', ' a digit', ' a special character']
 
   var testsPassed = 0;
   for (let i = 0; i < regexs.length; i++) {
+
     valid = regexs[i].test(input);
     if (valid) {
       testsPassed++;
+      // remove this testitem from the validation text
+      testItems[i] = ''
     };
   };
   //reset valid value to prevent that last check passes all checks
@@ -301,7 +348,7 @@ function checkpassword(input) {
   // set validation text
   validationText = ""
   if (testsPassed < 4) {
-    validationText = `Password should include 1 lowercase letter, capital letter, digit and special character.`
+    validationText = `Password should include:${testItems[0]}${testItems[1]}${testItems[2]}${testItems[3]}.`
   } else {
     valid = true;
   }
