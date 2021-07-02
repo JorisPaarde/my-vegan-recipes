@@ -140,13 +140,13 @@ function validateForm() {
           return false
         }
         break;
-      
+
       case 'category_name':
         // ---------------------------------------------------if this is category name
-        if (input == ""){
-          displayValidationText("Please select a category" , thisField);
+        if (input == "") {
+          displayValidationText("Please select a category", thisField);
           return false
-        } 
+        }
         break;
 
       case 'image_url':
@@ -210,7 +210,7 @@ function validateForm() {
           return false
         }
         break;
-        
+
       case 'preparation_step':
         // -----------------------------------------------if this is a preparation step
         checkedCharacters = checkcharacters(input, thisFieldName)
@@ -270,19 +270,18 @@ function displayValidationText(text, thisField) {
     html = `
     <p class="validation-text red-text text-lighten-1 center-align">${text}</p>
   `
-    // scroll to the error message
-    setTimeout(function () {
-      console.log('scrollen maar')
-      thisField.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
-    }, 0);
-
   };
   // display this text after this validated item
   if (html) {
     $(thisField).closest('.row').after(html)
+    // then scroll to the error message
+    setTimeout(function () {
+      console.log('scrolling')
+      thisField.closest('.row').scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }, 2000);
   };
 };
 
@@ -332,7 +331,7 @@ function checkpassword(input) {
   console.log('checkpassw')
   // check for capital letter, normal letter, special character, digit
   regexs = [/[a-z]/g, /[A-Z]/g, /[0-9]/g, /[^A-Za-z0-9\s]/g];
-  
+
   testItems = [' a lowercase letter', ' a capital letter', ' a digit', ' a special character']
 
   var testsPassed = 0;
