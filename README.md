@@ -1,3 +1,16 @@
+## Table of Contents
+- [UX](#user-experience-(ux))
+  - [User stories](#user-stories)
+  - [Design](#design)
+  - [Mockup](#mockup)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Credits](#credits)
+
+# user-experience-(ux)
+
 # User stories:
 
 ### First time user:
@@ -35,6 +48,10 @@ As a first time user i want to:
 - Remove recipies from other users from my personal recipe book
 - filter my personal recipe book by category (dropdown)
 
+# Design
+
+# mockup
+
 # Features
 
 - Register
@@ -48,12 +65,18 @@ As a first time user i want to:
 - Search with regex on ingredients and titles
 - pagination
 - custom javascript form validation
+- adaptive error display on validation
+- scroll to error on validation
 
 ## future features
 
 - Use Ajax for the like button
 - Recipe reviews
 - liked recipes per user for better performance.
+
+# Technologies Used
+
+# Testing
 
 # Deployment
 
@@ -99,6 +122,10 @@ echo web: python app.py > Procfile
 - Create a new app on heroku
 
 
+# Credits
+
+Thanks guys
+
 ### images:
 
 https://unsplash.com/photos/4MEL9XS-3JQ?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink
@@ -114,20 +141,5 @@ https://www.goodhousekeeping.com/food-recipes/a38332/grilled-asparagus-and-shiit
 
 added html select field has no id since there will be lots added.
 
-https://help.pixpa.com/kb/add-a-floating-back-to-top-button/
-
-pagination?:
-
+pagination:
 https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
-
-
-# Bugs:
-
-when adding an ingredient line with javascript, the dropdown menu did not work. hardcoded in stead of db generated.
-When liking a recipe without being logged in site crashed. check if logged user added. Rederected to register page.
-When adding a really long title the text would flow outside the recipe card. fixed by adding webkit-line-clamp.
-Card text displayed as blue link text when the card was made clickable to link to the recipe. Added class to text.
-Delete modal did not function. Gave corresponding id to the modal for each recipe.
-Background fixed caused exessive zoom on the background on apple devices. No errors on devtools.. Finally used:@supports (-webkit-touch-callout: none). A hack to detect ios devices (they are the only ones supporting this.) and set the background to scroll.
-When deleting the last ingredient or preperation step, adding a new one was broken. Added a check to prevent deleting the last item.
-Pressing reset on the search bar in the recipe book page sended the user to the all recipes page. Corrected url.
