@@ -1,3 +1,10 @@
+# MY Vegan Recipes
+
+
+[View the live project here](https://my-veganrecipes.herokuapp.com/)
+
+![MY Vegan Recipes mockup image](readme-images/mockup-site.jpg)
+
 ## Table of Contents
 - [UX](#user-experience-(ux))
   - [User stories](#user-stories)
@@ -9,9 +16,9 @@
 - [Deployment](#deployment)
 - [Credits](#credits)
 
-# user-experience-(ux)
+# User experience (ux)
 
-# User stories:
+## User stories:
 
 ### First time user:
 
@@ -50,7 +57,33 @@ As a first time user i want to:
 
 # Design
 
-# mockup
+
+#### Colour Scheme
+
+For the colors
+
+- Green : Green revitalizes and encourages ideal for the "Done" section of our page.
+        After completing a task revitalized nad encouraged by the color green it's back to work o the next task!
+
+
+#### Typography
+
+Font:
+
+
+#### Imagery
+
+Apart from the images linked in the recipes, the following images where used:
+
+-   https://unsplash.com/photos/4MEL9XS-3JQ?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink
+-   https://unsplash.com/photos/IxBCafdQItg?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink    
+
+
+### Mockup
+
+-  The mockup design of this site was made in Figma. U can view it [here](https://www.figma.com/file/wDLKFqlSfiIHY9t91UBkJX/My-vegan-recipies?node-id=0%3A1) 
+
+![Icanban mockup image](readme-images/design-mockup.jpg)
 
 # Features
 
@@ -125,12 +158,6 @@ echo web: python app.py > Procfile
 # Credits
 
 Thanks guys
-
-### images:
-
-https://unsplash.com/photos/4MEL9XS-3JQ?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink
-https://unsplash.com/photos/IxBCafdQItg?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink
-
 
 ### recipes:
 
