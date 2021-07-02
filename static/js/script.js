@@ -221,7 +221,7 @@ function validateForm() {
 
       case 'user_name':
         // if this is a username
-        checkedLength = checklength(input, 3, 20, thisFieldName)
+        checkedLength = checklength(input, 5, 20, thisFieldName)
 
         // input is valid if it passes all checks
         validInput = checkedLength.valid
@@ -328,7 +328,7 @@ function checkcharacters(input, thisFieldName) {
 function checkpassword(input) {
   console.log('checkpassw')
   // check for capital letter, normal letter, special character, digit
-  regexs = [/[a-z]/g, /[A-Z]/g, /[^A-Za-z0-9\s]/g, /[0-9]/g];
+  regexs = [/[a-z]/g, /[A-Z]/g, /[0-9]/g, /[^A-Za-z0-9\s]/g];
   
   testItems = [' a lowercase letter', ' a capital letter', ' a digit', ' a special character']
 
