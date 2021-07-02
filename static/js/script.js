@@ -116,8 +116,8 @@ function validateForm() {
   for (let i = 0; i < formElements.length; i++) {
 
     var thisField = formElements[i]
-    let thisFieldName = thisField.attributes.name.value
-    let input = thisField.value
+    var thisFieldName = thisField.attributes.name.value
+    var input = thisField.value
     var checkedLength
     var checkedCharacters
     var checkedUrl
@@ -126,7 +126,7 @@ function validateForm() {
     switch (thisFieldName) {
 
       case 'recipe_title':
-        // if this is a title
+        // ----------------------------------------------------if this is a title
         checkedCharacters = checkcharacters(input, thisFieldName)
         checkedLength = checklength(input, 3, 100, thisFieldName)
 
@@ -140,9 +140,17 @@ function validateForm() {
           return false
         }
         break;
+      
+      case 'category_name':
+        // ---------------------------------------------------if this is category name
+        if (input == ""){
+          displayValidationText("Please select a category" , thisField);
+          return false
+        } 
+        break;
 
       case 'image_url':
-        // if this is a url
+        // -----------------------------------------------------if this is a url
         checkedUrl = checkurl(input, thisFieldName)
 
         // input is valid if it passes all checks
@@ -172,7 +180,7 @@ function validateForm() {
         break;
 
       case 'ingredient_name':
-        // if this is an ingredient
+        // -----------------------------------------------if this is an ingredient
         checkedCharacters = checkcharacters(input, thisFieldName)
         checkedLength = checklength(input, 3, 100, thisFieldName)
 
@@ -188,7 +196,7 @@ function validateForm() {
         break;
 
       case 'amount':
-        // if this is an amount
+        // ------------------------------------------------------if this is an amount
         checkedNumber = checknumbers(input, thisFieldName)
         checkedLength = checklength(input, 1, 5, thisFieldName)
 
@@ -202,9 +210,9 @@ function validateForm() {
           return false
         }
         break;
-
+        
       case 'preparation_step':
-        // if this is a preparation step
+        // -----------------------------------------------if this is a preparation step
         checkedCharacters = checkcharacters(input, thisFieldName)
         checkedLength = checklength(input, 10, 400, thisFieldName)
 
@@ -220,7 +228,7 @@ function validateForm() {
         break;
 
       case 'user_name':
-        // if this is a username
+        // -------------------------------------------------------if this is a username
         checkedLength = checklength(input, 5, 20, thisFieldName)
 
         // input is valid if it passes all checks
@@ -234,7 +242,7 @@ function validateForm() {
         break;
 
       case 'password':
-        // if this is a password
+        // -----------------------------------------------------if this is a password
         checkedPassword = checkpassword(input)
         checkedLength = checklength(input, 8, 64, thisFieldName)
 
@@ -247,11 +255,6 @@ function validateForm() {
           displayValidationText(checkedPassword.validationText, thisField)
           return false
         }
-        break;
-
-      case 'unit_name':
-        // if this is a unit name
-        console.log('unit name' + ' ' + input)
         break;
     };
   };
