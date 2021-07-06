@@ -174,25 +174,32 @@ All testing can be found [here](TESTING.md).
 
 # Deployment
 
-- Create your account on MongoDB here: https://account.mongodb.com/account/register
-- Create your account on Heroku here: https://signup.heroku.com/login
+## To deploy this project: 
+### follow the following steps:
+
+- ### Create your account on MongoDB here: https://account.mongodb.com/account/register
+- ### Create your account on Heroku here: https://signup.heroku.com/login
+
+
+- ### Clone this repository:
+### In linux:
 
 ```
-pip3 install flask
-pip3 install flask-pymongo
-pip3 install dnspython
+$git clone https://github.com/JorisPaarde/my-vegan-recipes.git
 ```
-- Create your requirements file: 
-```
-pip3 freeze --local > requirements.txt
-```
-- Or if u downloaded it already:
+
+### in Windows:
+
+follow [these](https://www.jcchouinard.com/clone-github-repository-on-windows/) steps.
+
+
+- ### Install all requirements through the requirements.txt file:
 ```
 pip install -r requirements.txt
 ```
-- Create your env.py file:
+- ### Create your env.py file:
 ```
-touch env.py
+$touch env.py
 ```
 - Make sure u add this env.py file to your gitignore file!
 - Add the folowing code to your env.py file:
@@ -208,13 +215,28 @@ os.environ.setdefault("MONGO_DBNAME", "<DATABASENAME>")
 - Replace YOUR-SECRET-KEY-HERE, MONGODBPASSWORD, DATABASENAME according to your personal situation.
 - Create your procfile:
 ``` 
-echo web: python app.py > Procfile
+$echo web: python app.py > Procfile
 ```
-- Delete the blank line 
-
+- Delete the blank line at the end of this procfile.
 
 - Create a new app on heroku
+got to: https://dashboard.heroku.com/apps
+select new, create new app from the dropdown menu on the right.
+Enter your app-name and region and click create app.
+Under delpoyment method, select github.
 
+![github connect](readme-images/github-connect.png)
+
+Select your repository and connect.
+
+Now go to settings, config vars and enter the variables also located in your env.py file.
+
+![Config vars](readme-images/Inkedheroku_vars.jpg)
+
+Go to deploy and at the bottom of the page manually deploy your main github branch
+
+Your app is now deployed and ready to run.
+At the top of th epage click open app to run it.
 
 # Credits
 
@@ -235,4 +257,4 @@ https://github.com/lisa1Q84/somelikeithot-recipes/blob/master/static/css/style.c
 Pagination:
 https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
 
-added html select field has no id since there will be lots added.
+The html select field added in the javascript code has no id since there will be multiple intances added.
