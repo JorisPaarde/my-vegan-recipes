@@ -68,6 +68,7 @@ html{
 }
 
 .created-by {
+    font-size: 12px;
     margin: 2px 10px;
     float: right;
 }
@@ -79,6 +80,14 @@ html{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+i.left {
+    margin-right: 10px;
+}
+
+.delete-button{
+    padding: 0px 8px;
 }
 
 /*-------------------------------------- Recipe page ----------------------------------------------*/
