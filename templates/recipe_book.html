@@ -2,27 +2,26 @@
 {% block content %}
 <!-- hero background image -->
 <div class="row recipe-book-background valign-wrapper">
-    <div class="row center-align">
-        <div class="col">
-            <!-- hero text -->
-            <h1 class="text-shadow grey-text text-lighten-4">{{ session["user"] }}'s recipe book.</h1>
-            <h3 class="text-shadow grey-text text-lighten-4">Congratulations!<br>{{ TOTAL_LIKES }} people like these recipes!</h3>
-            <h4 class="text-shadow grey-text text-lighten-4">The best place to store your favorite vegan recipies.</h4>
-        </div>
+    <div class="col s12 center-align">
+        <!-- hero text -->
+        <h1 class="text-shadow grey-text text-lighten-4">{{ session["user"] }}'s recipe book.</h1>
+        <h2 class="text-shadow grey-text text-lighten-4">Congratulations!<br>{{ TOTAL_LIKES }} people like these
+            recipes!</h2>
+        <h3 class="text-shadow grey-text text-lighten-4">The best place to store your favorite vegan recipies.</h3>
     </div>
 </div>
 <div class="container">
     <!-- welcome text -->
     <div class="row center-align">
         <div class="col s12 m8 l8 offset-m2 offset-l2 center-align">
-           {% if search %}
-           <p>
-               Search results for: {{ search }} <br>
-               Press reset to get all your recipes.
-           </p>
-           {% else %}
+            {% if search %}
             <p>
-                
+                Search results for: {{ search }} <br>
+                Press reset to get all your recipes.
+            </p>
+            {% else %}
+            <p>
+
                 Add recipes or edit your recipes.
                 Or search for a recipe, u can search our recipes by name or by ingredient.
             </p>
@@ -40,7 +39,7 @@
             </div>
             <div class="input-field col s6 offset-s3 m4 l3">
                 <select name="category_filter" id="category_filter">
-                    <option value="" disabled selected>filter category</option>
+                    <option value="" disabled selected>Filter category</option>
                     {% for category in categories %}
                     <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                     {% endfor %}
@@ -49,13 +48,13 @@
         </div>
         <div class="row">
             <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4">
-                <a href="{{ url_for('recipe_book') }}" class="red btn waves-effect waves-light">Reset</a>
-                <button type="submit" class="right waves-effect waves-light btn light-green darken-2">
+                <a href="{{ url_for('recipe_book') }}" class="red btn waves-effect waves-light darken-3">Reset</a>
+                <button type="submit" class="right waves-effect waves-light btn light-green darken-4">
                     <i class="fas fa-search left"></i> Search
                 </button>
             </div>
         </div>
-        </form>
+    </form>
     <!-- recipes -->
     <div class="row">
         <!-- display all recipes liked by this user -->
@@ -65,17 +64,17 @@
             <div class="card hoverable">
                 <a href="{{ url_for('recipe', recipe_id=recipe._id) }}">
                     <div class="card-image">
-                        <img src="{{ recipe.image_url }}">
+                        <img src="{{ recipe.image_url }}" alt="{{ recipe.recipe_title }}">
                     </div>
                     <form action="{{ url_for('like_recipe') }}" method="post">
                         <button name="like"
-                            class="like-button btn-floating waves-effect waves-light light-green darken-2" type="submit"
+                            class="like-button btn-floating waves-effect waves-light light-green darken-4" type="submit"
                             value="{{ recipe._id }}">
                             <i class="material-icons right">favorite</i>
                         </button>
                     </form>
                     <span class="likes-amount grey-text text-darken-2">{{ recipe.liked_by|length }}</span>
-                    <span class="created-by line-clamp grey-text text-lighten-1 italic">By: {{ recipe.user_name }}</span>
+                    <span class="created-by line-clamp grey-text text-darken-1 italic">By: {{ recipe.user_name }}</span>
                     <div class="card-content center-align">
                         <span class="card-title grey-text text-darken-2">{{ recipe.recipe_title }}</span>
                         <p class="line-clamp grey-text text-darken-2">{{ recipe.recipe_description }}</p>
@@ -85,18 +84,19 @@
             <div class="row">
                 {% if session["user"] == recipe.user_name %}
                 <div class="col l6">
-                    <a class="waves-effect waves-light light-green darken-2 btn modal-trigger delete-button" href="#{{ recipe._id }}">
+                    <a class="waves-effect waves-light light-green darken-4 btn modal-trigger delete-button"
+                        href="#{{ recipe._id }}">
                         <i class="material-icons left">delete</i>Delete</a>
                 </div>
                 <div class="col l6">
-                    <a class="waves-effect waves-light btn right light-green darken-2"
+                    <a class="waves-effect waves-light btn right light-green darken-4"
                         href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
                         <i class="material-icons left">edit</i>edit</a>
                 </div>
                 {% else %}
                 <form class="col l12" action="{{ url_for('like_recipe') }}" method="post">
                     <button name="like" value="{{ recipe._id }}"
-                        class="waves-effect waves-light btn light-green darken-2" type="submit"><i
+                        class="waves-effect waves-light btn light-green darken-4" type="submit"><i
                             class="material-icons left">remove</i>Remove</button>
                 </form>
                 {% endif %}

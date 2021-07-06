@@ -118,6 +118,7 @@ td, th {
 /*---------------------------------------- Add recipe page ----------------------------------------*/
 .input-field label{
     font-size: 1rem;
+    color: #424242;
 }
 
 #recipe_description, .preparation_step textarea{
@@ -168,6 +169,21 @@ td, th {
     }
     select:focus, textarea:focus, input:focus {
         font-size: 16px;
+    }
+    .recipes-background{
+        background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0)), url("../images/victoria-shes-4MEL9XS-3JQ-unsplash-mobile.jpg");
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    h1{
+        font-size: 2.5rem;
+    }
+    h2{
+        font-size: 1.8rem;
+    }
+    h3{
+        font-size: 1.5rem;
     }
 }
 

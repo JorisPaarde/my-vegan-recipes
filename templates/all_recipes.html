@@ -2,14 +2,12 @@
 {% block content %}
 <!-- hero background image -->
 <div class="row recipes-background valign-wrapper">
-    <div class="row center-align">
-        <div class="col">
+        <div class="col s12 center-align">
             <!-- hero text -->
             <h1 class="text-shadow grey-text text-lighten-4">My Vegan Recipes</h1>
-            <h3 class="text-shadow grey-text text-lighten-4">Where u store, share and find your favorite <br>Vegan
-                Recipes</h3>
+            <h2 class="text-shadow grey-text text-lighten-4">Where u store, share and find your favorite <br>Vegan
+                Recipes</h2>
         </div>
-    </div>
 </div>
 <div class="container">
     <!-- welcome text -->
@@ -21,7 +19,7 @@
             <p>
                 The best place to get and store your favorite vegan recipies
                 To add recipes, like recipes and get access to your personal recipe book please <a
-                    href="{{ url_for('register') }}">register</a>.
+                  class="grey-text text-darken-2"  href="{{ url_for('register') }}"><u>register</u></a>.
             </p>
             {% if search %}
             <p>
@@ -46,7 +44,7 @@
             </div>
             <div class="input-field col s8 offset-s2 m4 l3">
                 <select name="category_filter" id="category_filter">
-                    <option value="" disabled selected>filter category</option>
+                    <option value="" disabled selected>Filter category</option>
                     {% for category in categories %}
                     <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                     {% endfor %}
@@ -55,8 +53,8 @@
         </div>
         <div class="row">
             <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4">
-                <a href="{{ url_for('all_recipes') }}" class="red btn waves-effect waves-light">Reset</a>
-                <button type="submit" class="right waves-effect waves-light btn light-green darken-2">
+                <a href="{{ url_for('all_recipes') }}" class="red btn waves-effect waves-light darken-3">Reset</a>
+                <button type="submit" class="right waves-effect waves-light btn light-green darken-4">
                     <i class="fas fa-search left"></i> Search
                 </button>
             </div>
@@ -69,11 +67,11 @@
             <div class="col s12 m6 l4">
                 <div class="card hoverable">
                     <div class="card-image">
-                        <img src="{{ recipe.image_url }}">
+                        <img src="{{ recipe.image_url }}" alt="{{ recipe.recipe_title }}">
                     </div>
                     <form action="{{ url_for('like_recipe') }}" method="post">
                         <button name="like"
-                            class="like-button btn-floating waves-effect waves-light light-green darken-2" type="submit"
+                            class="like-button btn-floating waves-effect waves-light light-green darken-4" type="submit"
                             value="{{ recipe._id }}">
                             <!-- indicate if this user liked this recipe -->
                             <i
@@ -81,7 +79,7 @@
                         </button>
                     </form>
                     <span class="likes-amount grey-text text-darken-2">{{ recipe.liked_by|length }}</span>
-                    <span class="created-by line-clamp grey-text text-lighten-1 italic">By:
+                    <span class="created-by line-clamp grey-text text-darken-1 italic">By:
                         {{ recipe.user_name }}</span>
                     <div class="card-content center-align">
                         <span class="line-clamp card-title grey-text text-darken-2">{{ recipe.recipe_title }}</span>

@@ -15,7 +15,7 @@
 </head>
 <!-- navigation menu -->
 <nav>
-  <div class="nav-wrapper light-green darken-2">
+  <div class="nav-wrapper light-green darken-4">
     <a href="{{ url_for('all_recipes')}}" class="brand-logo text-shadow">My Vegan Recipes</a>
     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
@@ -64,18 +64,18 @@
     {% endblock %}
   </main>
 
-  <footer class="page-footer light-green darken-2">
+  <footer class="page-footer light-green darken-4">
     <div class="container">
-      <div class="row light-green darken-2">
+      <div class="row light-green darken-4">
         <!-- footer title and text -->
         <div class="col l6 s12">
-          <h5 class="white-text text-shadow">My Vegan Recipes</h5>
+          <h3 class="white-text text-shadow">My Vegan Recipes</h3>
           <p class="grey-text text-lighten-4">Your go to recipe page for all things vegan.<br>Where u manage your
             personal recipe book and discover the best vegan recipes.</p>
         </div>
         <!-- footer links -->
         <div class="col l4 offset-l2 s12">
-          <h5 class="white-text">Links</h5>
+          <h4 class="white-text">Links</h4>
           <ul>
             <li><a class="grey-text text-lighten-3" href="{{ url_for('all_recipes')}}">All recipes</a></li>
             {% if session.user %}
