@@ -1,11 +1,17 @@
 # MY Vegan Recipes
 
+## Where u store, share and find your favorite Vegan Recipes
+
+My Vegan recipes is a recipe website where u can store and share your favorite vegan recipes.
+It gives u a personal recipe book where all your favorites are easily accessible. U can find and like recipes added by other users, and recieve likes on the recipes u added yourself.
+We invite u to start adding your favorite recipes and start collecting those likes.
 
 [View the live project here](https://my-veganrecipes.herokuapp.com/)
 
 ![MY Vegan Recipes mockup image](readme-images/mockup-site.jpg)
 
 ## Table of Contents
+
 - [UX](#user-experience-(ux))
   - [User stories](#user-stories)
   - [Design](#design)
@@ -28,7 +34,7 @@ As a first time user i want to:
 - Register as a new user
 - View recipies other people posted
 - See most liked recipies on top
-- See which recipes i liked
+- See which recipes i liked (needs registration)
 - Search: - recipies by ingredient
           - by name
 - filter by category (dropdown)
@@ -43,9 +49,11 @@ As a first time user i want to:
 - Add my own recipies
         - title
         - category
+        - image url
+        - description
         - ingredients by name, amount and unit(dropdown selection)
         - preparation steps (adding 1 step at a time)
-        - image url
+        
 - Edit my own recipies.
         - edit inputs
         - delete inputs
@@ -54,21 +62,31 @@ As a first time user i want to:
 - Add recipies from other users to my personal recipe book
 - Remove recipies from other users from my personal recipe book
 - filter my personal recipe book by category (dropdown)
+- search my personal recipe book by ingredients and/or title
 
 # Design
 
 
-#### Colour Scheme
+### Colour Scheme
 
-For the colors
+### GREEN:
+Spring, the macabre, freshness, mystery, envy, hope, eternal life. Being composed of yellow and blue, green presents the feeling of light and coolness, cheer and restraint. It is the color of nature as usually seen. Green alleviates tension and implies restfulness.
 
-- Green : Green revitalizes and encourages ideal for the "Done" section of our page.
-        After completing a task revitalized nad encouraged by the color green it's back to work o the next task!
+#### Emotional Response:
+Green supposedly has healing power. It is the most restful color for the human eye; it can improve vision. Green suggests stability and endurance. Sometimes green denotes lack of experience; for example, a ‘greenhorn’ is a novice. In heraldry, green indicates growth and hope. Green, as opposed to red, means safety; it is the color of free passage in road traffic.
 
+#### Use in Design & Advertising:
+Green is used to indicate safety when advertising drugs and medical products. Green is directly related to nature, so is used to promote ‘green’ or natural products. Dull, darker green is associated with money, the financial world, banking, Wall Street.
 
-#### Typography
+source: https://zevendesign.com/color-association/#green
 
-Font:
+### Typography
+
+#### Font
+The site uses the default values by materialize css.
+
+"Defaulting to the system font of a particular operating system can boost performance because the browser doesn’t have to download any font files, it’s using one it already had. That’s true of any “web safe” font, though. The beauty of “system” fonts is that it matches what the current OS uses, so it can be a comfortable look."
+source: https://css-tricks.com/snippets/css/system-font-stack/
 
 
 #### Imagery
@@ -79,7 +97,7 @@ Apart from the images linked in the recipes, the following images where used:
 -   https://unsplash.com/photos/IxBCafdQItg?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink    
 
 
-### Mockup
+# Mockup
 
 -  The mockup design of this site was made in Figma. U can view it [here](https://www.figma.com/file/wDLKFqlSfiIHY9t91UBkJX/My-vegan-recipies?node-id=0%3A1) 
 
@@ -103,11 +121,52 @@ Apart from the images linked in the recipes, the following images where used:
 
 ## future features
 
-- Use Ajax for the like button
-- Recipe reviews
-- liked recipes per user for better performance.
+- Use Ajax to prevent page reloads on search and like functionality.
+- Recipe reviews, so creators can get feedback on their recipes.
+- Storing liked recipes per user account for better performance. (No need to go trough all recipes on search an recipe book)
 
 # Technologies Used
+
+### Languages Used
+
+-   [HTML5](https://en.wikipedia.org/wiki/HTML5)
+    - HTML5 was used to build the main structure and content of the page.
+-   [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+    - CSS3 was used to give the html styling and layout.
+    And to make the page responsive to differentscreen sizes.
+-   [Javascript](https://nl.wikipedia.org/wiki/JavaScript)
+    - Javascript was used for all website altering functions, like adding and removing items in the various forms, and for custom validation.
+-   [Python](https://www.python.org/)
+    - Python was used for writing the scripts to render all the different templates using flask. And connecting to mongodb.
+-   [Jinja](https://jinja.palletsprojects.com/en/3.0.x/)
+    - Jinja was used for writing the template code.
+
+
+### Frameworks, Libraries & Programs Used
+
+1. [Materialize css 0.100.2:](http://archives.materializecss.com/0.100.2/getting-started.html)
+    - Materialize was used to create the responsive structure of the website.
+1. [Flask:](https://flask.palletsprojects.com/en/2.0.x/)
+    - Flask was used to render various templates from the app.py file.
+1. [Google Fonts:](https://fonts.google.com/)
+    - Google fonts was used to import the icons and fonts for materialize.
+1. [jQuery:](https://jquery.com/)
+    - jQuery Used among other things in script file to initialze materialize scripts.
+1. [Git](https://git-scm.com/)
+    - Git was used for version control by utilizing the terminal in gitpod to regularly commit, with comments, to Git and Push to GitHub.
+1. [GitHub:](https://github.com/)
+    - GitHub is used to store the projects code and assets and to fork the project for the customer.
+1. [Figma:](https://figma.com/)
+    - Figma was used to create the website design and prototype.
+1. [MongoDB:](https://www.mongodb.com/)
+    - MongoDB was used to create the Database for the recipes, categories and user data.
+1. [Heroku:](https://www.heroku.com)
+    - Heroku was used to deploy the app.
+1. [TinyPNG](https://tinypng.com/)
+    - TinyPNG was used to compress images to ensure faster load times.
+1. [Browserstack](https://live.browserstack.com/)
+    - To test the site on a variety of devices and browsers.
+
 
 # Testing
 
