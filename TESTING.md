@@ -11,3 +11,6 @@ When deleting the last ingredient or preperation step, adding a new one was brok
 Pressing reset on the search bar in the recipe book page sended the user to the all recipes page. Corrected url.
 Validation resulted in being valid if the last test was valid. refactored code to fix it.
 With validation on the dropdown menu's the scrollto would not work, fixed by scrolling to the nearest row instead of the element itself.
+Filling in a correct password was not accepted as valid. Login validation was conflicting with html pattern, removed pattern from html.
+Card created by text was breaking the card layout on certain screen sizes. Decreased font size and adjusted created by text.
+Delete button text disappeared on certain screen sizes. Added custom css to this button.
