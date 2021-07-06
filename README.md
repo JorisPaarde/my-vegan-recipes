@@ -10,7 +10,7 @@ We invite u to start adding your favorite recipes and start collecting those lik
 
 ![MY Vegan Recipes mockup image](readme-images/mockup-site.jpg)
 
-## Table of Contents
+# Table of Contents
 
 - [UX](#user-experience-(ux))
   - [User stories](#user-stories)
@@ -97,7 +97,7 @@ Apart from the images linked in the recipes, the following images where used:
 -   https://unsplash.com/photos/IxBCafdQItg?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink    
 
 
-# Mockup
+## Mockup
 
 -  The mockup design of this site was made in Figma. U can view it [here](https://www.figma.com/file/wDLKFqlSfiIHY9t91UBkJX/My-vegan-recipies?node-id=0%3A1) 
 
@@ -170,6 +170,8 @@ Apart from the images linked in the recipes, the following images where used:
 
 # Testing
 
+All testing can be found [here](TESTING.md).
+
 # Deployment
 
 - Create your account on MongoDB here: https://account.mongodb.com/account/register
@@ -218,14 +220,19 @@ echo web: python app.py > Procfile
 
 Thanks guys
 
-### recipes:
+## recipes:
 
 https://www.jamieoliver.com/recipes/category/special-diets/vegan/
 https://www.goodhousekeeping.com/food-recipes/a38332/grilled-asparagus-and-shiitake-tacos-recipe/
 
-### code: 
+## code: 
+
+The following code was copied from external sources:
+
+CSS for dotted line frame in recipe page:
+https://github.com/lisa1Q84/somelikeithot-recipes/blob/master/static/css/style.css
+
+Pagination:
+https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
 
 added html select field has no id since there will be lots added.
-
-pagination:
-https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
