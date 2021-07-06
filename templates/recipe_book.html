@@ -58,8 +58,8 @@
         </form>
     <!-- recipes -->
     <div class="row">
-        {% for recipe in recipes %}
         <!-- display all recipes liked by this user -->
+        {% for recipe in recipes %}
         {% if session["user"] in recipe.liked_by %}
         <div class="col s12 m6 l4">
             <div class="card hoverable">
@@ -75,7 +75,7 @@
                         </button>
                     </form>
                     <span class="likes-amount grey-text text-darken-2">{{ recipe.liked_by|length }}</span>
-                    <span class="created-by  grey-text text-lighten-1 italic">Created by: {{ recipe.user_name }}</span>
+                    <span class="created-by line-clamp grey-text text-lighten-1 italic">By: {{ recipe.user_name }}</span>
                     <div class="card-content center-align">
                         <span class="card-title grey-text text-darken-2">{{ recipe.recipe_title }}</span>
                         <p class="line-clamp grey-text text-darken-2">{{ recipe.recipe_description }}</p>
@@ -85,7 +85,7 @@
             <div class="row">
                 {% if session["user"] == recipe.user_name %}
                 <div class="col l6">
-                    <a class="waves-effect waves-light light-green darken-2 btn modal-trigger" href="#{{ recipe._id }}">
+                    <a class="waves-effect waves-light light-green darken-2 btn modal-trigger delete-button" href="#{{ recipe._id }}">
                         <i class="material-icons left">delete</i>Delete</a>
                 </div>
                 <div class="col l6">
