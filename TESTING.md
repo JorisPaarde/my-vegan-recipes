@@ -94,81 +94,37 @@ sticky|footer stays on the bottom of the page.|Resized screen from large, down t
   }
 ````
 
-
+<br>
 <br>
 
-## all recipes / my recipe book page
+# Feature testing
+
+## Form validation
 
 feature|expected behaviour|testing|result|Fix(if needed)
 ---|---|---|---|---
 
+Adaptive error display on validation
 
 <br>
 
-## add/edit recipe page
+## Other features
 
 feature|expected behaviour|testing|result|Fix(if needed)
 ---|---|---|---|---
-Navigation menu|Collapses and/or stays readable and doesn't overflow.|Resized screen from large(width 1920px), down to small(width 280px).|Menu collapses on medium screen size, text stays readable, no items are overflowing. Breaks below 280px width, this was ignored as these are almost never used.
-Dark mode|When switch is clicked the css varables change.|Clicked switch.|Correct display of darkmode.
-Column text adjust textfield|Stays readable and doesn't overflow.|Resized screen from large to small.|Correct.
-Slider buttons|Animate slide when clicked.|Clicked switch.|Correct.
-Slider buttons|Form stays as intended.|Resized screen from large to small.|Settings buttons on galaxy fold (width 280px) or smaller where broken.|Reduced the padding on the columns of the settings menu. Still breaks on screens smaller than 260px width, this was ignored as these are almost never used.
-Decoration columns|Only display on medium screensizes and above.|Resized screen from large to small.|Correct.
-
-<br>
-
-## recipe page
-
-feature|expected behaviour|testing|result|Fix(if needed)
----|---|---|---|---
-Navigation menu|Collapses and/or stays readable and doesn't overflow.|Resized screen from large(width 1920px), down to small(width 280px).|Menu collapses on medium screen size, text stays readable, no items are overflowing. Breaks below 280px width, this was ignored as these are almost never used.
-Dark mode|When switch is clicked the css varables change.|Clicked switch.|Correct display of darkmode.
-Column text adjust textfield|Stays readable and doesn't overflow.|Resized screen from large to small.|Correct.
-Slider buttons|Animate slide when clicked.|Clicked switch.|Correct.
-Slider buttons|Form stays as intended.|Resized screen from large to small.|Settings buttons on galaxy fold (width 280px) or smaller where broken.|Reduced the padding on the columns of the settings menu. Still breaks on screens smaller than 260px width, this was ignored as these are almost never used.
-Decoration columns|Only display on medium screensizes and above.|Resized screen from large to small.|Correct.
-
-<br>
-
-## login/register page
-
-feature|expected behaviour|testing|result|Fix(if needed)
----|---|---|---|---
-Navigation menu|Collapses and/or stays readable and doesn't overflow.|Resized screen from large(width 1920px), down to small(width 280px).|Menu collapses on medium screen size, text stays readable, no items are overflowing. Breaks below 280px width, this was ignored as these are almost never used.
-Canban columns|Never overlap and change to rows on screems smaller than 768px.|Resized screen from large to small.|Displays correctly.
-Canban items|Display as squares on 768px and up and display as rows on smaller screens.|Resized screen from large to small.|No issues, text and icons are displayed as intended until 270px width. Below that the placeholder text is partially disappearing, this was ignored as screens this small are almost never used.
-Canban item controls,moving an item|Stay visible when needed and dissapear when unnecessary. Not overflowing.|Resized screen from large to small.|Arrows for moving items change direction as intended. Only relevant directions are displaying.
-Canban item controls,deleting an item|Stay visible when needed and dissapear when unnecessary. Not overflowing.|Moving items from one column to another.|Trashcan Only displays on relevant locations.(deliberately not displaying on the middle column to declutter UI)
-Column expand/contract icon|Stay visible when needed and dissapear when unnecessary. Not overflowing.|Resize columns by clicking the icon and removing/adding items to a column.|Icon changes on resize correctly, dissapears on mobile when there are no items to hide, appears when there are items to hide. Indicates the amount of hidden items correctly.
-Add canban item plus|Stays readable and doesn't overflow.|Resized screen from large(width 1920px), down to small(width 280px).|No issues.
-
-<br>
-<br>
-
-# Functional testing
-
-## Menu
-
-feature|expected behaviour|testing|result|Fix(if needed)
----|---|---|---|---
-Menu links|Direct the user to the right page.|Clicked all links in the menu. Repeated on all pages|All links behave correctly.
-Logo|Clicking the logo brings the user back to the main page.|Clicked logo text and logo itself.|Clicking the text behaves as intended. The logo itself does nothing| As this is also clearly indicated by the mouseover transition to pointer this will stay as is.
-
-<br>
-
-## like button
-
-feature|expected behaviour|testing|result|Fix(if needed)
----|---|---|---|---
-Enter fullname|Reject fullname shorter than 5 characters.|Entered "ab c" and "ab cd" as a name.|Rejected and accepted as intended.
-Enter fullname|Reject fullname without at least one space.|Entered "JohnDoe" and "John Doe".|Rejected and accepted as intended.
-Enter fullname|Reject fullname that doesn't include letters.|Entered "!@#$" and "    ".|Rejected both as intended.
-Enter email|Reject adress without a "@" or a ".".|Entered mail adresses "abc@abc" and "abc.abc" and "a@b.c".|Both incomplete email adresses where rejected, last one was accepted.
-Enter email|Reject email adress shorter than "a.b@c".|Entered "a.@c".|Modal shows rejected email but send anyway.|Corrected email validation code.
-Enter email|Reject email adress with no characters after "@".|Entered "abc.@".|Rejected as intended.
-Enter Feature|Reject feature request shorter than 4 characters.|Entered "abc" and "abcd".|Rejected and accepted as intended.
-Enter Feature|Reject feature request with less than 4 letters.|Entered "a!!!!" and "aaa!!!!" and "this!!!".|Rejected and accepted as intended.
+Flash messages
+Register
+Login
+Logout
+Like button
+Truncation on recipe cards
+Edit recipes
+Delete recipes
+Remove recipes
+Search with regex on ingredients and titles
+Pagination
+Scroll to error on validation
+Custom 404 and 500 error pages
 
 <br>
 
@@ -207,16 +163,6 @@ For the CSS the results were as follows:
 
 Results:
 
-file|line|waring/error|fix
----|---|---|---
-icanban.js|203 and 204 |Variable not declared properly.|Added let variable.
-icanban.js|225| Confusing use of '!'. |Corrected "!variable > 0" changed to "variable == 0"
-email.js|92|'modal' is already defined.|removed var
-email.js|98|Missing semicolon.|fixed
-email.js|104|Missing semicolon.|fixed
-email.js|105|Unnecessary semicolon.|fixed
-email.js|63|undefined variable emailjs.|This is part of the emailjs script
-email.js|53|unused variable: sendMail.|This function is called in the html
 
 <br>
 
@@ -227,7 +173,7 @@ email.js|53|unused variable: sendMail.|This function is called in the html
 
 # Lighthouse Report 
 
-## main page on desktop:
+### main page on desktop:
 
 ![Lighthouse results](readme-images/lighthouse-test.png)
 
