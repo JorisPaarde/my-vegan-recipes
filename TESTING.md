@@ -22,15 +22,16 @@
 ---
 user story|implementation
 ----|----
-Have a clear idea what the site is about. |
-Register as a new user. |
-View recipies other people posted. |
-See most liked recipies on top. |
-See which recipes i liked. (needs registration) |
-Search recipies by ingredient. |
-Search recipies by name. |
-filter recipes by category. (dropdown) |
-Like a recipe. (only one like per user per recipe, needs registration) |
+Have a clear idea what the site is about. | The welcome text explains this in a few sentences.
+Register as a new user. | Register page with custom validation.
+View recipies other people posted. | shown at the bottom of the page.
+See most liked recipies on top. | Recipes are sorted o show most liked on top.
+Read a full recipe | Clicking a recipe card sends the user to the full recipe. The ability to do this is indicated by the hover shadow animation.
+See which recipes i liked. (needs registration) | Indicated by the hart being filled in.
+Search recipies by ingredient. | Search bar text field searches on any word containing the search query. ("fo" finds "foo" and "ofo")
+Search recipies by title. | Search bar text field searches on any title containing the search query. ("fo" finds "foo" and "ofo")
+filter recipes by category. (dropdown) | Dropdown menu next to the searchbar that works with or without text search.
+Like a recipe. (only one like per user per recipe, needs registration) | clicking the hart icon does this and also automatically sends the user to his/her private recipe book.
 
 <br>
 <br>
@@ -39,7 +40,26 @@ Like a recipe. (only one like per user per recipe, needs registration) |
 ---
 user story|implementation
 ----|----
-Quick| Links
+See how many likes my recipies have in total. | This is indicated at the top of the page of the users personal recipe book page.
+See how many likes my individual recipies have. | indicate on each recipe card
+See which recipes i liked | Indicated by the hart being filled in.
+Log into my personal recipe book. | The login page is easily acesably via the main menu.
+Add my own recipies | The add recipe link is automatically displayed when the user is logged in. In the header as well as the footer.
+Add recipe title | Text field with custom validation to keep site content clean.
+Add recipe category | Dropdown menu with validation.
+Add an image url | Text field with custom validation to keep site content clean.
+Add recipe description | Text field with custom validation to keep site content clean.
+Add recipe ingredients by name, amount and unit(dropdown selection) | 3 fields, text, digit and dropdown with pre set units. And individual validation. this has been done to keep all ingredient lists the same format. Adding or deleting an ingredient line is done by the add button / trashcan symbol.
+Add recipe preparation steps (adding 1 step at a time) |  Text field with custom validation to keep site content clean.
+Edit my own recipies | Edit button only available for recipes made by the logged in user.
+Edit recipe inputs | all fields are adjustable and show the current database values when editing a recipe.
+Delete recipe inputs | The trashcan icon removes inputs. (after confirmation) Also a check is done to prevent recipes having no ingredients or preparation steps at all.
+Add recipe inputs |
+Delete my own recipies. | Delete button only available for recipes made by the logged in user.
+Add recipies from other users to my personal recipe book. | Liking a recipe automatically adds it to your personal recipe book.
+Remove recipies from other users from my personal recipe book. | Clicking the like icon of a liked recipe again (disliking) removes it. A remove button is automatically shown for recipes not created by the logged in user.
+Filter my personal recipe book by category. (dropdown) | Dropdown menu next to the searchbar that works with or without text search.
+Search my personal recipe book by ingredients and/or title. | Search bar text field searches both title and ingredients on any word containing the search query.
 
 <br>
 <br>
@@ -50,8 +70,9 @@ Quick| Links
 
 feature|expected behaviour|testing|result|Fix(if needed)
 ---|---|---|---|---
-links
-logo
+links | collapses to hamburger on mobile| Resized screen from large(width 1920px), down to small(width 280px).|collapses on 993px and smaller|
+logo text | Stays readable on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+logo image| does not display on sizes smaller than 375px |Resized screen from large(width 1920px), down to small(width 280px).|correct|
 
 <br>
 
@@ -59,8 +80,20 @@ logo
 
 feature|expected behaviour|testing|result|Fix(if needed)
 ---|---|---|---|---
-links
-text
+links| Stay readable on all screensizes and correctly display according to user logged in or not|Resized screen from large, down to small. Logged in and out.|Links stay readable, and are displayed correctly. User gets visual confirmation on being logged in/out.|
+text| Stays readable on all screensizes
+sticky|footer stays on the bottom of the page.|Resized screen from large, down to small.| footer did not stick to bottom of the page. | added correct css
+````body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+````
+
 
 <br>
 
