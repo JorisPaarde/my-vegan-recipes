@@ -26,7 +26,7 @@ TOTAL_LIKES = 0
 def calculate_total_likes(recipes, TOTAL_LIKES):
 
     for recipe in recipes:
-        if session['user'] in recipe['user_name']:
+        if session['user'] == recipe['user_name']:
             TOTAL_LIKES = TOTAL_LIKES + (len(recipe['liked_by'])-1)
     return TOTAL_LIKES
 
