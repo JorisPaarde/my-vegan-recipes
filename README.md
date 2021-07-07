@@ -118,12 +118,17 @@ Apart from the images linked in the recipes, the following images where used:
 - custom javascript form validation
 - adaptive error display on validation
 - scroll to error on validation
+- Custom 404 and 500 error pages
 
 ## future features
 
 - Use Ajax to prevent page reloads on search and like functionality.
 - Recipe reviews, so creators can get feedback on their recipes.
-- Storing liked recipes per user account for better performance. (No need to go trough all recipes on search an recipe book)
+- List of top contributers on the main page.
+- Email for retrieving a forgotten password.
+- Product placements for vegan ingredients like beyond burger and other vegan products.
+- Automatically generated shopping lists.
+- Sharing recipes easily via socials or email.
 
 # Technologies Used
 
@@ -177,8 +182,8 @@ All testing can be found [here](TESTING.md).
 ## To deploy this project: 
 ### follow the following steps:
 
-- ### Create your account on MongoDB here: https://account.mongodb.com/account/register
-- ### Create your account on Heroku here: https://signup.heroku.com/login
+- Create your account on MongoDB here: https://account.mongodb.com/account/register
+- Create your account on Heroku here: https://signup.heroku.com/login
 
 
 - ### Clone this repository:
@@ -240,7 +245,9 @@ At the top of th epage click open app to run it.
 
 # Credits
 
-Thanks guys
+Special thanks to Sean, Johan and Igor for their tutoring help.
+thanks to Precious for his mentoring.
+And of course all the people on slack.
 
 ## recipes:
 
