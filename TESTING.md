@@ -1,11 +1,8 @@
 # Tests and bugreports:
 
 - [User story testing](#user-story-testing)
-- [Responsive layout testing](#responsive/visual-layout-testing)
-- [Menu testing](#menu-testing)
-- [Email form testing](#email-form-testing)
-- [Settings page testing](#settings-page-testing)
-- [Icanban functionality testing](#icanban-functionality-testing)
+- [Responsive layout testing](#responsive-visual-layout-testing)
+- [Feature testing](#feature-testing)
 - [Browser testing](#browser-testing)
 - [Validators](#validators)
 - [Lighthouse Report](#lighthouse-report)
@@ -64,7 +61,7 @@ Search my personal recipe book by ingredients and/or title. | Search bar text fi
 <br>
 <br>
 
-# Responsive/visual layout testing
+# Responsive visual layout testing
 
 ## Header
 
@@ -94,6 +91,58 @@ sticky|footer stays on the bottom of the page.|Resized screen from large, down t
   }
 ````
 
+## recipe page
+feature|expected behaviour|testing|result|Fix(if needed)
+---|---|---|---|---
+like button| displays in correct position and is not blocked by other content | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+ingredients section| Stays readable on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+preparation steps section| Stays readable on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+recipe image| displays in correct position and is not blocked by other content, is not blurred or deformed | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+<br>
+
+## all recipe page
+feature|expected behaviour|testing|result|Fix(if needed)
+---|---|---|---|---
+background image| displays in correct position and is not blocked by other content, is not blurred or deformed | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+welcome text| Stays readable on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+search bar| displays correctly on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+recipe cards|display correctly on all screensizes, images are not blurred or deformed, text is readable and in the correct position.| Resized screen from large(width 1920px), down to small(width 280px).|correct|
+truncation| displays correctly on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+<br>
+
+## recipe book page
+feature|expected behaviour|testing|result|Fix(if needed)
+---|---|---|---|---
+background image| displays in correct position and is not blocked by other content, is not blurred or deformed | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+welcome text| Stays readable on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+search bar| displays correctly on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+recipe cards| display correctly on all screensizes, images are not blurred or deformed, text is readable and in the correct position.| Resized screen from large(width 1920px), down to small(width 280px).|correct|
+<br>
+
+## Register page
+feature|expected behaviour|testing|result|Fix(if needed)
+---|---|---|---|---
+register text| Stays readable on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+form| displays correctly on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+<br>
+
+## login page
+feature|expected behaviour|testing|result|Fix(if needed)
+---|---|---|---|---
+login text| Stays readable on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+form| displays correctly on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+<br>
+
+## add recipe page
+feature|expected behaviour|testing|result|Fix(if needed)
+---|---|---|---|---
+form| displays correctly on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+<br>
+
+## edit recipe page
+feature|expected behaviour|testing|result|Fix(if needed)
+---|---|---|---|---
+form| displays correctly on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
 <br>
 <br>
 
@@ -103,8 +152,16 @@ sticky|footer stays on the bottom of the page.|Resized screen from large, down t
 
 feature|expected behaviour|testing|result|Fix(if needed)
 ---|---|---|---|---
-
-Adaptive error display on validation
+Title|Accepts length between 3 and 100 characters, must contain letters a-z and or A-Z | typed in: "   ", aZ, aaa, AAA, 101 chars ([a-z]and [A-Z]) and aaaZ| correct
+Category|Required|submit without selecting this|correct
+Url|Has to contain "https://"|typed in correct url containing "https://" and incorrect url containing "htps://" "https:/" "https//"| correct
+Recipe description| Accepts length between 10 and 200 characters, must contain letters a-z and or A-Z| typed in: "   ", aaaaaaaaZ, aaaaaaaaa, AAAAAAAAA, 201 chars ([a-z]and [A-Z]) and aaaaaaaaaaZ| correct
+Ingredient name|Accepts length between 3 and 100 characters, must contain letters a-z and or A-Z|  typed in: "   ", aZ, aaa, AAA, 101 chars ([a-z]and [A-Z]) and aaaZ| correct
+Amount|Accepts length between 1 and 5 digits, must contain 0-9| typed in "123456",  "12.234", "asd", " ", "1234", "1"| correct
+Preparation step|Accepts length between 10 and 400 characters, must contain letters a-z and or A-Z| typed in: "   ", aaaaaaaaZ, aaaaaaaaa, AAAAAAAAA, 401 chars ([a-z]and [A-Z]) and aaaaaaaaaaZ| correct
+Username|Accepts length between 5 and 20 characters, that are not spaces. Also username should not already exist in database.| entered same username username and usernames with incorrect length, one with only spaces and a correct username.|correct
+Password| Accepts length between 8 and 64 characters, Should include: lowercase letter, uppercase letter, number and special character. | entered passwords ommitting 1 of each character type in a password of correct length, passwords that include all but have an incorrect length, and a correct password.| correct
+Adaptive error display on validation | Should display correct error and scroll to this error after submission of the form is blocked.|tested all validations|correct
 
 <br>
 
