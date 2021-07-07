@@ -34,6 +34,7 @@ As a first time user i want to:
 - Register as a new user
 - View recipies other people posted
 - See most liked recipies on top
+- Read a full recipe
 - See which recipes i liked (needs registration)
 - Search: - recipies by ingredient
           - by name
@@ -61,15 +62,15 @@ As a first time user i want to:
 - Delete my own recipies.
 - Add recipies from other users to my personal recipe book
 - Remove recipies from other users from my personal recipe book
-- filter my personal recipe book by category (dropdown)
-- search my personal recipe book by ingredients and/or title
+- Filter my personal recipe book by category (dropdown)
+- Search my personal recipe book by ingredients and/or title
 
 # Design
 
 
-### Colour Scheme
+## Colour Scheme
 
-### GREEN:
+#### GREEN:
 Spring, the macabre, freshness, mystery, envy, hope, eternal life. Being composed of yellow and blue, green presents the feeling of light and coolness, cheer and restraint. It is the color of nature as usually seen. Green alleviates tension and implies restfulness.
 
 #### Emotional Response:
@@ -80,16 +81,34 @@ Green is used to indicate safety when advertising drugs and medical products. Gr
 
 source: https://zevendesign.com/color-association/#green
 
-### Typography
 
-#### Font
+### Fonts
 The site uses the default values by materialize css.
 
 "Defaulting to the system font of a particular operating system can boost performance because the browser doesn’t have to download any font files, it’s using one it already had. That’s true of any “web safe” font, though. The beauty of “system” fonts is that it matches what the current OS uses, so it can be a comfortable look."
 source: https://css-tricks.com/snippets/css/system-font-stack/
 
 
-#### Imagery
+## Database schema
+
+### Original database design:
+
+This original desing was made in dbdiagram, and can be acessed via this [link](https://dbdiagram.io/d/609b830ab29a09603d147ffc)
+![Schema](readme-images/db-schema.png)
+
+During development the units were dropped as generating the dropdown from the database caused conflicts when adding an ingredient line.
+The likes in the users document turned out not to be necessary for functionality.
+
+### Database in mongo db:
+
+User data:
+![users](readme-images/user-data.png)
+Recipe example:
+![recipes](readme-images/recipe-data.png)
+Categories:
+![categories](readme-images/category-data.png)
+
+## Imagery
 
 Apart from the images linked in the recipes, the following images where used:
 
@@ -105,7 +124,9 @@ Apart from the images linked in the recipes, the following images where used:
 
 # Features
 
+- Flash messages
 - Register
+- Password encryption in database
 - Login
 - Logout
 - Like button
@@ -114,10 +135,10 @@ Apart from the images linked in the recipes, the following images where used:
 - Edit recipes
 - Remove recipes
 - Search with regex on ingredients and titles
-- pagination
-- custom javascript form validation
-- adaptive error display on validation
-- scroll to error on validation
+- Pagination
+- Custom javascript form validation
+- Adaptive error display on validation
+- Scroll to error on validation
 - Custom 404 and 500 error pages
 
 ## future features
