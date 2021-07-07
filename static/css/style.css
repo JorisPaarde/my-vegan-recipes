@@ -10,6 +10,18 @@ html {
     object-fit: contain;
 }
 
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+
 /*-------------------------------------------- Fonts --------------------------------*/
 .brand-logo {
     margin-left: 1rem;
