@@ -13,10 +13,10 @@ function fadeOutFlash() {
 $('#add-ingredient').click(function () {
 
   // get the id of the last ingredient
-  let lastId = $('.ingredient').last().find('input').attr('id')
+  let lastId = $('.ingredient').last().find('input').attr('id');
   // extract the number from the id and increment it
-  let lastIdNumber = lastId.replace(/[^0-9]/g,'')
-  lastIdNumber++
+  let lastIdNumber = lastId.replace(/[^0-9]/g,'');
+  lastIdNumber++;
 
   let recipeInputHtml = `
   <div class="row recipe-item ingredient">
@@ -45,20 +45,19 @@ $('#add-ingredient').click(function () {
                     </button>
                 </div>
             </div>
-  `
+  `;
   // add after the last added ingredient
   $('.ingredient').last().after(recipeInputHtml);
 });
 
 //----------------------------------------------- Add a line to recipe preparation input
 $('#add-prep-step').click(function () {
-
   
   // get the id of the last ingredient
-  let lastId = $('.prep-step').last().find('textarea').attr('id')
+  let lastId = $('.prep-step').last().find('textarea').attr('id');
   // extract the number from the id and increment it
-  let lastIdNumber = lastId.replace(/[^0-9]/g,'')
-  lastIdNumber++
+  let lastIdNumber = lastId.replace(/[^0-9]/g,'');
+  lastIdNumber++;
 
   let recipeInputHtml = `
 <div class="row prep-step recipe-item valign-wrapper">
@@ -74,20 +73,20 @@ $('#add-prep-step').click(function () {
       </button>
   </div>
 </div>
-  `
+  `;
   // add after the last added step
   $('.prep-step').last().after(recipeInputHtml);
 });
 
 //----------------------------------------------- remove ingredient line
 $('.add-recipe').click(function (event) {
-  buttonClass = $(event.target).parent().attr("class");
+  let buttonClass = $(event.target).parent().attr("class");
 
   if (buttonClass.includes("delete")) {
-    item = $(event.target).closest(".recipe-item");
+    let item = $(event.target).closest(".recipe-item");
 
-    let ingredientsLeftAfterDelete = $(event.target).closest(".recipe-item").siblings(".ingredient").length
-    let prepStepsLeftAfterDelete = $(event.target).closest(".recipe-item").siblings(".prep-step").length
+    let ingredientsLeftAfterDelete = $(event.target).closest(".recipe-item").siblings(".ingredient").length;
+    let prepStepsLeftAfterDelete = $(event.target).closest(".recipe-item").siblings(".prep-step").length;
 
     // only delete if one item is left after deleting
     if ((ingredientsLeftAfterDelete > 0) && (prepStepsLeftAfterDelete > 0)) {
@@ -121,36 +120,39 @@ $('.add-recipe').click(function (event) {
 function validateForm() {
 
   // remove all previously shown validation text
-  $('.validation-text').remove()
+  $('.validation-text').remove();
 
   // find all elements to validate
-  let formElements = $('.validate_me')
+  let formElements = $('.validate_me');
   // iterate over all form elements
   for (let i = 0; i < formElements.length; i++) {
 
-    var thisField = formElements[i]
-    var thisFieldName = thisField.attributes.name.value
-    var input = thisField.value
-    var checkedLength
-    var checkedCharacters
-    var checkedUrl
+    var thisField = formElements[i];
+    var thisFieldName = thisField.attributes.name.value;
+    var input = thisField.value;
+    var checkedLength;
+    var checkedCharacters;
+    var checkedUrl;
+    var validInput;
+    var checkedNumber;
+    var checkedPassword;
 
     // check this field's name
     switch (thisFieldName) {
 
       case 'recipe_title':
         // ----------------------------------------------------if this is a title
-        checkedCharacters = checkcharacters(input, thisFieldName)
-        checkedLength = checklength(input, 3, 100, thisFieldName)
+        checkedCharacters = checkcharacters(input, thisFieldName);
+        checkedLength = checklength(input, 3, 100, thisFieldName);
 
         // input is valid if it passes all checks
-        validInput = checkedLength.valid && checkedCharacters.valid
+        validInput = checkedLength.valid && checkedCharacters.valid;
 
         //stop form from being submitted and display why
         if (!validInput) {
-          displayValidationText(checkedLength.validationText, thisField)
-          displayValidationText(checkedCharacters.validationText, thisField)
-          return false
+          displayValidationText(checkedLength.validationText, thisField);
+          displayValidationText(checkedCharacters.validationText, thisField);
+          return false;
         }
         break;
 
@@ -158,121 +160,121 @@ function validateForm() {
         // ---------------------------------------------------if this is category name
         if (input == "") {
           displayValidationText("Please select a category", thisField);
-          return false
+          return false;
         }
         break;
 
       case 'image_url':
         // -----------------------------------------------------if this is a url
-        checkedUrl = checkurl(input, thisFieldName)
+        checkedUrl = checkurl(input, thisFieldName);
 
         // input is valid if it passes all checks
-        validInput = checkedUrl.valid
+        validInput = checkedUrl.valid;
 
         //stop form from being submitted and display why
         if (!validInput) {
-          displayValidationText(checkedUrl.validationText, thisField)
-          return false
+          displayValidationText(checkedUrl.validationText, thisField);
+          return false;
         }
         break;
 
       case 'recipe_description':
         // if this is a recipe_description
-        checkedCharacters = checkcharacters(input, thisFieldName)
-        checkedLength = checklength(input, 10, 200, thisFieldName)
+        checkedCharacters = checkcharacters(input, thisFieldName);
+        checkedLength = checklength(input, 10, 200, thisFieldName);
 
         // input is valid if it passes all checks
-        validInput = checkedLength.valid && checkedCharacters.valid
+        validInput = checkedLength.valid && checkedCharacters.valid;
 
         //stop form from being submitted and display why
         if (!validInput) {
-          displayValidationText(checkedLength.validationText, thisField)
-          displayValidationText(checkedCharacters.validationText, thisField)
-          return false
+          displayValidationText(checkedLength.validationText, thisField);
+          displayValidationText(checkedCharacters.validationText, thisField);
+          return false;
         }
         break;
 
       case 'ingredient_name':
         // -----------------------------------------------if this is an ingredient
-        checkedCharacters = checkcharacters(input, thisFieldName)
-        checkedLength = checklength(input, 3, 100, thisFieldName)
+        checkedCharacters = checkcharacters(input, thisFieldName);
+        checkedLength = checklength(input, 3, 100, thisFieldName);
 
         // input is valid if it passes all checks
-        validInput = checkedLength.valid && checkedCharacters.valid
+        validInput = checkedLength.valid && checkedCharacters.valid;
 
         //stop form from being submitted and display why
         if (!validInput) {
-          displayValidationText(checkedLength.validationText, thisField)
-          displayValidationText(checkedCharacters.validationText, thisField)
-          return false
+          displayValidationText(checkedLength.validationText, thisField);
+          displayValidationText(checkedCharacters.validationText, thisField);
+          return false;
         }
         break;
 
       case 'amount':
         // ------------------------------------------------------if this is an amount
-        checkedNumber = checknumbers(input, thisFieldName)
-        checkedLength = checklength(input, 1, 5, thisFieldName)
+        checkedNumber = checknumbers(input, thisFieldName);
+        checkedLength = checklength(input, 1, 5, thisFieldName);
 
         // input is valid if it passes all checks
-        validInput = checkedNumber.valid && checkedCharacters.valid
+        validInput = checkedNumber.valid && checkedCharacters.valid;
 
         //stop form from being submitted and display why
         if (!validInput) {
-          displayValidationText(checkedLength.validationText, thisField)
-          displayValidationText(checkedNumber.validationText, thisField)
-          return false
+          displayValidationText(checkedLength.validationText, thisField);
+          displayValidationText(checkedNumber.validationText, thisField);
+          return false;
         }
         break;
 
       case 'preparation_step':
         // -----------------------------------------------if this is a preparation step
-        checkedCharacters = checkcharacters(input, thisFieldName)
-        checkedLength = checklength(input, 10, 400, thisFieldName)
+        checkedCharacters = checkcharacters(input, thisFieldName);
+        checkedLength = checklength(input, 10, 400, thisFieldName);
 
         // input is valid if it passes all checks
-        validInput = checkedLength.valid && checkedCharacters.valid
+        validInput = checkedLength.valid && checkedCharacters.valid;
 
         //stop form from being submitted and display why
         if (!validInput) {
-          displayValidationText(checkedLength.validationText, thisField)
-          displayValidationText(checkedCharacters.validationText, thisField)
-          return false
+          displayValidationText(checkedLength.validationText, thisField);
+          displayValidationText(checkedCharacters.validationText, thisField);
+          return false;
         }
         break;
 
       case 'user_name':
         // -------------------------------------------------------if this is a username
-        checkedLength = checklength(input, 5, 20, thisFieldName)
+        checkedLength = checklength(input, 5, 20, thisFieldName);
 
         // input is valid if it passes all checks
-        validInput = checkedLength.valid
+        validInput = checkedLength.valid;
 
         //stop form from being submitted and display why
         if (!validInput) {
-          displayValidationText(checkedLength.validationText, thisField)
-          return false
+          displayValidationText(checkedLength.validationText, thisField);
+          return false;
         }
         break;
 
       case 'password':
         // -----------------------------------------------------if this is a password
-        checkedPassword = checkpassword(input)
-        checkedLength = checklength(input, 8, 64, thisFieldName)
+        checkedPassword = checkpassword(input);
+        checkedLength = checklength(input, 8, 64, thisFieldName);
 
         // input is valid if it passes all checks
-        validInput = checkedPassword.valid && checkedLength.valid
+        validInput = checkedPassword.valid && checkedLength.valid;
 
         //stop form from being submitted and display why
         if (!validInput) {
-          displayValidationText(checkedLength.validationText, thisField)
-          displayValidationText(checkedPassword.validationText, thisField)
-          return false
+          displayValidationText(checkedLength.validationText, thisField);
+          displayValidationText(checkedPassword.validationText, thisField);
+          return false;
         }
         break;
-    };
-  };
-  return true
-};
+    }
+  }
+  return true;
+}
 
 //-----------------------------------------------  Validation helper functions
 //-----------------------------------------------  Validation text display
@@ -282,11 +284,11 @@ function displayValidationText(text, thisField) {
   if (text.length > 1) {
     html = `
     <p class="validation-text red-text text-lighten-1 center-align">${text}</p>
-  `
-  };
+  `;
+  }
   // display this text after this validated item
   if (html) {
-    $(thisField).closest('.row').after(html)
+    $(thisField).closest('.row').after(html);
     // then scroll to the error message
     setTimeout(function () {
       thisField.closest('.row').scrollIntoView({
@@ -294,8 +296,8 @@ function displayValidationText(text, thisField) {
         block: "center"
       });
     }, 2000);
-  };
-};
+  }
+}
 
 //-----------------------------------------------  Length validation
 function checklength(input, min, max, thisFieldName) {
@@ -304,30 +306,30 @@ function checklength(input, min, max, thisFieldName) {
   // modify name by replacing _ for a space
   thisFieldName = thisFieldName.replace(/_/g, ' ');
   // check the input to the parameters
-  valid = (min <= input.length) && (input.length <= max);
-  var validationText = ""
+  let valid = (min <= input.length) && (input.length <= max);
+  var validationText = "";
   // set validation text
   if (!valid) {
-    validationText = `Please use between ${min} and ${max} characters for ${thisFieldName}`
+    validationText = `Please use between ${min} and ${max} characters for ${thisFieldName}`;
   }
   // return results
   return {
     valid: valid,
     validationText: validationText
   };
-};
+}
 
 //-----------------------------------------------  Letter validation
 function checkcharacters(input, thisFieldName) {
   // check for pairs of at least 2 letters
-  regex = /[a-z]|[A-Z]{2,3}/g
-  valid = regex.test(input);
+  let regex = /[a-z]|[A-Z]{2,3}/g;
+  let valid = regex.test(input);
   // modify name by replacing _ for a space
   thisFieldName = thisFieldName.replace(/_/g, ' ');
   // set validation text
-  validationText = ""
+  let validationText = "";
   if (!valid) {
-    validationText = `Please use letters for ${thisFieldName}`
+    validationText = `Please use letters for ${thisFieldName}`;
   }
   // return results
   return {
@@ -339,27 +341,27 @@ function checkcharacters(input, thisFieldName) {
 //-----------------------------------------------  Password validation
 function checkpassword(input) {
   // check for capital letter, normal letter, special character, digit
-  regexs = [/[a-z]/g, /[A-Z]/g, /[0-9]/g, /[^A-Za-z0-9\s]/g];
+  let regexs = [/[a-z]/g, /[A-Z]/g, /[0-9]/g, /[^A-Za-z0-9\s]/g];
 
-  testItems = [' a lowercase letter', ' a capital letter', ' a digit', ' a special character']
+  let testItems = [' a lowercase letter', ' a capital letter', ' a digit', ' a special character'];
 
   var testsPassed = 0;
   for (let i = 0; i < regexs.length; i++) {
 
-    valid = regexs[i].test(input);
+    let valid = regexs[i].test(input);
     if (valid) {
       testsPassed++;
       // remove this testitem from the validation text
-      testItems[i] = ''
-    };
-  };
+      testItems[i] = '';
+    }
+  }
   //reset valid value to prevent that last check passes all checks
-  valid = false;
+  let valid = false;
 
   // set validation text
-  validationText = ""
+  let validationText = "";
   if (testsPassed < 4) {
-    validationText = `Password should include:${testItems[0]}${testItems[1]}${testItems[2]}${testItems[3]}.`
+    validationText = `Password should include:${testItems[0]}${testItems[1]}${testItems[2]}${testItems[3]}.`;
   } else {
     valid = true;
   }
@@ -375,14 +377,14 @@ function checkpassword(input) {
 
 function checknumbers(input, thisFieldName) {
   // check for numbers
-  regex = /[0-9]/g
-  valid = regex.test(input);
+  let regex = /[0-9]/g;
+  let valid = regex.test(input);
   // modify name by replacing _ for a space
   thisFieldName = thisFieldName.replace(/_/g, ' ');
   // set validation text
-  validationText = ""
+  let validationText = "";
   if (!valid) {
-    validationText = `Please use numbers for ${thisFieldName}`
+    validationText = `Please use numbers for ${thisFieldName}`;
   }
   // return results
   return {
@@ -395,14 +397,14 @@ function checknumbers(input, thisFieldName) {
 
 function checkurl(input, thisFieldName) {
   // check for https://
-  regex = /https?:\/{2,}/g
-  valid = regex.test(input);
+  let regex = /https?:\/{2,}/g;
+  let valid = regex.test(input);
   // modify name by replacing _ for a space
   thisFieldName = thisFieldName.replace(/_/g, ' ');
   // set validation text
-  validationText = ""
+  let validationText = "";
   if (!valid) {
-    validationText = `Please use https:// in your ${thisFieldName}`
+    validationText = `Please use https:// in your ${thisFieldName}`;
   }
   // return results
   return {
