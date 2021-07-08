@@ -169,8 +169,8 @@ Adaptive error display on validation | Should display correct error and scroll t
 
 feature|expected behaviour|testing|result|Fix(if needed)
 ---|---|---|---|---
-Flash messages
-Register
+Flash messages|display messages like "u are logged out", "welcome {username}" etc. |logged in and out, liked a recipe. |all flash messages show correctly
+Register|User
 Login
 Logout
 Like button
@@ -178,10 +178,10 @@ Truncation on recipe cards
 Edit recipes
 Delete recipes
 Remove recipes
-Search with regex on ingredients and titles
+Search with regex on ingredients and titles | Results displayed correctly and search term displayed on screen. Also notification when no result is found.| searched several terms on all recipes page and recipe book page. | Searching in the all recipes page resulted in a 500 Internal Server Error. On the recipe book page all functioned as intended.| Caused by the calculated likes function wich uses the logged in user as an argument. Refactored code to only run this calculation on the recipe book site. Since this is only acessable when logged in.
 Pagination
 Scroll to error on validation
-Custom 404 and 500 error pages
+Custom 404 and 500 error pages|display custom pages for 404 and 500 error|entered a wrong url on the domain and tested search on the deployed heroku site.|both pages show correctly when they should|
 
 <br>
 
