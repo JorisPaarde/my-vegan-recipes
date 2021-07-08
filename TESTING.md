@@ -222,7 +222,7 @@ Removed the type attribute on the textareas.
 - Duplicate attribute class.
 Removed attribute and put all classes in one.
 - The value of the for attribute of the label element must be the ID of a non-hidden form control.
-These errors where on fields that will be duplicated many times trough javascript. wich would lead to errors with fields having duplicate id's. This error was ignored.
+These errors where on fields that will be duplicated many times trough javascript. wich would lead to errors with fields having duplicate id's. Added dynamically added labels and id's to fix this.
 
 ### recipe.html:
 
