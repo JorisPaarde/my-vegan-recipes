@@ -170,15 +170,15 @@ Adaptive error display on validation | Should display correct error and scroll t
 feature|expected behaviour|testing|result|Fix(if needed)
 ---|---|---|---|---
 Flash messages|display messages like "u are logged out", "welcome {username}" etc. |logged in and out, liked a recipe. |all flash messages show correctly
-Register|User can register an account and is added to the database, then rederected to his/her personal recipe book|registered with an accepted username and password and checked database|correct|
+Register|User can register an account and is added to the database, then rederected to his/her personal recipe book|registered with an accepted username and password and checked database|correct
 Password encryption in database|user password is encrypted before being entered to the database, and decripted when logging in.|checked database entries|correct
 Login|logging in with a correct password rederects the user to his/her recipe book and displays a welcome message. entering a false username and or password displays an error message via flash.|logged in with correct and incorrect username/password|correct
 Logout|user is logged out, rederected to the all recipes page and recieves a confirmation message via flash|logged out|correct
 Like button|Like button toggles, recipe is added/removed to/from the users recipe book and the user is rederected to his/her recipe book.|liked/disliked a recipe|correct
-Truncation on recipe cards
-Edit recipes
-Delete recipes
-Remove recipes
+Truncation on recipe cards|cuts off text with ... when it does not fit its container|added verry long recipe title|correct
+Edit recipes|opens the add recipe form with all data from the database, user has full functionality to edit the recipe and save it.|edited all fields, removed and added fields and saved the recipe. Checked database for correct update.|correct 
+Delete recipes|removes a recipe from the database after confirmation in modal, only available to user that added the recipe|deleted a recipe, confirmed and cancelled, checked database state|correct
+Remove recipes|removes a recipe from the users recipe book, but does not delete it. removes the like from the currently logged user. only available to users that did not add this recipe.|checked made by name to logged user, removed a recipe from a recipe book and checked database state.|correct
 Search with regex on ingredients and titles | Results displayed correctly and search term displayed on screen. Also notification when no result is found.| searched several terms on all recipes page and recipe book page. | Searching in the all recipes page resulted in a 500 Internal Server Error. On the recipe book page all functioned as intended.| Caused by the calculated likes function wich uses the logged in user as an argument. Refactored code to only run this calculation on the recipe book site. Since this is only acessable when logged in.
 Pagination
 Scroll to error on validation
@@ -200,9 +200,10 @@ Firefox|Yes|Yes|None
 # Validators
 
 ## To validate the html and CSS [W3C markup validation](https://validator.w3.org/) was used.
-The initial response for the HTML was as follows:
-
-![initial html validation](readme-images/html-validation-first.png)
+The response for the HTML had 32 errors, all of wich were related to the jinja code in the html.
+exept this one:
+Start tag body seen but an element of the same type was already open.
+moved the body tag to include the nav tags to fix this.
 
 <br>
 After adressing the results this was the reponse:
@@ -213,7 +214,7 @@ All pages where tested and had these results.
 <br>
 For the CSS the results were as follows:
 
-![CSS validation](readme-images/css-validation.png)
+Document checking completed. No errors or warnings to show.
 
 <br>
 

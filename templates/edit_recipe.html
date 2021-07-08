@@ -37,7 +37,7 @@
             <!-- recipe description -->
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea name="recipe_description" id="recipe_description" type="text" maxlength="200" class="validate_me">{{ recipe.recipe_description }}</textarea>
+                    <textarea name="recipe_description" id="recipe_description" maxlength="200" class="validate_me">{{ recipe.recipe_description }}</textarea>
                     <label class="textarea-label" for="recipe_description">Recipe Description</label>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="col s6 m2">
                     <label>Unit</label>
-                    <select class="browser-default" name="unit_name" class="validate_me">
+                    <select class="browser-default validate_me" name="unit_name">
                         <option selected value="{{ ingredient.unit_name }}">{{ ingredient.unit_name }}</option>
                         <option value="g">g</option>
                         <option value="kg">kg</option>
@@ -84,7 +84,7 @@
             <div class="row prep-step recipe-item valign-wrapper">
                 <div class="col s10 m11 l11">
                     <div class="input-field preparation_step col s12">
-                        <textarea name="preparation_step" type="text" class="validate_me" maxlength="400">{{ preparation_step }}</textarea>
+                        <textarea name="preparation_step" class="validate_me" maxlength="400">{{ preparation_step }}</textarea>
                         <label class="textarea-label" for="preparation_step">Preparation step</label>
                     </div>
                 </div>
