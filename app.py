@@ -26,6 +26,7 @@ TOTAL_LIKES = 0
 def calculate_total_likes(recipes, TOTAL_LIKES):
 
     for recipe in recipes:
+        # if the recipe is made by this user, add the likes -1(this user likes it also)
         if session['user'] == recipe['user_name']:
             TOTAL_LIKES = TOTAL_LIKES + (len(recipe['liked_by'])-1)
     return TOTAL_LIKES
@@ -159,16 +160,23 @@ def search():
 
         # get categories for dropdown menu
         categories = mongo.db.categories.find()
-
+        # inform the user if no recipes are found
         if len(recipes) < 1:
             flash("No recipes found")
 
-        return render_template(current_site,
-                               recipes=recipes,
-                               categories=categories,
-                               TOTAL_LIKES=calculate_total_likes(
-                                recipes, TOTAL_LIKES),
-                               search=search)
+        if current_site == "all_recipes.html":
+            return render_template(current_site,
+                                   recipes=recipes,
+                                   categories=categories,
+                                   search=search)
+
+        if current_site == "recipe_book.html":
+            return render_template(current_site,
+                                   recipes=recipes,
+                                   categories=categories,
+                                   TOTAL_LIKES=calculate_total_likes(
+                                       recipes, TOTAL_LIKES),
+                                   search=search)
 
 
 #  -------------------------------------------  Recipe book page
