@@ -238,8 +238,22 @@ Document checking completed. No errors or warnings to show.
 
 ## For Javascript validation [JSHint](https://jshint.com/) was used.
 
-Results:
+At the first test there were a lot of semicolons missing and variables not correctly declared.
+After adressing these the results were as follows:
 
+Metrics
+There are 16 functions in this file.
+
+Function with the largest signature take 4 arguments, while the median is 0.
+
+Largest function has 38 statements in it, while the median is 5.5.
+
+The most complex function has a cyclomatic complexity value of 26 while the median is 1.5.
+
+One unused variable
+120	validateForm
+
+The unused varable is a function name that is executed trhough the html.
 
 <br>
 
