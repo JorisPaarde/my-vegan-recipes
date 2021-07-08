@@ -190,9 +190,10 @@ Apart from the images linked in the recipes, the following images where used:
     - Heroku was used to deploy the app.
 1. [TinyPNG](https://tinypng.com/)
     - TinyPNG was used to compress images to ensure faster load times.
-1. [Browserstack](https://live.browserstack.com/)
-    - To test the site on a variety of devices and browsers.
-
+1. [dbdiagram](https://dbdiagram.io/)
+    - To design the database schema.
+1. [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/)
+    - To encrypt the users passwords.
 
 # Testing
 
