@@ -200,18 +200,36 @@ Firefox|Yes|Yes|None
 # Validators
 
 ## To validate the html and CSS [W3C markup validation](https://validator.w3.org/) was used.
-The response for the HTML had 32 errors, all of wich were related to the jinja code in the html.
-exept this one:
+
+### base.html:
+The response for the HTML had 32 errors wich were related to the jinja code in the html.
+
+Exept this one:
 Start tag body seen but an element of the same type was already open.
 moved the body tag to include the nav tags to fix this.
 
-<br>
-After adressing the results this was the reponse:
-All pages where tested and had these results.
+### all-recipes.html:
 
-![Second pass validation](readme-images/html-validation-after.png)
+Response after ignoring the jinja errors:
+The element button must not appear as a descendant of the a element.
+This would only be fixed if the card was not a link to a recipe. This error was ignored.
+
+### edit_recipe.html:
+
+Response after ignoring the jinja errors:
+- Attribute type not allowed on element textarea at this point.
+Removed the type attribute on the textareas.
+- Duplicate attribute class.
+Removed attribute and put all classes in one.
+- The value of the for attribute of the label element must be the ID of a non-hidden form control.
+These errors where on fields that will be duplicated many times trough javascript. wich would lead to errors with fields having duplicate id's. This error was ignored.
+
+### recipe.html:
+
+
 
 <br>
+
 For the CSS the results were as follows:
 
 Document checking completed. No errors or warnings to show.
