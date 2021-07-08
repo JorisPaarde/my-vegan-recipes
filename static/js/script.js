@@ -276,7 +276,6 @@ function displayValidationText(text, thisField) {
     $(thisField).closest('.row').after(html)
     // then scroll to the error message
     setTimeout(function () {
-      console.log('scrolling')
       thisField.closest('.row').scrollIntoView({
         behavior: "smooth",
         block: "center"
@@ -287,7 +286,6 @@ function displayValidationText(text, thisField) {
 
 //-----------------------------------------------  Length validation
 function checklength(input, min, max, thisFieldName) {
-  console.log('checklength')
   // remove spaces from input
   input = input.replace(/\s/g, '');
   // modify name by replacing _ for a space
@@ -308,7 +306,6 @@ function checklength(input, min, max, thisFieldName) {
 
 //-----------------------------------------------  Letter validation
 function checkcharacters(input, thisFieldName) {
-  console.log('checkletters')
   // check for pairs of at least 2 letters
   regex = /[a-z]|[A-Z]{2,3}/g
   valid = regex.test(input);
@@ -328,7 +325,6 @@ function checkcharacters(input, thisFieldName) {
 
 //-----------------------------------------------  Password validation
 function checkpassword(input) {
-  console.log('checkpassw')
   // check for capital letter, normal letter, special character, digit
   regexs = [/[a-z]/g, /[A-Z]/g, /[0-9]/g, /[^A-Za-z0-9\s]/g];
 
@@ -365,7 +361,6 @@ function checkpassword(input) {
 //-----------------------------------------------  Number validation
 
 function checknumbers(input, thisFieldName) {
-  console.log('checknumbers')
   // check for numbers
   regex = /[0-9]/g
   valid = regex.test(input);
@@ -386,7 +381,6 @@ function checknumbers(input, thisFieldName) {
 //-----------------------------------------------  Url validation
 
 function checkurl(input, thisFieldName) {
-  console.log('checkurl')
   // check for https://
   regex = /https?:\/{2,}/g
   valid = regex.test(input);
