@@ -124,22 +124,22 @@ Apart from the images linked in the recipes, the following images where used:
 
 # Features
 
-- Flash messages
-- Register
-- Password encryption in database
-- Login
-- Logout
-- Like button
-- Truncation on recipe cards
-- Delete recipes
-- Edit recipes
-- Remove recipes
-- Search with regex on ingredients and titles
-- Pagination
-- Custom javascript form validation
-- Adaptive error display on validation
-- Scroll to error on validation
-- Custom 404 and 500 error pages
+- Flash messages for user feedback.
+- Register form with javascript validation and username check to database to prevent doubles.
+- Password encryption in database with werkzeug security helper.
+- Login form with automatic rederect and welcome message. Also blocks logged in user from acessing this page.
+- Logout button with flash feedback message.
+- Like button that lets users add a recipe to a private recipe book, prompts user to register if they are not logged in yet.
+- Truncation on recipe cards, prevents long recipe titles from breaking the site layout.
+- Delete recipes: Only available to the recipe owner. with confirmation modal.
+- Edit recipes form with delete, add and update capabilities, again only accessable to a logged in user.
+- Remove recipes: Removing a recipe from the personal cookbook, only available for recipes not owned by the user
+- Search with regex on ingredients and titles: Search transforms the query to *.query.* and searches trough recipe titles and recipe ingredients. Optional recipe category search is also available
+- Pagination on main page to keep site size managable
+- Extensive custom modular javascript form validation
+- Adaptive error display on validation. dynamically adjusts error text to let the user know exactly what to adress.
+- Scroll to error on validation, so the user can easily adress it.
+- Custom 404 and 500 error pages.
 
 ## future features
 
