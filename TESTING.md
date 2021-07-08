@@ -170,10 +170,11 @@ Adaptive error display on validation | Should display correct error and scroll t
 feature|expected behaviour|testing|result|Fix(if needed)
 ---|---|---|---|---
 Flash messages|display messages like "u are logged out", "welcome {username}" etc. |logged in and out, liked a recipe. |all flash messages show correctly
-Register|User
-Login
-Logout
-Like button
+Register|User can register an account and is added to the database, then rederected to his/her personal recipe book|registered with an accepted username and password and checked database|correct|
+Password encryption in database|user password is encrypted before being entered to the database, and decripted when logging in.|checked database entries|correct
+Login|logging in with a correct password rederects the user to his/her recipe book and displays a welcome message. entering a false username and or password displays an error message via flash.|logged in with correct and incorrect username/password|correct
+Logout|user is logged out, rederected to the all recipes page and recieves a confirmation message via flash|logged out|correct
+Like button|Like button toggles, recipe is added/removed to/from the users recipe book and the user is rederected to his/her recipe book.|liked/disliked a recipe|correct
 Truncation on recipe cards
 Edit recipes
 Delete recipes
