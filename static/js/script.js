@@ -12,20 +12,26 @@ function fadeOutFlash() {
 //-----------------------------------------------  Add a line to recipe ingredient input
 $('#add-ingredient').click(function () {
 
+  // get the id of the last ingredient
+  let lastId = $('.ingredient').last().find('input').attr('id')
+  // extract the number from the id and increment it
+  let lastIdNumber = lastId.replace(/[^0-9]/g,'')
+  lastIdNumber++
+
   let recipeInputHtml = `
   <div class="row recipe-item ingredient">
                 <!-- ingredient -->
                 <div class="input-field col s12 m8">
-                    <input name="ingredient_name" type="text" maxlength="100" class="validate_me">
-                    <label for="ingredient_name">Ingredient</label>
+                    <input id="ingredient_name_${lastIdNumber}" name="ingredient_name" type="text" maxlength="100" class="validate_me">
+                    <label for="ingredient_name_${lastIdNumber}">Ingredient</label>
                 </div>
                 <div class="input-field col s4 m1">
-                    <input name="amount" type="text" maxlength="5" class="validate_me">
-                    <label for="amount">Amount</label>
+                    <input id="amount_${lastIdNumber}" name="amount" type="text" maxlength="5" class="validate_me">
+                    <label for="amount_${lastIdNumber}">Amount</label>
                 </div>
                 <div class="col s6 m2">
-                    <label>Unit</label>
-                    <select class="browser-default" name="unit_name">
+                    <label for="unit_name_${lastIdNumber}">Unit</label>
+                    <select id="unit_name_${lastIdNumber}" class="browser-default" name="unit_name">
                         <option value="g">g</option>
                         <option value="kg">kg</option>
                         <option value="l">l</option>
@@ -47,12 +53,19 @@ $('#add-ingredient').click(function () {
 //----------------------------------------------- Add a line to recipe preparation input
 $('#add-prep-step').click(function () {
 
+  
+  // get the id of the last ingredient
+  let lastId = $('.prep-step').last().find('textarea').attr('id')
+  // extract the number from the id and increment it
+  let lastIdNumber = lastId.replace(/[^0-9]/g,'')
+  lastIdNumber++
+
   let recipeInputHtml = `
 <div class="row prep-step recipe-item valign-wrapper">
   <div class="col s10 m11 l11">
       <div class="input-field preparation_step col s12">
-          <textarea name="preparation_step" type="text" maxlength="400" class="validate_me"></textarea>
-          <label class="textarea-label" for="preparation_step">Preparation step</label>
+          <textarea id="preparation_step_${lastIdNumber}" name="preparation_step" maxlength="400" class="validate_me"></textarea>
+          <label class="textarea-label" for="preparation_step_${lastIdNumber}">Preparation step</label>
       </div>
   </div>
   <div class="col s2 m1 l1">
