@@ -259,6 +259,7 @@ The unused varable is a function name that is executed trhough the html.
 
 ## For python validation [pep8online](http://pep8online.com/) was used.
 
+After addressing a comment with line length that was to long, the code came trough without issues.
 
 <br>
 
