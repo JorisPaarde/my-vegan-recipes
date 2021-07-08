@@ -185,7 +185,7 @@ def recipe_book():
     # check if a user is logged in
     if not session.get("user"):
 
-        # let user know he needs to register to acess this page
+        # let user know he needs to register to access this page
         flash("Please register to get your own recipe book")
         return redirect(url_for("register"))
 
@@ -290,6 +290,13 @@ def delete_recipe(recipe_id):
 # code adjusted from task manager project by code institute
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    # check if a user is already logged in
+    if session.get("user"):
+
+        # let user know he cannot access this page
+        flash("U are already logged in, redirected to your recipe book.")
+        return redirect(url_for("recipe_book"))
+
     if request.method == "POST":
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
@@ -319,6 +326,13 @@ def register():
 # code adjusted from task manager project by code institute
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    # check if a user is already logged in
+    if session.get("user"):
+
+        # let user know he cannot to access this page
+        flash("U are already logged in, redirected to your recipe book.")
+        return redirect(url_for("recipe_book"))
+
     if request.method == "POST":
         # check if username is in database
         existing_user = mongo.db.users.find_one(
