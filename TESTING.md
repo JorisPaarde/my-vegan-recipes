@@ -95,7 +95,7 @@ sticky|footer stays on the bottom of the page.|Resized screen from large, down t
 feature|expected behaviour|testing|result|Fix(if needed)
 ---|---|---|---|---
 like button| displays in correct position and is not blocked by other content | Resized screen from large(width 1920px), down to small(width 280px).|correct|
-ingredients section| Stays readable on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+ingredients section| Stays readable on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|Border blocked text on smaller screensizes|Adjusted margins
 preparation steps section| Stays readable on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
 recipe image| displays in correct position and is not blocked by other content, is not blurred or deformed | Resized screen from large(width 1920px), down to small(width 280px).|correct|
 <br>
