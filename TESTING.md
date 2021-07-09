@@ -207,14 +207,16 @@ Firefox|Yes|Yes|None
 The response for the HTML had 32 errors wich were related to the jinja code in the html.
 
 Exept this one:
-Start tag body seen but an element of the same type was already open.
+-Start tag body seen but an element of the same type was already open.
 moved the body tag to include the nav tags to fix this.
 
 ### all-recipes.html:
 
 Response after ignoring the jinja errors:
-The element button must not appear as a descendant of the a element.
-This would only be fixed if the card was not a link to a recipe. This error was ignored.
+-The element button must not appear as a descendant of the a element.
+This would be fixed if the image, and not the whole the card was a link to a recipe.
+Trying to fix this with javascript (onclick on the div) created conflicts with jinja code.
+This error was therefore ignored since the fix would cause degraded UX.
 
 ### edit_recipe.html:
 
@@ -233,7 +235,7 @@ Added dynamically added labels and id's to fix this.
 ### add_recipe.html:
 
 Response after ignoring the jinja errors:
-No errors
+No errors.
 
 ### recipe.html:
 
@@ -246,11 +248,12 @@ Removed these tags.
 ### register.html:
 
 Response after ignoring the jinja errors:
+No errors.
 
 ### login.html:
 
 Response after ignoring the jinja errors:
-
+No errors.
 
 <br>
 
