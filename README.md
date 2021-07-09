@@ -222,9 +222,9 @@ Install all requirements through the requirements.txt file:
 pip install -r requirements.txt
 ```
 
-Create your account on MongoDB here: https://account.mongodb.com/account/register
+### Create your account for MongoDB here: https://account.mongodb.com/account/register
 
-### When u are logged in:
+When u are logged in:
 
 - Go to clusters and click create database.
 
@@ -240,7 +240,7 @@ Documents for users and recipes can then be added trough the site or directly in
 
 Your database is now ready for use.
 
-Create your env.py file:
+### Create your env.py file:
 ```
 $touch env.py
 ```
@@ -259,32 +259,34 @@ os.environ.setdefault("MONGO_DBNAME", "<DATABASENAME>")
 ```
 Replace YOUR-SECRET-KEY-HERE, MONGODBPASSWORD, DATABASENAME according to your personal situation.
 
-To retrieve your mongodb pasword: 
+### To retrieve your mongodb pasword: 
 
 Go to database access, click edit and show password:
 
 ![database-password](readme-images/mongodb-password.png)
 
+Your local clone is now ready for use.
+
 ## To deploy this project on Heroku: 
 
-Create your account on Heroku here: https://signup.heroku.com/login
+- Create your account on Heroku here: https://signup.heroku.com/login
 
-Create a new app on heroku:
+- Create a new app on heroku:
 
-got to: https://dashboard.heroku.com/apps
+- Go to: https://dashboard.heroku.com/apps
 select new, create new app from the dropdown menu on the right.
 Enter your app-name and region and click create app.
 Under delpoyment method, select github.
 
 ![github connect](readme-images/github-connect.png)
 
-Select your repository and connect.
+- Select your repository and connect.
 
-Now go to settings, config vars and enter the variables also located in your env.py file.
+- Go to settings, config vars and enter the variables also located in your env.py file.
 
 ![Config vars](readme-images/Inkedheroku_vars.jpg)
 
-Go to deploy and at the bottom of the page manually deploy your main github branch
+- Go to deploy and at the bottom of the page manually deploy your main github branch
 
 Your app is now deployed and ready to run.
 At the top of th epage click open app to run it.
