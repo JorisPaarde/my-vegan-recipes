@@ -19,7 +19,7 @@ We invite u to start adding your favorite recipes and start collecting those lik
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Testing](#testing)
-- [Deployment](#deployment)
+- [Deployment](#deployment-and-cloning)
 - [Credits](#credits)
 
 # User experience (ux)
@@ -204,37 +204,50 @@ Apart from the images linked in the recipes, the following images where used:
 
 All testing can be found [here](TESTING.md).
 
-# Deployment
+# Deployment and cloning
 
-## To deploy this project: 
-### follow the following steps:
-
-- Create your account on MongoDB here: https://account.mongodb.com/account/register
-- Create your account on Heroku here: https://signup.heroku.com/login
-
-
-- ### Clone this repository:
-### In linux:
+## Making a local clone:
+In linux:
 
 ```
 $git clone https://github.com/JorisPaarde/my-vegan-recipes.git
 ```
 
-### in Windows:
+In Windows:
 
 follow [these](https://www.jcchouinard.com/clone-github-repository-on-windows/) steps.
 
-
-- ### Install all requirements through the requirements.txt file:
+Install all requirements through the requirements.txt file:
 ```
 pip install -r requirements.txt
 ```
-- ### Create your env.py file:
+
+Create your account on MongoDB here: https://account.mongodb.com/account/register
+
+### When u are logged in:
+
+- Go to clusters and click create database.
+
+- Enter your database name.
+
+- As your first collection name enter users.
+
+- Click the plus sign next to your new database name to add the collections recipes and categories.
+
+- Insert the categories documents as shown in the [database design](#database-in-mongo-db)
+
+Documents for users and recipes can then be added trough the site or directly in mongo db as shown in the database design.
+
+Your database is now ready for use.
+
+Create your env.py file:
 ```
 $touch env.py
 ```
-- Make sure u add this env.py file to your gitignore file!
-- Add the folowing code to your env.py file:
+
+Make sure u add this env.py file to your gitignore file!
+Add the folowing code to your env.py file:
+
 ```python
 import os
 
@@ -244,14 +257,20 @@ os.environ.setdefault("SECRET_KEY", "<YOUR-SECRET-KEY-HERE>")
 os.environ.setdefault("MONGO_URI", "mongodb+srv://root:<MONODBPASSWORD>@cluster0.ajvr3.mongodb.net/<DATABASENAME>?retryWrites=true&w=majority")
 os.environ.setdefault("MONGO_DBNAME", "<DATABASENAME>")
 ```
-- Replace YOUR-SECRET-KEY-HERE, MONGODBPASSWORD, DATABASENAME according to your personal situation.
-- Create your procfile:
-``` 
-$echo web: python app.py > Procfile
-```
-- Delete the blank line at the end of this procfile.
+Replace YOUR-SECRET-KEY-HERE, MONGODBPASSWORD, DATABASENAME according to your personal situation.
 
-- Create a new app on heroku
+To retrieve your mongodb pasword: 
+
+Go to database access, click edit and show password:
+
+![database-password](readme-images/mongodb-password.png)
+
+## To deploy this project on Heroku: 
+
+Create your account on Heroku here: https://signup.heroku.com/login
+
+Create a new app on heroku:
+
 got to: https://dashboard.heroku.com/apps
 select new, create new app from the dropdown menu on the right.
 Enter your app-name and region and click create app.
