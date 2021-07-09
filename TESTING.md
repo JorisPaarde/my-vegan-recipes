@@ -108,6 +108,7 @@ welcome text| Stays readable on all screensizes | Resized screen from large(widt
 search bar| displays correctly on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
 recipe cards|display correctly on all screensizes, images are not blurred or deformed, text is readable and in the correct position.| Resized screen from large(width 1920px), down to small(width 280px).|correct|
 truncation| displays correctly on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+pagination| displays correctly on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|breaks on mobile and arrows have different width on 992px and smaller|Decreased padding and corrected selector on arrows in media query (materialize css was selecting prev in stead of previous)
 <br>
 
 ## recipe book page
@@ -180,8 +181,9 @@ Edit recipes|opens the add recipe form with all data from the database, user has
 Delete recipes|removes a recipe from the database after confirmation in modal, only available to user that added the recipe|deleted a recipe, confirmed and cancelled, checked database state|correct
 Remove recipes|removes a recipe from the users recipe book, but does not delete it. removes the like from the currently logged user. only available to users that did not add this recipe.|checked made by name to logged user, removed a recipe from a recipe book and checked database state.|correct
 Search with regex on ingredients and titles | Results displayed correctly and search term displayed on screen. Also notification when no result is found.| searched several terms on all recipes page and recipe book page. | Searching in the all recipes page resulted in a 500 Internal Server Error. On the recipe book page all functioned as intended.| Caused by the calculated likes function wich uses the logged in user as an argument. Refactored code to only run this calculation on the recipe book site. Since this is only acessable when logged in.
-Pagination
-Scroll to error on validation
+Pagination|splites recipes in blocks of 6 and adds them to new pages. displays a menu with page numbers and arrows that link to these pages|changed recipes per page to 1 and back to 6, clicked all links|correct
+Scroll to error on validation|scrolls to the error displayed in the form by validation code|filled in the recipe form one line at a time|correct
+Custom error messages|Text dynamically changes according to the error in the form|filled in a password with 1 criterion at a time, filled in the recipe form with one criterion at a time. | correct
 Custom 404 and 500 error pages|display custom pages for 404 and 500 error|entered a wrong url on the domain and tested search on the deployed heroku site.|both pages show correctly when they should|
 
 <br>
