@@ -56,7 +56,7 @@ def all_recipes():
     page, per_page, offset = get_page_args(page_parameter='page',
                                            per_page_parameter='per_page')
 
-    per_page = 6
+    per_page = RECIPES_PER_PAGE
 
     total = len(recipes)
     pagination_recipes = get_recipes(
