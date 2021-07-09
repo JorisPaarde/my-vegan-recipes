@@ -70,17 +70,22 @@ As a first time user i want to:
 
 ## Colour Scheme
 
-#### GREEN:
-Spring, the macabre, freshness, mystery, envy, hope, eternal life. Being composed of yellow and blue, green presents the feeling of light and coolness, cheer and restraint. It is the color of nature as usually seen. Green alleviates tension and implies restfulness.
+As the base colors for this site, green seemed obvious.
+Green for a site with recipes with lots of greens...
+Knowing that a lot of colorfull recipe pictures where on display also, no other colors were used to keep the design clean.
+For readability the rest of the site has a simple white background and black / grey text.
 
-#### Emotional Response:
-Green supposedly has healing power. It is the most restful color for the human eye; it can improve vision. Green suggests stability and endurance. Sometimes green denotes lack of experience; for example, a ‘greenhorn’ is a novice. In heraldry, green indicates growth and hope. Green, as opposed to red, means safety; it is the color of free passage in road traffic.
-
-#### Use in Design & Advertising:
-Green is used to indicate safety when advertising drugs and medical products. Green is directly related to nature, so is used to promote ‘green’ or natural products. Dull, darker green is associated with money, the financial world, banking, Wall Street.
+Some elaboration on the color green:
 
 source: https://zevendesign.com/color-association/#green
+#### GREEN:
+Spring, the macabre, **freshness**, mystery, envy, hope, eternal life. Being composed of yellow and blue, green presents the feeling of light and coolness, cheer and restraint. It is the **color of nature** as usually seen. Green **alleviates tension** and **implies restfulness**.
 
+#### Emotional Response:
+Green supposedly has **healing power**. It is the **most restful color for the human eye**; it can improve vision. Green suggests stability and endurance. Sometimes green denotes lack of experience; for example, a ‘greenhorn’ is a novice. In heraldry, green indicates growth and hope. Green, as opposed to red, **means safety**; it is the color of free passage in road traffic.
+
+#### Use in Design & Advertising:
+Green is used to indicate safety when advertising drugs and medical products. Green is directly **related to nature**, so is **used to promote ‘green’ or natural products**. Dull, darker green is associated with money, the financial world, banking, Wall Street.
 
 ### Fonts
 The site uses the default values by materialize css.
