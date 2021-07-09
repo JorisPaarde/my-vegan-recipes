@@ -220,14 +220,36 @@ This would only be fixed if the card was not a link to a recipe. This error was 
 
 Response after ignoring the jinja errors:
 - Attribute type not allowed on element textarea at this point.
+
 Removed the type attribute on the textareas.
 - Duplicate attribute class.
+
 Removed attribute and put all classes in one.
 - The value of the for attribute of the label element must be the ID of a non-hidden form control.
-These errors where on fields that will be duplicated many times trough javascript. wich would lead to errors with fields having duplicate id's. Added dynamically added labels and id's to fix this.
+
+These errors where on fields that will be duplicated many times trough javascript. wich would lead to errors with fields having duplicate id's.
+Added dynamically added labels and id's to fix this.
+
+### add_recipe.html:
+
+Response after ignoring the jinja errors:
+No errors
 
 ### recipe.html:
 
+Response after ignoring the jinja errors:
+- The element h5 must not appear as a descendant of the th element.
+- The element h6 must not appear as a descendant of the th element.
+
+Removed these tags.
+
+### register.html:
+
+Response after ignoring the jinja errors:
+
+### login.html:
+
+Response after ignoring the jinja errors:
 
 
 <br>
