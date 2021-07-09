@@ -185,12 +185,20 @@ th {
     .logo-image {
         display: none;
     }
+    .pagination li a{
+        padding: 0 6px;
+    }
 }
+
 
 @media only screen and (max-width: 992px) {
     nav .brand-logo {
         font-size: 1.6rem;
         width: fit-content;
+    }
+
+    .pagination li.previous, .pagination li.next{
+        width: 10%;
     }
 
     select:focus,
