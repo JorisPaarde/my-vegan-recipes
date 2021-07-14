@@ -206,14 +206,7 @@ All testing can be found [here](TESTING.md).
 
 # Deployment and cloning
 
-## To deploy this project: 
-### follow the following steps:
-
-- Create your account on MongoDB here: https://account.mongodb.com/account/register
-- Create your account on Heroku here: https://signup.heroku.com/login
-
-
-- ### Clone this repository:
+### Clone this repository:
 ### In linux:
 To find the link, go to the "code" dropdown menu in this repository.
 Click the clipboard icon next to the url.
