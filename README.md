@@ -206,7 +206,6 @@ All testing can be found [here](TESTING.md).
 
 # Deployment and cloning
 
-<<<<<<< HEAD
 ## To deploy this project: 
 ### follow the following steps:
 
@@ -219,10 +218,6 @@ All testing can be found [here](TESTING.md).
 To find the link, go to the "code" dropdown menu in this repository.
 Click the clipboard icon next to the url.
 In your terminal type:
-=======
-## Making a local clone:
-In linux:
->>>>>>> f67525d4c7e5ad3c27413026e32317a89dd6d6a4
 
 ```
 $mkdir <jour project directory>
