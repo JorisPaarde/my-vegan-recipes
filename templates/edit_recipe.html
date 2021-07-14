@@ -37,7 +37,7 @@
             <!-- recipe description -->
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea name="recipe_description" id="recipe_description" type="text" maxlength="200" class="validate_me">{{ recipe.recipe_description }}</textarea>
+                    <textarea name="recipe_description" id="recipe_description" maxlength="200" class="validate_me">{{ recipe.recipe_description }}</textarea>
                     <label class="textarea-label" for="recipe_description">Recipe Description</label>
                 </div>
             </div>
@@ -46,16 +46,16 @@
             <div class="row recipe-item ingredient">
                 <!-- ingredient -->
                 <div class="input-field col s12 m8">
-                    <input name="ingredient_name" type="text" maxlength="100" class="validate_me" value="{{ ingredient.ingredient_name }}">
-                    <label for="ingredient_name">Ingredient</label>
+                    <input name="ingredient_name" id="ingredient_name_{{loop.index}}" type="text" maxlength="100" class="validate_me" value="{{ ingredient.ingredient_name }}">
+                    <label for="ingredient_name_{{loop.index}}">Ingredient</label>
                 </div>
                 <div class="input-field col s4 m1">
-                    <input name="amount" type="text" class="validate_me" maxlength="5" value="{{ ingredient.amount }}">
-                    <label for="amount">Amount</label>
+                    <input id="amount_{{loop.index}}" name="amount" type="text" class="validate_me" maxlength="5" value="{{ ingredient.amount }}">
+                    <label for="amount_{{loop.index}}">Amount</label>
                 </div>
                 <div class="col s6 m2">
-                    <label>Unit</label>
-                    <select class="browser-default" name="unit_name" class="validate_me">
+                    <label for="unit_name_{{loop.index}}">Unit</label>
+                    <select id="unit_name_{{loop.index}}" class="browser-default validate_me" name="unit_name">
                         <option selected value="{{ ingredient.unit_name }}">{{ ingredient.unit_name }}</option>
                         <option value="g">g</option>
                         <option value="kg">kg</option>
@@ -84,8 +84,8 @@
             <div class="row prep-step recipe-item valign-wrapper">
                 <div class="col s10 m11 l11">
                     <div class="input-field preparation_step col s12">
-                        <textarea name="preparation_step" type="text" class="validate_me" maxlength="400">{{ preparation_step }}</textarea>
-                        <label class="textarea-label" for="preparation_step">Preparation step</label>
+                        <textarea id="preparation_step_{{loop.index}}" name="preparation_step" class="validate_me" maxlength="400">{{ preparation_step }}</textarea>
+                        <label class="textarea-label" for="preparation_step_{{loop.index}}">Preparation step</label>
                     </div>
                 </div>
                 <div class="col s2 m1 l1">

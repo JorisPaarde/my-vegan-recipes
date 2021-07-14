@@ -19,7 +19,7 @@ We invite u to start adding your favorite recipes and start collecting those lik
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Testing](#testing)
-- [Deployment](#deployment)
+- [Deployment](#deployment-and-cloning)
 - [Credits](#credits)
 
 # User experience (ux)
@@ -70,17 +70,22 @@ As a first time user i want to:
 
 ## Colour Scheme
 
-#### GREEN:
-Spring, the macabre, freshness, mystery, envy, hope, eternal life. Being composed of yellow and blue, green presents the feeling of light and coolness, cheer and restraint. It is the color of nature as usually seen. Green alleviates tension and implies restfulness.
+As the base colors for this site, green seemed obvious.
+Green for a site with recipes with lots of greens...
+Knowing that a lot of colorfull recipe pictures where on display also, no other colors were used to keep the design clean.
+For readability the rest of the site has a simple white background and black / grey text.
 
-#### Emotional Response:
-Green supposedly has healing power. It is the most restful color for the human eye; it can improve vision. Green suggests stability and endurance. Sometimes green denotes lack of experience; for example, a ‘greenhorn’ is a novice. In heraldry, green indicates growth and hope. Green, as opposed to red, means safety; it is the color of free passage in road traffic.
-
-#### Use in Design & Advertising:
-Green is used to indicate safety when advertising drugs and medical products. Green is directly related to nature, so is used to promote ‘green’ or natural products. Dull, darker green is associated with money, the financial world, banking, Wall Street.
+Some elaboration on the color green:
 
 source: https://zevendesign.com/color-association/#green
+#### GREEN:
+Spring, the macabre, **freshness**, mystery, envy, hope, eternal life. Being composed of yellow and blue, green presents the feeling of light and coolness, cheer and restraint. It is the **color of nature** as usually seen. Green **alleviates tension** and **implies restfulness**.
 
+#### Emotional Response:
+Green supposedly has **healing power**. It is the **most restful color for the human eye**; it can improve vision. Green suggests stability and endurance. Sometimes green denotes lack of experience; for example, a ‘greenhorn’ is a novice. In heraldry, green indicates growth and hope. Green, as opposed to red, **means safety**; it is the color of free passage in road traffic.
+
+#### Use in Design & Advertising:
+Green is used to indicate safety when advertising drugs and medical products. Green is directly **related to nature**, so is **used to promote ‘green’ or natural products**. Dull, darker green is associated with money, the financial world, banking, Wall Street.
 
 ### Fonts
 The site uses the default values by materialize css.
@@ -124,22 +129,22 @@ Apart from the images linked in the recipes, the following images where used:
 
 # Features
 
-- Flash messages
-- Register
-- Password encryption in database
-- Login
-- Logout
-- Like button
-- Truncation on recipe cards
-- Delete recipes
-- Edit recipes
-- Remove recipes
-- Search with regex on ingredients and titles
-- Pagination
-- Custom javascript form validation
-- Adaptive error display on validation
-- Scroll to error on validation
-- Custom 404 and 500 error pages
+- Flash messages for user feedback.
+- Register form with javascript validation and username check to database to prevent doubles.
+- Password encryption in database with werkzeug security helper.
+- Login form with automatic rederect and welcome message. Also blocks logged in user from acessing this page.
+- Logout button with flash feedback message.
+- Like button that lets users add a recipe to a private recipe book, prompts user to register if they are not logged in yet.
+- Truncation on recipe cards, prevents long recipe titles from breaking the site layout.
+- Delete recipes: Only available to the recipe owner. with confirmation modal.
+- Edit recipes form with delete, add and update capabilities, again only accessable to a logged in user.
+- Remove recipes: Removing a recipe from the personal cookbook, only available for recipes not owned by the user
+- Search with regex on ingredients and titles: Search transforms the query to *.query.* and searches trough recipe titles and recipe ingredients. Optional recipe category search is also available
+- Pagination on main page to keep site size managable
+- Extensive custom modular javascript form validation
+- Adaptive error display on validation. dynamically adjusts error text to let the user know exactly what to adress.
+- Scroll to error on validation, so the user can easily adress it.
+- Custom 404 and 500 error pages.
 
 ## future features
 
@@ -190,16 +195,18 @@ Apart from the images linked in the recipes, the following images where used:
     - Heroku was used to deploy the app.
 1. [TinyPNG](https://tinypng.com/)
     - TinyPNG was used to compress images to ensure faster load times.
-1. [Browserstack](https://live.browserstack.com/)
-    - To test the site on a variety of devices and browsers.
-
+1. [dbdiagram](https://dbdiagram.io/)
+    - To design the database schema.
+1. [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/)
+    - To encrypt the users passwords.
 
 # Testing
 
 All testing can be found [here](TESTING.md).
 
-# Deployment
+# Deployment and cloning
 
+<<<<<<< HEAD
 ## To deploy this project: 
 ### follow the following steps:
 
@@ -212,6 +219,10 @@ All testing can be found [here](TESTING.md).
 To find the link, go to the "code" dropdown menu in this repository.
 Click the clipboard icon next to the url.
 In your terminal type:
+=======
+## Making a local clone:
+In linux:
+>>>>>>> f67525d4c7e5ad3c27413026e32317a89dd6d6a4
 
 ```
 $mkdir <jour project directory>
@@ -219,21 +230,41 @@ $git init <jour project directory> (to set up a new repository)
 $git clone https://github.com/JorisPaarde/my-vegan-recipes.git
 ```
 
-### in Windows:
+In Windows:
 
 follow [these](https://www.jcchouinard.com/clone-github-repository-on-windows/) steps.
 
-
-- ### Install all requirements through the requirements.txt file:
+Install all requirements through the requirements.txt file:
 ```
 pip install -r requirements.txt
 ```
-- ### Create your env.py file:
+
+### Create your account for MongoDB here: https://account.mongodb.com/account/register
+
+When u are logged in:
+
+- Go to clusters and click create database.
+
+- Enter your database name.
+
+- As your first collection name enter users.
+
+- Click the plus sign next to your new database name to add the collections recipes and categories.
+
+- Insert the categories documents as shown in the [database design](#database-in-mongo-db)
+
+Documents for users and recipes can then be added trough the site or directly in mongo db as shown in the database design.
+
+Your database is now ready for use.
+
+### Create your env.py file:
 ```
 $touch env.py
 ```
-- Make sure u add this env.py file to your gitignore file!
-- Add the folowing code to your env.py file:
+
+Make sure u add this env.py file to your gitignore file!
+Add the folowing code to your env.py file:
+
 ```python
 import os
 
@@ -243,28 +274,36 @@ os.environ.setdefault("SECRET_KEY", "<YOUR-SECRET-KEY-HERE>")
 os.environ.setdefault("MONGO_URI", "mongodb+srv://root:<MONODBPASSWORD>@cluster0.ajvr3.mongodb.net/<DATABASENAME>?retryWrites=true&w=majority")
 os.environ.setdefault("MONGO_DBNAME", "<DATABASENAME>")
 ```
-- Replace YOUR-SECRET-KEY-HERE, MONGODBPASSWORD, DATABASENAME according to your personal situation.
-- Create your procfile:
-``` 
-$echo web: python app.py > Procfile
-```
-- Delete the blank line at the end of this procfile.
+Replace YOUR-SECRET-KEY-HERE, MONGODBPASSWORD, DATABASENAME according to your personal situation.
 
-- Create a new app on heroku
-got to: https://dashboard.heroku.com/apps
+### To retrieve your mongodb pasword: 
+
+Go to database access, click edit and show password:
+
+![database-password](readme-images/mongodb-password.png)
+
+Your local clone is now ready for use.
+
+## To deploy this project on Heroku: 
+
+- Create your account on Heroku here: https://signup.heroku.com/login
+
+- Create a new app on heroku:
+
+- Go to: https://dashboard.heroku.com/apps
 select new, create new app from the dropdown menu on the right.
 Enter your app-name and region and click create app.
 Under delpoyment method, select github.
 
 ![github connect](readme-images/github-connect.png)
 
-Select your repository and connect.
+- Select your repository and connect.
 
-Now go to settings, config vars and enter the variables also located in your env.py file.
+- Go to settings, config vars and enter the variables also located in your env.py file.
 
 ![Config vars](readme-images/Inkedheroku_vars.jpg)
 
-Go to deploy and at the bottom of the page manually deploy your main github branch
+- Go to deploy and at the bottom of the page manually deploy your main github branch
 
 Your app is now deployed and ready to run.
 At the top of th epage click open app to run it.

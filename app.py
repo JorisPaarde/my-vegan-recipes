@@ -26,7 +26,8 @@ TOTAL_LIKES = 0
 def calculate_total_likes(recipes, TOTAL_LIKES):
 
     for recipe in recipes:
-        # if the recipe is made by this user, add the likes -1(this user likes it also)
+        # if the recipe is made by this user, add the likes -1
+        # (this user likes it also)
         if session['user'] == recipe['user_name']:
             TOTAL_LIKES = TOTAL_LIKES + (len(recipe['liked_by'])-1)
     return TOTAL_LIKES
@@ -55,7 +56,7 @@ def all_recipes():
     page, per_page, offset = get_page_args(page_parameter='page',
                                            per_page_parameter='per_page')
 
-    per_page = 6
+    per_page = RECIPES_PER_PAGE
 
     total = len(recipes)
     pagination_recipes = get_recipes(
@@ -185,7 +186,7 @@ def recipe_book():
     # check if a user is logged in
     if not session.get("user"):
 
-        # let user know he needs to register to acess this page
+        # let user know he needs to register to access this page
         flash("Please register to get your own recipe book")
         return redirect(url_for("register"))
 
@@ -290,6 +291,13 @@ def delete_recipe(recipe_id):
 # code adjusted from task manager project by code institute
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    # check if a user is already logged in
+    if session.get("user"):
+
+        # let user know he cannot access this page
+        flash("U are already logged in, redirected to your recipe book.")
+        return redirect(url_for("recipe_book"))
+
     if request.method == "POST":
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
@@ -319,6 +327,13 @@ def register():
 # code adjusted from task manager project by code institute
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    # check if a user is already logged in
+    if session.get("user"):
+
+        # let user know he cannot to access this page
+        flash("U are already logged in, redirected to your recipe book.")
+        return redirect(url_for("recipe_book"))
+
     if request.method == "POST":
         # check if username is in database
         existing_user = mongo.db.users.find_one(

@@ -95,7 +95,7 @@ sticky|footer stays on the bottom of the page.|Resized screen from large, down t
 feature|expected behaviour|testing|result|Fix(if needed)
 ---|---|---|---|---
 like button| displays in correct position and is not blocked by other content | Resized screen from large(width 1920px), down to small(width 280px).|correct|
-ingredients section| Stays readable on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+ingredients section| Stays readable on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|Border blocked text on smaller screensizes|Adjusted margins
 preparation steps section| Stays readable on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
 recipe image| displays in correct position and is not blocked by other content, is not blurred or deformed | Resized screen from large(width 1920px), down to small(width 280px).|correct|
 <br>
@@ -108,6 +108,7 @@ welcome text| Stays readable on all screensizes | Resized screen from large(widt
 search bar| displays correctly on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
 recipe cards|display correctly on all screensizes, images are not blurred or deformed, text is readable and in the correct position.| Resized screen from large(width 1920px), down to small(width 280px).|correct|
 truncation| displays correctly on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|correct|
+pagination| displays correctly on all screensizes | Resized screen from large(width 1920px), down to small(width 280px).|breaks on mobile and arrows have different width on 992px and smaller|Decreased padding and corrected selector on arrows in media query (materialize css was selecting prev in stead of previous)
 <br>
 
 ## recipe book page
@@ -170,17 +171,19 @@ Adaptive error display on validation | Should display correct error and scroll t
 feature|expected behaviour|testing|result|Fix(if needed)
 ---|---|---|---|---
 Flash messages|display messages like "u are logged out", "welcome {username}" etc. |logged in and out, liked a recipe. |all flash messages show correctly
-Register|User
-Login
-Logout
-Like button
-Truncation on recipe cards
-Edit recipes
-Delete recipes
-Remove recipes
+Register|User can register an account and is added to the database, then rederected to his/her personal recipe book|registered with an accepted username and password and checked database|correct
+Password encryption in database|user password is encrypted before being entered to the database, and decripted when logging in.|checked database entries|correct
+Login|logging in with a correct password rederects the user to his/her recipe book and displays a welcome message. entering a false username and or password displays an error message via flash.|logged in with correct and incorrect username/password|correct
+Logout|user is logged out, rederected to the all recipes page and recieves a confirmation message via flash|logged out|correct
+Like button|Like button toggles, recipe is added/removed to/from the users recipe book and the user is rederected to his/her recipe book.|liked/disliked a recipe|correct
+Truncation on recipe cards|cuts off text with ... when it does not fit its container|added verry long recipe title|correct
+Edit recipes|opens the add recipe form with all data from the database, user has full functionality to edit the recipe and save it.|edited all fields, removed and added fields and saved the recipe. Checked database for correct update.|correct 
+Delete recipes|removes a recipe from the database after confirmation in modal, only available to user that added the recipe|deleted a recipe, confirmed and cancelled, checked database state|correct
+Remove recipes|removes a recipe from the users recipe book, but does not delete it. removes the like from the currently logged user. only available to users that did not add this recipe.|checked made by name to logged user, removed a recipe from a recipe book and checked database state.|correct
 Search with regex on ingredients and titles | Results displayed correctly and search term displayed on screen. Also notification when no result is found.| searched several terms on all recipes page and recipe book page. | Searching in the all recipes page resulted in a 500 Internal Server Error. On the recipe book page all functioned as intended.| Caused by the calculated likes function wich uses the logged in user as an argument. Refactored code to only run this calculation on the recipe book site. Since this is only acessable when logged in.
-Pagination
-Scroll to error on validation
+Pagination|splites recipes in blocks of 6 and adds them to new pages. displays a menu with page numbers and arrows that link to these pages|changed recipes per page to 1 and back to 6, clicked all links|correct
+Scroll to error on validation|scrolls to the error displayed in the form by validation code|filled in the recipe form one line at a time|correct
+Custom error messages|Text dynamically changes according to the error in the form|filled in a password with 1 criterion at a time, filled in the recipe form with one criterion at a time. | correct
 Custom 404 and 500 error pages|display custom pages for 404 and 500 error|entered a wrong url on the domain and tested search on the deployed heroku site.|both pages show correctly when they should|
 
 <br>
@@ -199,32 +202,91 @@ Firefox|Yes|Yes|None
 # Validators
 
 ## To validate the html and CSS [W3C markup validation](https://validator.w3.org/) was used.
-The initial response for the HTML was as follows:
 
-![initial html validation](readme-images/html-validation-first.png)
+### base.html:
+The response for the HTML had 32 errors wich were related to the jinja code in the html.
+
+Exept this one:
+-Start tag body seen but an element of the same type was already open.
+moved the body tag to include the nav tags to fix this.
+
+### all-recipes.html:
+
+Response after ignoring the jinja errors:
+-The element button must not appear as a descendant of the a element.
+This would be fixed if the image, and not the whole the card was a link to a recipe.
+Trying to fix this with javascript (onclick on the div) created conflicts with jinja code.
+This error was therefore ignored since the fix would cause degraded UX.
+
+### edit_recipe.html:
+
+Response after ignoring the jinja errors:
+- Attribute type not allowed on element textarea at this point.
+
+Removed the type attribute on the textareas.
+- Duplicate attribute class.
+
+Removed attribute and put all classes in one.
+- The value of the for attribute of the label element must be the ID of a non-hidden form control.
+
+These errors where on fields that will be duplicated many times trough javascript. wich would lead to errors with fields having duplicate id's.
+Added dynamically added labels and id's to fix this.
+
+### add_recipe.html:
+
+Response after ignoring the jinja errors:
+No errors.
+
+### recipe.html:
+
+Response after ignoring the jinja errors:
+- The element h5 must not appear as a descendant of the th element.
+- The element h6 must not appear as a descendant of the th element.
+
+Removed these tags.
+
+### register.html:
+
+Response after ignoring the jinja errors:
+No errors.
+
+### login.html:
+
+Response after ignoring the jinja errors:
+No errors.
 
 <br>
-After adressing the results this was the reponse:
-All pages where tested and had these results.
 
-![Second pass validation](readme-images/html-validation-after.png)
-
-<br>
 For the CSS the results were as follows:
 
-![CSS validation](readme-images/css-validation.png)
+Document checking completed. No errors or warnings to show.
 
 <br>
 
 ## For Javascript validation [JSHint](https://jshint.com/) was used.
 
-Results:
+At the first test there were a lot of semicolons missing and variables not correctly declared.
+After adressing these the results were as follows:
 
+Metrics
+There are 16 functions in this file.
+
+Function with the largest signature take 4 arguments, while the median is 0.
+
+Largest function has 38 statements in it, while the median is 5.5.
+
+The most complex function has a cyclomatic complexity value of 26 while the median is 1.5.
+
+One unused variable
+120	validateForm
+
+The unused varable is a function name that is executed trhough the html.
 
 <br>
 
 ## For python validation [pep8online](http://pep8online.com/) was used.
 
+After addressing a comment with line length that was to long, the code came trough without issues.
 
 <br>
 

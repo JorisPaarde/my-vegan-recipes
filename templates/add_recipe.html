@@ -19,7 +19,7 @@
             <!-- recipe category -->
             <div class="row">
                 <div class="input-field col s12">
-                    <select name="category_name" class="validate_me">
+                    <select id="category_name" name="category_name" class="validate_me">
                         <option value="" disabled selected>Choose a category</option>
                         {% for category in categories %}
                         <option value="{{ category.category_name }}">{{ category.category_name }}</option>
@@ -38,7 +38,7 @@
             <!-- recipe description -->
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea name="recipe_description" id="recipe_description" type="text" maxlength="200" class="validate_me"></textarea>
+                    <textarea name="recipe_description" id="recipe_description" maxlength="200" class="validate_me"></textarea>
                     <label class="textarea-label" for="recipe_description">Recipe Description</label>
                 </div>
             </div>
@@ -46,16 +46,16 @@
             <div class="row recipe-item ingredient">
                 <!-- ingredient -->
                 <div class="input-field col s12 m8 l8">
-                    <input name="ingredient_name" type="text" maxlength="100" class="validate_me">
-                    <label for="ingredient_name">Ingredient</label>
+                    <input id="ingredient_name_1" name="ingredient_name" type="text" maxlength="100" class="validate_me">
+                    <label for="ingredient_name_1">Ingredient</label>
                 </div>
                 <div class="input-field col s4 m1 l1">
-                    <input name="amount" type="text" maxlength="5" class="validate_me">
-                    <label for="amount">Amount</label>
+                    <input id="amount_1" name="amount" type="text" maxlength="5" class="validate_me">
+                    <label for="amount_1">Amount</label>
                 </div>
                 <div class="col s6 m2 l2">
-                    <label for="unit_name">Unit</label>
-                    <select class="browser-default" name="unit_name">
+                    <label for="unit_name_1">Unit</label>
+                    <select id="unit_name_1" class="browser-default" name="unit_name">
                         <option value="g">g</option>
                         <option value="kg">kg</option>
                         <option value="l">l</option>
@@ -80,8 +80,8 @@
             <div class="row prep-step recipe-item">
                 <div class="col s10 m11 l11">
                     <div class="input-field preparation_step col s12">
-                        <textarea name="preparation_step" type="text" class="validate_me" maxlength="400"></textarea>
-                        <label class="textarea-label" for="preparation_step">Preparation step</label>
+                        <textarea id="preparation_step_1" name="preparation_step" class="validate_me" maxlength="400"></textarea>
+                        <label class="textarea-label" for="preparation_step_1">Preparation step</label>
                     </div>
                 </div>
                 <div class="col s1 m1 l1">

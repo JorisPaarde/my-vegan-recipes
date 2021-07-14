@@ -1,6 +1,9 @@
-html {
+body {
     background-size: cover;
-}
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
 
 .logo-image {
     margin-left: 10px;
@@ -10,16 +13,9 @@ html {
     object-fit: contain;
 }
 
-
-body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-
-  main {
-    flex: 1 0 auto;
-  }
+main {
+flex: 1 0 auto;
+}
 
 
 /*-------------------------------------------- Fonts --------------------------------*/
@@ -34,16 +30,6 @@ body {
 .italic {
     font-style: italic;
 }
-
-/* code by Lisa Feigen: https://github.com/lisa1Q84/somelikeithot-recipes/blob/master/static/css/style.css */
-
-.border {
-    border: dashed 2px #41403E;
-    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-    padding-left: 0.5rem;
-    padding-bottom: 1.5rem;
-}
-
 
 /*---------------------------------------- Recipe cards ------------------------------*/
 
@@ -125,6 +111,14 @@ th {
     overflow: hidden;
 }
 
+/* code by Lisa Feigen: https://github.com/lisa1Q84/somelikeithot-recipes/blob/master/static/css/style.css */
+
+.border {
+    border: dashed 2px #41403E;
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    padding-bottom: 1.5rem;
+}
+
 /*------------------------------------- Recipe-book page ------------------------------------------*/
 
 .recipe-book-background {
@@ -191,12 +185,20 @@ th {
     .logo-image {
         display: none;
     }
+    .pagination li a{
+        padding: 0 6px;
+    }
 }
+
 
 @media only screen and (max-width: 992px) {
     nav .brand-logo {
         font-size: 1.6rem;
         width: fit-content;
+    }
+
+    .pagination li.previous, .pagination li.next{
+        width: 10%;
     }
 
     select:focus,

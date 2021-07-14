@@ -2,12 +2,12 @@
 {% block content %}
 <!-- hero background image -->
 <div class="row recipes-background valign-wrapper">
-        <div class="col s12 center-align">
-            <!-- hero text -->
-            <h1 class="text-shadow grey-text text-lighten-4">My Vegan Recipes</h1>
-            <h2 class="text-shadow grey-text text-lighten-4">Where u store, share and find your favorite <br>Vegan
-                Recipes</h2>
-        </div>
+    <div class="col s12 center-align">
+        <!-- hero text -->
+        <h1 class="text-shadow grey-text text-lighten-4">My Vegan Recipes</h1>
+        <h2 class="text-shadow grey-text text-lighten-4">Where u store, share and find your favorite <br>Vegan
+            Recipes</h2>
+    </div>
 </div>
 <div class="container">
     <!-- welcome text -->
@@ -19,7 +19,7 @@
             <p>
                 The best place to get and store your favorite vegan recipies
                 To add recipes, like recipes and get access to your personal recipe book please <a
-                  class="grey-text text-darken-2"  href="{{ url_for('register') }}"><u>register</u></a>.
+                    class="grey-text text-darken-2" href="{{ url_for('register') }}"><u>register</u></a>.
             </p>
             {% if search %}
             <p>
@@ -74,8 +74,12 @@
                             class="like-button btn-floating waves-effect waves-light light-green darken-4" type="submit"
                             value="{{ recipe._id }}">
                             <!-- indicate if this user liked this recipe -->
-                            <i
-                                class="material-icons right">{% if session["user"] in recipe.liked_by %}favorite{% else %}favorite_border{% endif %}</i>
+                            <i class="material-icons right">
+                                {% if session["user"] in recipe.liked_by %}
+                                favorite
+                                {% else %}
+                                favorite_border
+                                {% endif %}</i>
                         </button>
                     </form>
                     <span class="likes-amount grey-text text-darken-2">{{ recipe.liked_by|length }}</span>
