@@ -209,8 +209,13 @@ All testing can be found [here](TESTING.md).
 
 - ### Clone this repository:
 ### In linux:
+To find the link, go to the "code" dropdown menu in this repository.
+Click the clipboard icon next to the url.
+In your terminal type:
 
 ```
+$mkdir <jour project directory>
+$git init <jour project directory> (to set up a new repository)
 $git clone https://github.com/JorisPaarde/my-vegan-recipes.git
 ```
 
